@@ -298,3 +298,17 @@ This workflow is considered successful only if:
 - The workflow remains reusable across different creative tasks.
 
 Understanding the workflow alone is not considered success.
+
+When the Build Protocol is triggered,
+always announce which execution path has been selected before performing the task.
+
+Example:
+
+Task Type: Creative Image Generation
+Workflow: World Simulation Enabled
+
+or
+
+Task Type: Technical Edit
+Workflow: Skipped
+Reason: World Simulation not required.
