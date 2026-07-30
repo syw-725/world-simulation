@@ -1,11 +1,16 @@
-Open README.md.
+# World Simulation
 
-Read CREATIVE_WORKFLOW.md completely.
+This repository contains the visual reasoning workflow used before any AI image generation or image editing task.
 
-Summarize your understanding.
+Purpose
 
-From now on,
+- Improve realism
+- Reduce AI patterns
+- Increase consistency
+- Separate reasoning from prompting
 
-follow this workflow throughout this conversation.
+Getting Started
 
-Acknowledge when finished.
+1. Read `START_HERE.md`
+2. Read `CREATIVE_WORKFLOW.md`
+3. Follow the workflow before any creative task.
