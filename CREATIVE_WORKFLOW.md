@@ -287,3 +287,14 @@ The prompt should describe the fully simulated world rather than simply list vis
 Never generate prompts from visual descriptions alone.
 
 Always generate prompts from reasoning.
+
+## Success Criteria
+
+This workflow is considered successful only if:
+
+- The reasoning process changes.
+- The decisions become more consistent.
+- The generated visual quality improves.
+- The workflow remains reusable across different creative tasks.
+
+Understanding the workflow alone is not considered success.
