@@ -1,17 +1,17 @@
 # ==========================================================
 # CREATIVE WORKFLOW
-# Version 1.0
+# Version 1.1
 # ==========================================================
 
 ## Philosophy
 
-The purpose of this workflow is not to generate better prompts.
+The purpose of this workflow is to improve creative reasoning.
 
-Its purpose is to improve creative reasoning.
+Creative execution should always be the result of deliberate reasoning rather than immediate generation.
 
-A prompt is the final result of the reasoning process, never the starting point.
+Every visual decision should be grounded in a believable world, logical relationships, material behaviour and commercial intent.
 
-The objective is to create images that feel internally believable, visually coherent and commercially purposeful.
+The final image is the outcome of the reasoning process, never its starting point.
 
 
 
@@ -19,56 +19,46 @@ The objective is to create images that feel internally believable, visually cohe
 
 ## Core Principle
 
-Every successful image begins with a believable world.
+A believable image begins with a believable world.
 
-A world is defined by its environment, materials, lighting, physics, behaviour, composition and visual relationships.
+The world defines:
 
-Creative decisions should emerge naturally from that world instead of treating every object as an isolated element.
+- Environment
+- Physical Behaviour
+- Materials
+- Lighting
+- Composition
+- Spatial Relationships
+- Visual Hierarchy
 
-The image is the result of the world, not the construction of individual assets.
+Creative elements should emerge naturally from this world rather than being assembled as isolated objects.
+
+Consistency of the world always takes priority over isolated visual detail.
 
 
 
 ---
 
-## Execution
+## Scope
 
-This workflow is activated whenever a request begins with:
+This workflow is the standard creative reasoning process for every creative visual task.
 
-Build |
-
-The first responsibility is to determine whether the request requires creative reasoning.
-
-### Creative Tasks
-
-Examples include:
+This includes, but is not limited to:
 
 - Image Generation
 - Image Editing
 - Image Analysis
+- Image Retouching
+- Style Transformation
 - Commercial Visual Design
 - Product Visualization
 - Food Photography
 - Key Visual Development
+- Packaging
 - Creative Direction
-- Style Development
+- Visual Evaluation
 
-Creative tasks execute the complete workflow.
-
-### Technical Tasks
-
-Examples include:
-
-- Crop
-- Resize
-- Aspect Ratio Extension
-- Background Removal
-- File Conversion
-- Minor Layout Adjustment
-
-Technical tasks bypass unnecessary creative reasoning and execute directly.
-
-The execution path is always determined before work begins.
+Tasks that do not require creative judgement, such as technical editing or file manipulation, may bypass this workflow.
 
 
 
@@ -76,24 +66,24 @@ The execution path is always determined before work begins.
 
 ## Creative Reasoning
 
-Creative reasoning should progressively reduce uncertainty instead of creating more possibilities.
+Creative reasoning is an iterative process.
 
-The workflow should move from understanding to definition, and finally to execution.
+Each stage informs and refines the others until the project converges toward a single coherent solution.
 
 A typical reasoning process includes:
 
-- Understanding the project objective
-- Defining creative intent
-- Building the world
-- Establishing physical behaviour
-- Defining materials
-- Establishing lighting
-- Defining composition
-- Evaluating visual consistency
-- Making creative decisions
-- Executing the final image
+1. Project Understanding
+2. Creative Intent
+3. World Definition
+4. Physical Logic
+5. Material Behaviour
+6. Lighting
+7. Composition
+8. Commercial Evaluation
+9. Decision
+10. Execution
 
-The order may adapt when appropriate, but reasoning should always progress toward greater clarity.
+The sequence may adapt depending on the project, but reasoning should always move toward greater clarity, consistency and confidence.
 
 
 
@@ -101,9 +91,11 @@ The order may adapt when appropriate, but reasoning should always progress towar
 
 ## Decision
 
-Before execution, the workflow must converge toward a single execution strategy.
+Execution begins only after a clear execution strategy has been established.
 
-This strategy defines:
+The decision stage should reduce uncertainty rather than create additional options.
+
+A complete execution strategy defines:
 
 - Project Objective
 - Creative Direction
@@ -112,9 +104,7 @@ This strategy defines:
 - Visual Identity
 - Execution Priority
 
-Alternative directions should only remain when they provide meaningful value to the project or are specifically requested.
-
-Execution begins only after the strategy has been clearly defined.
+Alternative directions should only remain when they provide meaningful value or are explicitly requested.
 
 
 
@@ -122,7 +112,7 @@ Execution begins only after the strategy has been clearly defined.
 
 ## Scene Locks
 
-Scene Locks preserve consistency throughout a project.
+Scene Locks define the persistent elements of the project world.
 
 Typical Scene Locks include:
 
@@ -132,13 +122,12 @@ Typical Scene Locks include:
 - Camera Height
 - Camera Lens
 - Lighting Direction
-- Table Surface
-- Hero Subject
-- Composition
 - Perspective
-- Global Colour Mood
+- Composition
+- Hero Subject
+- Colour Mood
 
-Locked elements should remain stable across future iterations unless intentionally revised.
+Locked elements remain consistent throughout future iterations unless intentionally revised.
 
 
 
@@ -146,7 +135,7 @@ Locked elements should remain stable across future iterations unless intentional
 
 ## Variable Assets
 
-Variable Assets are intentionally designed to change without affecting the overall world.
+Variable Assets define the elements that may change while preserving the established world.
 
 Typical Variable Assets include:
 
@@ -157,38 +146,39 @@ Typical Variable Assets include:
 - Steam
 - Sauce State
 - Decorative Elements
-- Aspect Ratio
 - Graphic Space
+- Aspect Ratio
 
-Changing a variable asset should never unintentionally redefine the established world.
+Changing a Variable Asset should never unintentionally redefine the established world.
 
 
 
 ---
 
-## Quality Standards
+## Quality Evaluation
 
-Visual quality is determined by believable interaction rather than visual complexity.
+Image quality is determined by the credibility of interactions rather than the quantity of detail.
 
-Every image should strive for:
+Every project should evaluate:
 
-- Physical consistency
-- Material realism
-- Natural lighting
-- Logical object relationships
-- Balanced composition
-- Commercial clarity
-- Appropriate visual hierarchy
+- Physical Consistency
+- Material Authenticity
+- Lighting Consistency
+- Perspective Accuracy
+- Spatial Logic
+- Visual Hierarchy
+- Commercial Clarity
 
-The workflow should actively reduce common AI artifacts such as:
+The workflow should actively identify and reduce common AI artifacts, including:
 
-- Repetitive object patterns
-- Overly symmetrical layouts
-- Uniform material appearance
-- Plastic-looking surfaces
-- Unrealistic reflections
-- Inconsistent perspective
-- Impossible physical interactions
+- Repetitive Patterns
+- Uniform Object Distribution
+- Plastic-looking Materials
+- Unrealistic Reflections
+- Incorrect Perspective
+- Impossible Physical Behaviour
+- Inconsistent Lighting
+- Overly Perfect Symmetry
 
 
 
@@ -196,11 +186,11 @@ The workflow should actively reduce common AI artifacts such as:
 
 ## Output
 
-Creative reasoning is always completed internally before execution.
+Creative reasoning is always completed before execution.
 
-By default, the output should communicate only the decisions required for execution.
+By default, the workflow communicates only the conclusions necessary for execution.
 
-A standard project summary includes:
+A standard project summary should include:
 
 - Project Definition
 - Selected Direction
@@ -209,7 +199,9 @@ A standard project summary includes:
 - Variable Assets
 - Execution Plan
 
-Detailed reasoning is provided only when explicitly requested.
+Detailed reasoning should only be presented when explicitly requested.
+
+The same creative reasoning process applies consistently across image generation, image analysis, image retouching and all other creative visual tasks.
 
 
 
@@ -217,10 +209,12 @@ Detailed reasoning is provided only when explicitly requested.
 
 ## Guiding Principle
 
-The workflow does not optimize prompts.
+This workflow does not optimize prompts.
 
-It optimizes reasoning.
+It optimizes creative reasoning.
 
-Better reasoning produces better creative decisions.
+Better reasoning produces better decisions.
 
-Better creative decisions produce better images.
+Better decisions produce more believable worlds.
+
+More believable worlds produce better images.
