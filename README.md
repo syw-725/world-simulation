@@ -1,26 +1,109 @@
-# World Simulation
+# YCOS (Yan Creative Operating System)
 
-This repository contains the visual reasoning workflow used before any AI image generation or image editing task.
+Version 1.0
 
-Purpose
+---
 
-- Improve realism
-- Reduce AI patterns
-- Increase consistency
-- Separate reasoning from prompting
+## Overview
 
-Getting Started
+YCOS is an AI-agnostic operating system for creative work.
 
-1. Read `START_HERE.md`
-2. Read `CREATIVE_WORKFLOW.md`
-3. Follow the workflow before any creative task.
+Instead of optimizing prompts, YCOS standardizes creative reasoning.
 
-## Validation
+Its goal is to produce consistent, believable and commercially effective creative outputs across different AI models.
 
-A workflow is considered successful only if the AI:
+The system separates reasoning from execution.
 
-1. Reads the workflow.
-2. Summarizes it correctly.
-3. Applies it consistently.
-4. Produces better reasoning.
-5. Produces better visual results.
+---
+
+## Repository Structure
+
+### BUILD_PROTOCOL.md
+
+Defines how Build Mode is activated and how creative tasks enter the operating system.
+
+Responsibilities:
+
+- Detect Build Mode
+- Activate Bootstrap
+- Load Creative Workflow
+- Define execution flow
+
+---
+
+### CREATIVE_WORKFLOW.md
+
+Defines the creative reasoning process.
+
+Responsibilities:
+
+- Project Definition
+- World Simulation
+- Physics
+- Materials
+- Behaviour
+- Lighting
+- Composition
+- Scene Locks
+- Variable Assets
+- Creative Decision
+
+---
+
+### VALIDATION.md
+
+Defines the quality control process before final output.
+
+Responsibilities:
+
+- Physical Consistency
+- Material Realism
+- Perspective Check
+- Lighting Check
+- AI Pattern Detection
+- Commercial Quality
+- Scene Consistency
+
+---
+
+## Workflow
+
+Build Request
+
+↓
+
+BUILD_PROTOCOL.md
+
+↓
+
+CREATIVE_WORKFLOW.md
+
+↓
+
+VALIDATION.md
+
+↓
+
+Final Output
+
+---
+
+## Design Principles
+
+YCOS follows four fundamental principles:
+
+1. Reason before execution.
+
+2. Build the world before building the image.
+
+3. Separate stable scene elements from variable assets.
+
+4. Produce commercially useful creative outputs instead of visually impressive but inconsistent images.
+
+---
+
+## Version
+
+Current Version
+
+YCOS v1.0
