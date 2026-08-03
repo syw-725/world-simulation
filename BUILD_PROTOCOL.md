@@ -90,6 +90,8 @@ Bootstrap automatically performs:
 
 6. Execute image generation, analysis or retouching
 
+After Project Understanding, an optional Asset Consistency Decision may select Level 0 — No Blueprint, Level 1 — Lightweight Blueprint or Level 2 — Full Blueprint as defined by [Asset Blueprint](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md). Level 0 leaves the existing workflow unchanged. This decision does not create another mode or Bootstrap sequence.
+
 This happens once only.
 
 The workflow remains active until the task finishes.
