@@ -84,11 +84,15 @@ Bootstrap automatically performs:
 
 3. Determine task type
 
-4. Execute reasoning
+4. Perform the optional Asset Consistency Decision after Project Understanding
 
-5. Make creative decisions
+5. Execute reasoning
 
-6. Execute image generation, analysis or retouching
+6. Make creative decisions
+
+7. Execute image generation, analysis or retouching
+
+The optional Asset Consistency Decision may select Level 0 — No Blueprint, Level 1 — Lightweight Blueprint or Level 2 — Full Blueprint as defined by [Asset Blueprint](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md). Level 0 leaves the existing workflow unchanged. This decision does not create another mode or Bootstrap sequence.
 
 This happens once only.
 

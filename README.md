@@ -66,6 +66,21 @@ Responsibilities:
 
 ---
 
+### asset-blueprint/
+
+Optional module for maintaining reusable asset identity and continuity across images, camera angles, scenes, styles and video shots.
+
+- `README.md`
+- `ASSET_BLUEPRINT_PROTOCOL.md`
+- `ASSET_BLUEPRINT_TEMPLATE.md`
+- `ASSET_EXECUTION.md`
+- `ASSET_VALIDATION.md`
+- `ASSET_LIFECYCLE.md`
+
+See the [Asset Blueprint module](asset-blueprint/README.md). The core documents above remain authoritative.
+
+---
+
 ## Workflow
 
 Build Request
@@ -77,6 +92,20 @@ BUILD_PROTOCOL.md
 ↓
 
 CREATIVE_WORKFLOW.md
+
+↓
+
+Project Understanding
+
+↓
+
+Optional Asset Consistency Decision
+
+Level 0 — No Blueprint (existing workflow unchanged)
+
+Level 1 — Lightweight Blueprint
+
+Level 2 — Full Blueprint
 
 ↓
 
@@ -99,6 +128,8 @@ YCOS follows four fundamental principles:
 3. Separate stable scene elements from variable assets.
 
 4. Produce commercially useful creative outputs instead of visually impressive but inconsistent images.
+
+When the optional Asset Blueprint module is active, it preserves reusable asset identity without replacing global world simulation, physics, materials, lighting, camera, composition, commercial judgement, scene logic or validation.
 
 ---
 

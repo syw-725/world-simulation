@@ -134,6 +134,16 @@ When critical information is missing and cannot be safely inferred, clarificatio
 
 ---
 
+## Asset Consistency Decision — Optional
+
+After Project Understanding and before detailed execution, determine whether reusable asset continuity requires Level 0 — No Blueprint, Level 1 — Lightweight Blueprint or Level 2 — Full Blueprint under the optional [Asset Blueprint Protocol](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md).
+
+Level 0 continues through this workflow unchanged. Levels 1 and 2 may inform later world, camera, scene and execution decisions, but do not replace this workflow's authority over world definition, physics, materials, object interaction, lighting, camera, perspective, composition, commercial intent or scene logic.
+
+
+
+---
+
 ## Creative Intent
 
 Creative intent defines what the audience should notice, understand, feel or do.
@@ -393,6 +403,8 @@ A complete execution strategy defines:
 - Elements to Preserve
 - Elements to Modify
 
+When Asset Blueprint Level 1 or Level 2 is active, the strategy should also identify the applicable Asset Version, selected Controlled Variation and Temporary State without treating the Blueprint as a complete generation prompt.
+
 Alternative directions should remain only when they provide meaningful value or are explicitly requested.
 
 When one direction is clearly stronger, the workflow should recommend it directly rather than presenting multiple equal options without a decision.
@@ -423,6 +435,8 @@ Typical Scene Locks include:
 Locked elements remain stable throughout future iterations unless intentionally revised.
 
 When the user requests a local change, all unrelated Scene Locks should remain unchanged.
+
+Scene Locks govern the current project world. Permanent Asset Locks govern intrinsic reusable asset identity. When the optional Asset Blueprint module is active, neither may silently overwrite the other; genuine conflicts must be classified and deliberately resolved under the [Asset Blueprint Protocol](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md).
 
 
 
@@ -456,6 +470,8 @@ Changing a Variable Asset should not unintentionally redefine:
 - Unrelated Objects
 
 Any secondary effect caused by the change should be updated where physically necessary.
+
+When the optional Asset Blueprint module is active, distinguish Variable Assets from approved Controlled Variations and shot-, scene- or sequence-specific Temporary State Changes. None may silently modify Permanent Asset Locks.
 
 
 
