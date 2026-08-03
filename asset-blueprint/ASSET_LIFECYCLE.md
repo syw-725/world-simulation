@@ -40,7 +40,7 @@ Normal progression is:
 
 Intake → Draft → Review → Active → Locked → Deprecated → Archived
 
-A Blueprint may return from Review to Draft for correction, or from Active to Review when unresolved issues emerge. A Locked Blueprint requiring identity change produces a controlled minor revision or a new major version; it is not edited silently in place.
+A Blueprint may return from Review to Draft for correction, or from Active to Review when unresolved issues emerge. A Locked Blueprint requiring an identity change or a Permanent Asset Lock change requires a new major version; it is not edited silently in place.
 
 Deprecation and archival do not delete historical identity records.
 
@@ -54,7 +54,7 @@ Use `MAJOR.MINOR` format, such as:
 
 ### Minor Revision
 
-Increment MINOR when clarification, documentation improvement or compatible refinement does not alter core identity or Permanent Asset Locks.
+Increment MINOR only when clarification, documentation improvement or compatible refinement does not alter core identity or Permanent Asset Locks. Minor revisions may not change core identity or Permanent Asset Locks.
 
 ### Major Version
 
@@ -134,4 +134,3 @@ When deprecating or archiving a Blueprint or version, record:
 - Date and approving authority
 
 Existing projects may retain a Deprecated version when continuity requires it. New work should use the current approved version unless explicitly directed otherwise.
-

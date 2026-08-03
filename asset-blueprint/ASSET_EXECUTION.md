@@ -137,9 +137,11 @@ Moderate pose, articulation, interaction or camera movement with predictable con
 
 Large articulation, rapid action, substantial camera change, interaction, deformation, occlusion or view translation requiring stronger per-shot structural control.
 
-### Level 4 — Critical Motion
+### Level 4 — Multi-event Motion
 
-High-risk transformation, extreme articulation, major topology exposure, complex multi-subject interaction, severe occlusion or long sequence continuity requiring detailed shot planning and validation.
+A shot containing multiple sequential actions, state changes, exchanges or cause-and-effect events. Examples include attack, impact, fall and recovery in one shot; multiple object exchanges; transformation followed by action; or several narrative events within one generation.
+
+Level 4 should normally be decomposed into multiple shots unless there is a deliberate and validated reason not to do so.
 
 Motion Complexity Level describes execution risk. It does not change the Blueprint activation level or Asset Version.
 
@@ -152,4 +154,3 @@ Motion Complexity Level describes execution risk. It does not change the Bluepri
 - Prefer controlled retouch when drift is local and regeneration when structure is broadly wrong.
 - Replan at S4 rather than repeating the same failed strategy.
 - Preserve commercial readability as well as continuity.
-
