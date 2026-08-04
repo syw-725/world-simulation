@@ -1,137 +1,118 @@
 # Asset Validation
 
-## Purpose and Authority
+Global [VALIDATION.md](../VALIDATION.md) must be completed first. Asset Validation extends Global Validation and never replaces or lowers it.
 
-Asset validation extends the mandatory root [VALIDATION.md](../VALIDATION.md). It never replaces, weakens or bypasses root YCOS validation.
+## Validation Gates
 
-Global YCOS validation runs first. Asset validation runs afterward when Level 1 or Level 2 is active. Passing asset validation cannot compensate for a failure in world consistency, physics, materials, lighting, perspective, composition, commercial purpose or another root validation requirement.
+### 1. Identity Gate
 
-## Validation Inputs
+- [ ] Identity Core matches the approved Blueprint.
+- [ ] Recognition Anchors are present and correctly related.
+- [ ] Permanent Asset Locks remain unchanged.
+- [ ] The asset is recognizable at target output size.
 
-Validate against:
+### 2. Structure Gate
 
-- Active or Locked Asset Blueprint
-- Applicable Asset Version
-- Selected Controlled Variation
-- Declared Temporary State
-- Task-specific Reference Package
-- Project Definition
-- Scene Locks
-- Execution Package
-- Sequence Continuity Sheet, when applicable
-- Produced image, retouch, shot or sequence
+- [ ] Silhouette is correct for the view.
+- [ ] Proportions remain approved and coherent.
+- [ ] Visible and hidden components translate correctly.
+- [ ] Anatomy, topology, connections and articulation are valid.
 
-## Asset Validation Checks
+### 3. Material Gate
 
-### Identity
+- [ ] Intrinsic materials remain correct.
+- [ ] Roughness and reflection are material-appropriate.
+- [ ] Transparency, translucency and edge behaviour are coherent.
+- [ ] Material appearance responds correctly to scene conditions.
 
-- Identity Core remains recognizable.
-- Recognition Anchors remain present and correctly related.
-- No unrelated asset identity has been introduced.
+### 4. Colour and Marking Gate
 
-### Silhouette
+- [ ] Intrinsic colour is preserved under current lighting.
+- [ ] Logos and markings have correct form, placement and orientation.
+- [ ] Environmental colour cast has not become permanent colour.
 
-- Approved silhouette logic is preserved for the view.
-- Foreshortening and occlusion explain visible changes.
-- Scene adaptation has not become silent redesign.
+### 5. Scene Integration Gate
 
-### Proportions
+- [ ] Scene scale is credible.
+- [ ] Contact and support are physically correct.
+- [ ] Shadows and reflections match the world.
+- [ ] Moisture, heat, pressure and deformation follow their causes.
+- [ ] Crop safety and composition preserve commercial readability.
 
-- Approved proportion relationships remain coherent.
-- Lens, pose and perspective effects are physically explainable.
-- No local generation drift has changed canonical ratios.
+### 6. Motion Gate
 
-### Structure
+- [ ] Motion and articulation follow the Blueprint.
+- [ ] Weight, balance, speed and secondary motion are credible.
+- [ ] Motion Complexity is appropriate for the shot and tool.
 
-- Anatomy, construction, topology and component relationships are correct.
-- Articulation follows defined physical constraints.
-- Components have not merged, multiplied, disappeared or changed function.
+### 7. Continuity Gate
 
-### Materials
+- [ ] Temporary State Changes match the intended progression.
+- [ ] No temporal Identity Drift is visible.
+- [ ] Shot-to-shot scale, direction, costume, props, damage and wetness are continuous.
+- [ ] Start and end states match the Sequence Continuity Sheet.
 
-- Canonical material identity is preserved.
-- Visible response follows the authoritative scene lighting and environment.
-- Material adaptation has not changed the asset into a different construction.
+### 8. AI Artifact Gate
 
-### Colour and Markings
+- [ ] No malformed logos, duplicated components or merged accessories.
+- [ ] No impossible connections, incorrect limb count or unstable symmetry.
+- [ ] No repeated AI patterns or repeated micro-textures.
+- [ ] No artifact has been treated as an approved design feature.
 
-- Primary colour logic remains identifiable under scene conditions.
-- Markings, logos and recognition details have correct form and placement.
-- Lighting-dependent colour shifts are distinguished from identity drift.
+### 9. Commercial Readability Gate
 
-### Angle Translation
+- [ ] The asset remains immediately identifiable.
+- [ ] Recognition survives the target output size and duration.
+- [ ] Crop safety preserves important anchors, logos and product information.
+- [ ] Continuity supports the intended message, brand or IP.
 
-- Features translate coherently across the selected view.
-- Hidden and visible components follow View Translation Logic.
-- Camera distortion does not silently change identity.
+## Validation Results
 
-### Scene Integration
+- **PASS** — all applicable gates pass.
+- **PASS WITH MINOR FIX** — the output is usable after a small non-structural correction.
+- **RETOUCH REQUIRED** — clear local errors require controlled correction.
+- **REGENERATE** — broad identity, structure, view, motion or continuity failure cannot be safely corrected locally.
 
-- The asset obeys world, physics, contact, support, occlusion, shadow and reflection logic.
-- Permanent Asset Locks and Scene Locks are both respected within their domains.
-- A conflict has not been concealed as an adaptation.
+## Severity
 
-### Motion
+- **S0 — no issue:** No applicable deviation.
+- **S1 — minor:** Does not affect identity or use.
+- **S2 — clear but locally repairable:** Requires a focused correction.
+- **S3 — major identity or structural failure:** Requires substantial retouch or regeneration.
+- **S4 — strategy failure:** Execution design, references, Blueprint, shot plan or tool capability is incorrect. Replan rather than repeat the same generation.
 
-- Motion follows the assigned Motion Complexity Level and articulation logic.
-- Weight, balance, inertia and deformation are credible.
-- Identity anchors survive movement and occlusion.
+Result and severity are recorded separately.
 
-### Temporary-State Continuity
+## Retouch Versus Regenerate
 
-- Temporary State entry, progression and exit are intentional.
-- Pose, expression, wetness, dirt, damage, opened components, held props and scene lighting have not modified canonical identity.
-- Temporary conditions return or progress according to the project plan.
+Choose **Retouch** when:
 
-### Multi-Shot Continuity
+- The error is local and its correct target is known.
+- Core identity and structure remain intact.
+- Correct surrounding pixels and Scene Locks can be preserved.
+- Secondary effects can be reconciled reliably.
 
-- Asset Version and Controlled Variant remain correct across shots.
-- Sequence Continuity Sheet dependencies are satisfied.
-- State, markings, structure, motion and camera transitions remain coherent.
+Choose **Regenerate** when:
 
-### AI Artifacts
+- Identity or structure is broadly wrong.
+- Multiple anchors, proportions or components have drifted.
+- Motion or perspective failure affects the complete output.
+- Local correction would reconstruct most of the image or shot.
 
-- No identity drift, topology mutation, duplicated components or unstable markings remain.
-- No view-specific hallucination has been promoted as canonical identity.
-- Root AI artifact checks have already passed.
+At S4, do not repeat generation unchanged. Replan the Task-specific Execution Package, Reference Package, Blueprint, shot design or tool strategy first.
 
-### Commercial Readability
+## Asset Validation Report
 
-- The asset remains immediately identifiable for its intended audience and platform.
-- Continuity supports rather than obscures the product, message, brand or IP.
-- Recognition anchors remain readable at the required output size and duration.
+- **Result:** PASS / PASS WITH MINOR FIX / RETOUCH REQUIRED / REGENERATE
+- **Blueprint:** Asset name, Version and status
+- **Critical Checks:** Gates and locks evaluated
+- **Detected Issues:** Evidence-based findings
+- **Severity:** S0 / S1 / S2 / S3 / S4
+- **Recommended Action:** Minor fix, retouch, regenerate or replan
+- **Execution Decision:** Proceed, correct, regenerate, clarify or redesign
 
-## Validation Outcomes
+## Feedback Loop
 
-Every asset validation produces one outcome:
+Only recurring, predictable, identity-relevant issues with future value should be proposed for addition to Known Failure Modes.
 
-- **PASS** — all applicable requirements are satisfied.
-- **PASS WITH MINOR FIX** — continuity is acceptable, but a small non-structural correction is required before final delivery.
-- **RETOUCH REQUIRED** — localized errors require controlled correction while preserving approved content.
-- **REGENERATE** — the output has broad identity, structure, view, motion or continuity failure that cannot be safely corrected through local retouching.
-
-The outcome and severity are recorded separately. A REGENERATE outcome with S4 severity requires replanning before another generation attempt.
-
-## Severity Levels
-
-- **S0 — No issue:** No relevant deviation detected.
-- **S1 — Cosmetic:** Minor visible deviation that does not threaten identity or continuity.
-- **S2 — Local continuity issue:** Noticeable localized drift requiring a minor fix or focused retouch.
-- **S3 — Major output failure:** Significant identity, structure, motion or continuity error requiring retouch or regeneration.
-- **S4 — Structural strategy failure:** The Execution Package, references, shot design, Blueprint or tool strategy is structurally wrong. Replan the strategy rather than repeating the same generation.
-
-## Validation Record
-
-Record:
-
-- Root YCOS validation completion
-- Asset validation outcome
-- Highest severity
-- Failed categories and evidence
-- Affected shots or frames
-- Whether the defect is scene, identity, variation, Temporary State or strategy related
-- Required minor fix, retouch, regeneration or replanning action
-- Confirmation after correction
-
-Final delivery requires root YCOS validation and all applicable asset validation to be resolved at an acceptable outcome.
-
+Do not automatically write every generation error into the permanent Blueprint. Record a **Proposed Blueprint Update**, then review its evidence, future value and effect on approved identity before approval.

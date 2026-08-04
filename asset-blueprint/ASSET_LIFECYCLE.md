@@ -2,135 +2,160 @@
 
 ## Purpose
 
-The Asset Lifecycle controls how a Blueprint moves from source intake to approved use, later replacement and archival. It prevents observations, temporary output conditions and project decisions from silently becoming canonical identity.
+Asset Lifecycle defines Blueprint status, Asset Version, change control, compatibility and long-term repository storage without confusing project state or Git history with asset identity.
 
-## Lifecycle States
+## Statuses
 
 ### Intake
 
-Sources have been received and are undergoing input classification, Reference Separation, observable extraction and uncertainty mapping. No Blueprint authority is implied.
+- Unverified source material
+- No Permanent Asset Locks
+- No formal generation authority
 
 ### Draft
 
-A preliminary Blueprint has been assembled. Content retains its evidence status and is not yet active for execution.
+- Structured but provisional
+- May include Observed, Inferred, Proposed, Undefined and Conflicted content
+- Testing only
 
 ### Review
 
-The Draft is being checked, clarified and approved. Conflicted and Undefined content remains visible. Observed, Inferred or Proposed content does not become a Permanent Asset Lock without deliberate approval.
+- Awaiting user decisions
+- Must include a Decision Summary of confirmed content, proposed locks, conflicts and open questions
 
 ### Active
 
-The reviewed Blueprint may guide execution. Confirmed Active Blueprint content has source authority within its approved scope, but not all Active content is necessarily a Permanent Asset Lock.
+- Approved for real generation
+- Revisions are allowed with records
+- Confirmed content has authority within its Approved Scope
 
 ### Locked
 
-Permanent Asset Locks and other approved canonical content are frozen for the current Asset Version. A latest explicit user instruction may direct a change, but the change must be classified and recorded rather than silently mutating the Locked Blueprint.
+- Core identity is formally approved
+- Changes to Permanent Asset Locks require a new major Asset Version
 
 ### Deprecated
 
-The Blueprint or Asset Version should not be selected for new work. It remains available for compatibility, continuity and historical interpretation.
+- Retained for history
+- Not for new work
+- Must record the replacement version when one exists
 
 ### Archived
 
-The Blueprint or Asset Version is retained as a historical record and is not used for active execution unless deliberately restored through review.
+- Cancelled or unused concepts and historical exploration
+- Not active generation authority
 
-## Lifecycle Transitions
+## Blueprint Versioning
 
-Normal progression is:
-
-Intake → Draft → Review → Active → Locked → Deprecated → Archived
-
-A Blueprint may return from Review to Draft for correction, or from Active to Review when unresolved issues emerge. A Locked Blueprint requiring an identity change or a Permanent Asset Lock change requires a new major version; it is not edited silently in place.
-
-Deprecation and archival do not delete historical identity records.
-
-## Asset Version
-
-Use `MAJOR.MINOR` format, such as:
-
-- `1.0`
-- `1.1`
-- `2.0`
+Use `MAJOR.MINOR`, such as `1.0`, `1.1` and `2.0`.
 
 ### Minor Revision
 
-Increment MINOR only when clarification, documentation improvement or compatible refinement does not alter core identity or Permanent Asset Locks. Minor revisions may not change core identity or Permanent Asset Locks.
+A minor revision may add or improve:
+
+- Documentation
+- New references
+- Known Failure Modes
+- Prompt Anchors
+- Clarified material behaviour
+- Additional angle information
+- Validation guidance
+
+A minor revision must not change core identity or Permanent Asset Locks.
 
 ### Major Version
 
-Increment MAJOR when core identity or Permanent Asset Locks change. Changes to core silhouette, proportions, structure, logos, primary colour logic or recognition anchors require a new major version.
+A new major Asset Version is required for changes to:
 
-A major version is a New Version / Redesign and must pass intake, review, activation and validation appropriate to its risk.
+- Silhouette
+- Proportions
+- Structure
+- Logo
+- Primary colour system
+- Facial identity
+- Required accessory
+- Product form
+- Core material
+- Other major identity characteristics
 
-## Controlled Variant
+Locked identity and Permanent Asset Locks are never changed through a minor revision.
 
-A Controlled Variant is an approved reusable state or design within one Asset Version. It does not receive a separate major identity unless it changes Permanent Asset Locks.
+## Distinct Records
 
-Record:
+### Asset Version
 
-- Variant name
-- Parent Asset Version
-- Approved change scope
-- Preserved Permanent Asset Locks
-- Approved references
-- Use conditions
-- Validation status
+The approved identity definition identified by MAJOR.MINOR.
 
-## Temporary State
+### Controlled Variant
 
-A Temporary State is limited to a shot, scene, sequence or Project Configuration. It may include pose, expression, wetness, dirt, damage, opened components, held props or scene lighting.
+An explicitly approved reusable variation within one Asset Version. It records changed and unchanged elements and does not alter Permanent Asset Locks.
 
-A Temporary State:
+### Temporary State
 
-- Does not change the Asset Version
-- Does not become a Controlled Variant automatically
-- Does not modify Permanent Asset Locks
-- Must define its scope, entry condition, progression and exit condition when continuity matters
-- May be promoted only through deliberate review and classification
+A scene-, shot- or sequence-specific condition such as wetness, dirt, damage, pose, held prop or temporary costume. It does not modify the Asset Version.
 
-## Project Configuration
+### Project Configuration
 
-A Project Configuration records the Asset Version, Controlled Variant, Temporary State, Scene Locks and other selections used for a particular project.
+The Asset Version, Controlled Variant, Temporary State, Scene Locks and execution selections used by a project.
 
-It does not redefine the Blueprint and must remain separate from canonical asset identity.
+### Git Commit
 
-## Git Commit History
+A repository history record. A Git commit is not an Asset Version, Controlled Variant, Temporary State or Project Configuration.
 
-Git commit history records repository document changes. It is not the Asset Version, lifecycle state, Controlled Variant, Temporary State or Project Configuration.
+## Change Control
 
-Asset lifecycle and version decisions must be stated inside the Blueprint rather than inferred from commit identifiers.
+Classify every proposed change as:
 
-## Four-Way Change Control
+1. Permanent Asset Lock
+2. Controlled Variation
+3. Temporary State Change
+4. New Version or Redesign
 
-Classify every requested asset change as:
+Project findings become **Proposed Blueprint Updates** before approval. Observed, Inferred or Proposed content cannot silently enter an Active or Locked Blueprint.
 
-1. Permanent Asset Locks
-2. Controlled Variations
-3. Temporary State Changes
-4. New Version / Redesign
+For each approved change, record:
 
-For each decision, record the request, affected scope, source authority, evidence status, compatibility impact, required approval and resulting Asset Version or variant/state assignment.
+- Source and reason
+- Evidence Classification
+- Approved Scope
+- Changed and unchanged elements
+- Approval authority
+- Compatibility impact
+- Resulting Version, Controlled Variant or Temporary State
 
-## Lock Promotion
+## Compatibility Checks
 
-Before content becomes a Permanent Asset Lock:
+Before activating a revision or major version, check:
 
-1. Confirm the source and approved scope.
-2. Resolve or record conflicting evidence.
-3. Change the evidence status to Confirmed through deliberate review.
-4. Assess impact on existing variants, projects and sequences.
-5. Record the lock in the current version or create a new major version when core identity changes.
+- Previous references
+- Previous footage
+- Previous projects
+- Prompt Anchors
+- Angle sets
+- Appearance beside the old version
 
-Observed, Inferred or Proposed content cannot bypass this process.
+Record whether each source or output remains compatible, requires migration, must remain tied to the old version or is no longer authoritative.
 
-## Deprecation and Archival
+## GitHub Storage Principles
 
-When deprecating or archiving a Blueprint or version, record:
+Long-term records may include:
 
-- Reason
-- Replacement version, if any
-- Affected Controlled Variants and projects
-- Compatibility or migration notes
-- Date and approving authority
+- Blueprint Markdown
+- Reference Index
+- Source Authority
+- Version History
+- Change Log
+- Known Failure Modes
+- Validation Notes
+- External reference links
 
-Existing projects may retain a Deprecated version when continuity requires it. New work should use the current approved version unless explicitly directed otherwise.
+Do not store by default:
+
+- Every failed image
+- All temporary keyframes
+- Every prompt experiment
+- Large video files
+- Disposable Task-specific Execution Packages
+- Unapproved random references
+
+Git history documents changes to the specification. It does not replace Blueprint review, approval or Asset Version records.
