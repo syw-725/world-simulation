@@ -81,6 +81,12 @@ See the [Asset Blueprint module](asset-blueprint/README.md). The core documents 
 
 ---
 
+## Optional Workflow Modules
+
+[Asset Blueprint](asset-blueprint/README.md) is an optional consistency-control layer for persistent visual assets. It defines approved asset identity while Creative Workflow remains authoritative for the believable world, scene logic and commercial communication. Level 0 leaves the original workflow unchanged.
+
+---
+
 ## Workflow
 
 Build Request
@@ -95,13 +101,9 @@ CREATIVE_WORKFLOW.md
 
 ↓
 
-Project Understanding
+Optional Asset Blueprint when required
 
-↓
-
-Optional Asset Consistency Decision
-
-Level 0 — No Blueprint (existing workflow unchanged)
+Level 0 — No Blueprint continues unchanged
 
 Level 1 — Lightweight Blueprint
 
