@@ -1,242 +1,308 @@
-# Asset Blueprint Template
+# Asset Blueprint
 
-Use this human-readable template to document a reusable asset. It is not a complete generation prompt or a machine-readable schema.
+Complete sections 1–12 for **Level 1 — Lightweight Blueprint**. For **Level 2 — Full Blueprint**, retain sections 1–12 and add sections 13–25.
 
-For **Level 1 — Lightweight Blueprint**, complete sections 1–12.
+Label every unapproved Permanent Asset Lock entry **Proposed**. Visible reference content is Observed until explicitly approved.
 
-For **Level 2 — Full Blueprint**, retain sections 1–12 and extend the same record through sections 13–25.
-
-Every assertion derived during intake must carry an evidence status: Confirmed, Observed, Inferred, Proposed, Undefined or Conflicted. Observed, Inferred and Proposed content must not automatically become a Permanent Asset Lock.
-
-## Lightweight Blueprint
+## Level 1 — Lightweight Blueprint
 
 ## 1. Basic Information
 
-- Asset name and identifier
-- Asset category
-- Intended use and commercial role
-- Activation level
-- Asset Version using MAJOR.MINOR
-- Lifecycle state
-- Blueprint owner or approving authority
+- **Asset Name:**
+- **Asset Type:**
+- **Blueprint Level:**
+- **Version:**
+- **Status:**
+- **Project or Brand:**
+- **Created Date:**
+- **Last Updated:**
 
 ## 2. Asset Intake Record
 
-- Input type: text, one image, multiple images, or text and image combined
-- Input classification
-- Reference Separation record
-- Observable extraction
-- Uncertainty map
-- Draft date and review status
-- Activation decision
+- **Input Type:**
+- **Source Materials:**
+- **User-stated Purpose:**
+- **User-stated Locks:**
+- **User-stated Exclusions:**
+- **Missing Information:**
 
-## 3. Identity Core
+## 3. Reference Role Separation
 
-- Concise identity definition
-- Essential identity traits
-- Intended recognition across scenes, angles, styles and shots
-- Evidence status and confidence for each trait
+| Reference ID | Role | Authority | Approved Scope | Excluded Signals | Confidence | Limitations |
+|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |
 
-## 4. Recognition Anchors
+## 4. Evidence Classification
 
-- Primary recognition anchors
-- Secondary recognition anchors
-- Required relationships among anchors
-- Viewing conditions under which each anchor remains important
+### Confirmed
 
-## 5. Silhouette Logic
+-
 
-- Defining outer contour
-- Proportion rhythm and mass distribution
-- Silhouette features that must survive angle and style translation
-- Permitted silhouette variation
+### Observed
 
-## 6. Permanent Asset Locks
+-
 
-- Approved silhouette locks
-- Approved proportion locks
-- Approved structural locks
-- Approved markings, logos and primary colour logic
-- Approved material identity
-- Other locked recognition anchors
-- Approval source and date
+### Inferred
 
-## 7. Controlled Variations
+-
 
-For each approved reusable variation:
+### Proposed
 
-- Variation name
-- Purpose
-- Properties allowed to change
-- Permanent Asset Locks preserved
-- Approved use conditions
-- Reference scope
+-
 
-## 8. Permitted Variation
+### Undefined
 
-- Acceptable non-canonical variation ranges
-- Scene-dependent adaptation boundaries
-- Temporary State boundaries
-- Changes requiring clarification
-- Changes requiring New Version / Redesign
+-
 
-## 9. Reference Roles
+### Conflicted
 
-For each Identity, Structure, Proportion, Angle, Material, Colour, Pose / Interaction, Motion, Camera, Environment, Lighting, Style or Diagnostic Reference, record:
+-
 
-- Source
-- Role
-- Authority
-- Approved scope
-- Excluded signals
-- Confidence
-- Notes
+## 5. Identity Core
 
-Identify task-specific Reference Package rules. Diagnostic References must never act as positive identity sources.
+- **One-line Identity:**
+- **Role or Function:**
+- **Primary Visual Concept:**
+- **Intended Recognition:**
 
-## 10. Known Failure Modes
+## 6. Recognition Anchors
 
-- Common identity drift
-- Silhouette or proportion failures
-- Structural errors
-- Material, colour or marking drift
-- Angle, scene, style or motion failure patterns
-- Diagnostic indicators
+- **Primary Anchors:**
+- **Secondary Anchors:**
+- **Recognition Priority:**
 
-## 11. Prompt Anchors
+## 7. Silhouette Logic
 
-- Model-neutral Identity Anchor
-- Model-neutral Structural Anchor
-- Model-neutral Integrity Anchor
-- Required identity language
-- Prohibited identity-breaking interpretation
+- **Overall Silhouette:**
+- **Dominant Shape:**
+- **Width-to-Height Relationship:**
+- **Distinctive Protrusions:**
+- **Negative Space:**
+- **Required Visible Features:**
 
-Prompt Anchors express continuity requirements. They are not a complete generation prompt or a model-specific adapter.
+## 8. Permanent Asset Locks
 
-## 12. Basic Asset QA
+- **Identity Locks:**
+- **Shape Locks:**
+- **Proportion Locks:**
+- **Colour Locks:**
+- **Material Locks:**
+- **Logo or Marking Locks:**
+- **Costume or Accessory Locks:**
+- **Structural Locks:**
 
-- Identity recognizable
-- Recognition anchors preserved
-- Silhouette and proportions acceptable
-- Permanent Asset Locks preserved
-- Controlled Variation or Temporary State correctly classified
-- Known failure modes absent or documented
-- Ready for Lightweight Blueprint use
+## 9. Controlled Variations
 
-## Full Blueprint Extension
+Default: **No Controlled Variations approved yet.**
+
+For each approved variation:
+
+- **Name:**
+- **Status:**
+- **Purpose:**
+- **Elements Changed:**
+- **Elements Unchanged:**
+- **References:**
+- **Restrictions:**
+
+## 10. Permitted Variation
+
+- **Expression:**
+- **Pose:**
+- **Camera Angle:**
+- **Lighting Response:**
+- **Environment:**
+- **Styling:**
+- **Temporary State Changes:**
+
+## 11. Reference Index
+
+- **Master Identity Reference:**
+- **Structure Reference:**
+- **Proportion Reference:**
+- **Angle Reference:**
+- **Material Reference:**
+- **Colour Reference:**
+- **Pose or Motion Reference:**
+- **Camera Reference:**
+- **Environment Reference:**
+- **Lighting Reference:**
+- **Style Reference:**
+- **Diagnostic Reference:**
+
+### Known Failure Modes
+
+| Failure Mode | Trigger | Prevention | QA Priority |
+|---|---|---|---|
+|  |  |  |  |
+
+## 12. Prompt Anchors and Basic Asset QA
+
+### Prompt Anchors
+
+- **Short Identity Anchor:**
+- **Structural Anchor:**
+- **Integrity Anchor:**
+- **Mandatory Terms:**
+- **Forbidden Interpretations:**
+- **Shot-specific Add-on Rules:**
+
+### Basic Asset QA
+
+- [ ] Confirmed and Observed information remain distinct.
+- [ ] Recognition Anchors are preserved.
+- [ ] Silhouette and proportions are consistent.
+- [ ] Permanent Asset Locks are approved and preserved.
+- [ ] Controlled Variations are explicitly approved.
+- [ ] Temporary State Changes do not redefine identity.
+- [ ] Known Failure Modes are checked.
+- [ ] Single-view limitations are recorded.
+
+## Level 2 — Full Blueprint Extensions
 
 ## 13. Physical Structure
 
-- Construction, anatomy or topology
-- Component relationships
-- Functional parts
-- Articulation and support
-- Physical constraints
+- **Global Proportions:**
+- **Mass Distribution:**
+- **Centre of Gravity:**
+- **Structural Relationships:**
+- **Joint or Connection Logic:**
+- **Weight-bearing and Support Logic:**
 
 ## 14. View Translation Logic
 
-- Front, side, rear, three-quarter, elevated and low-angle translation
-- Hidden-to-visible feature relationships
-- Occlusion rules
-- Foreshortening risks
-- Recognition anchors by view
+Complete for Front, 3/4 Front, Side, 3/4 Rear, Rear, Top, Low Angle and Extreme Close-up.
+
+| View | Visible Anchors | Depth Relationships | Overlap Order | Occlusion | Distortion Risks |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
 
 ## 15. Material and Surface Behaviour
 
-- Canonical material identity
-- Roughness, reflection, transparency and translucency
-- Thickness, edge behaviour and wear
-- Environmental response boundaries
-- Distinction between material identity and scene-dependent appearance
+| Component | Material | Roughness | Reflectivity | Transparency | Edge Behaviour | Wear or Aging |
+|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |
+
+### Environmental Response
+
+- **Direct Light:**
+- **Soft Light:**
+- **Wet:**
+- **Heat:**
+- **Pressure:**
+- **Motion:**
+- **Close Range:**
 
 ## 16. Colour System
 
-- Primary colour logic
-- Secondary and accent colours
-- Markings, logos and placement
-- Permitted lighting-dependent shifts
-- Prohibited colour drift
+- **Base Palette:**
+- **Colour Distribution:**
+- **Accent Placement:**
+- **Lighting Tolerance:**
+- **Forbidden Colour Drift:**
 
 ## 17. Camera Translation Rules
 
-- Lens and perspective risks
-- Distance and scale behavior
-- Distortion limits
-- Camera conditions requiring additional references
-- Identity preservation without overriding Scene Locks
+- **Recommended Lens Range:**
+- **High-risk Lens Behaviour:**
+- **Shot Scale:**
+- **Perspective Safeguards:**
+- **Minimum Readable Size:**
 
 ## 18. Motion and Articulation Logic
 
-- Motion capabilities and constraints
-- Joint, component or deformation behavior
-- Weight, balance and inertia
-- Motion Complexity Levels supported
-- Identity anchors that must persist during motion
+- **Weight:**
+- **Speed:**
+- **Rhythm:**
+- **Energy:**
+- **Balance:**
+- **Joint Range:**
+- **Flexible Areas:**
+- **Rigid Areas:**
+- **Secondary Motion:**
+- **Motion Locks:**
+- **Prohibited Motion:**
+- **Continuity Risks:**
 
 ## 19. Scene Adaptation Rules
 
-- Interaction with environment and Scene Locks
-- Lighting and atmospheric adaptation
-- Contact, support, reflection, shadow and occlusion requirements
-- Conditions that require conflict review
+- **Indoor:**
+- **Outdoor:**
+- **Day or Night:**
+- **Weather:**
+- **Human Contact:**
+- **Ground Contact:**
+- **Object Contact:**
+- **Liquid Contact:**
 
 ## 20. Style Translation Rules
 
-- Identity features that must survive style changes
-- Acceptable abstraction
-- Material and colour interpretation boundaries
-- Prohibited redesign disguised as style translation
+Complete for Photorealistic, Illustration, Anime, Graphic or Flat, and Retro or Stylised.
+
+| Style | Preserve | Translate | Simplification Limits | Avoid |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+### Invariants Across All Styles
+
+-
 
 ## 21. Image-to-Video Continuity
 
-- Starting-image continuity requirements
-- Temporal identity preservation
-- Allowed Temporary State progression
-- Motion and camera continuity
-- Sequence Continuity Sheet requirements
+- **Start-frame Requirements:**
+- **End-frame Requirements:**
+- **Stable Identity Features:**
+- **Temporal Drift Risks:**
+- **Scale Continuity:**
+- **Costume and Accessory Continuity:**
+- **Damage and Wetness Continuity:**
+- **Screen Direction:**
+- **Shot Duration Guidance:**
+- **Motion Complexity Limit:**
 
 ## 22. Source Authority
 
-- Scoped authority order
-- Primary, Secondary and Contextual References
-- Confirmed Active Blueprint content
-- Observed but unconfirmed content
-- Inferences and proposed design suggestions
-- Diagnostic References
-- Scope limitations and excluded signals
+### Primary Sources
+
+| Reference ID | Role | Approved Scope | Excluded Signals | Authority | Notes |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
+
+### Secondary Sources
+
+| Reference ID | Role | Approved Scope | Excluded Signals | Authority | Notes |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
 
 ## 23. Conflict Log
 
-For every conflict, record:
-
-- Date and affected fields
-- Conflicting sources or instructions
-- Authority and approved scope of each source
-- Evidence status
-- Classification decision
-- Resolution, clarification required or deliberate revision
+| Conflict | Type | Sources | Resolution | Status | Date |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
 
 ## 24. Versioning and Change Control
 
-- Current Asset Version
-- Minor revision history
-- Major version history
-- Permanent Asset Lock changes
-- Controlled Variation approvals
-- Temporary State boundaries
-- Deprecated or Archived versions
+- **Current Version:**
+- **Status:**
+- **Parent Version:**
+- **Change Reason:**
+- **Approved By:**
 
-Keep Asset Version, Controlled Variant, Temporary State, Project Configuration and Git commit history separate.
+| Version | Date | Change | Classification | Approval |
+|---|---|---|---|---|
+|  |  |  |  |  |
 
 ## 25. Full Asset Validation
 
-- Root YCOS validation completed first
-- Asset validation result
-- Severity level
-- Identity, structure and material findings
-- Angle, scene and motion findings
-- Temporary-state and multi-shot continuity findings
-- Required retouch, regeneration or replanning action
-- Approval for Full Blueprint use
+- [ ] Identity
+- [ ] Structure
+- [ ] Materials
+- [ ] Angle translation
+- [ ] Motion
+- [ ] Continuity
+- [ ] Scene integration
+- [ ] AI artifacts
+- [ ] Commercial readability
+- [ ] Global Validation completed first
 
-Use [Asset Validation](ASSET_VALIDATION.md) for the complete validation procedure.
+Use [ASSET_VALIDATION.md](ASSET_VALIDATION.md) for the full procedure.
