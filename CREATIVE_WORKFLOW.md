@@ -136,9 +136,9 @@ When critical information is missing and cannot be safely inferred, clarificatio
 
 ## Asset Consistency Decision — Optional
 
-After Project Understanding and before detailed execution, determine whether reusable asset continuity requires Level 0 — No Blueprint, Level 1 — Lightweight Blueprint or Level 2 — Full Blueprint under the optional [Asset Blueprint Protocol](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md).
+After Project Understanding and before detailed world execution, determine whether the project contains a persistent visual asset. If not, select Level 0 — No Blueprint and continue unchanged. If it does, load an existing Level 1 — Lightweight Blueprint or Level 2 — Full Blueprint, or create a text Draft through Asset Intake and Reference Separation under the optional [Asset Blueprint Protocol](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md).
 
-Level 0 continues through this workflow unchanged. Levels 1 and 2 may inform later world, camera, scene and execution decisions, but do not replace this workflow's authority over world definition, physics, materials, object interaction, lighting, camera, perspective, composition, commercial intent or scene logic.
+After identity constraints are defined, return to the standard Creative Workflow. Asset Blueprint controls approved persistent asset identity; this workflow remains authoritative for world definition, physics, materials, object interaction, lighting, camera, perspective, composition, communication, commercial intent and scene logic.
 
 
 

@@ -1,32 +1,44 @@
 # Asset Blueprint
 
-Asset Blueprint is an optional YCOS module for maintaining the identity and continuity of reusable visual assets across images, camera angles, scenes, styles and video shots.
+Asset Blueprint is an optional consistency-control layer under the YCOS [Creative Workflow](../CREATIVE_WORKFLOW.md). It defines what a persistent visual asset is and how its approved identity remains consistent across images, angles, scenes, lighting conditions, styles, sequences, image-to-video work and future projects.
 
-It can be used for characters, products, objects, creatures, mascots, vehicles, mecha, environments and other reusable visual assets.
+It supports recurring characters, creatures, mascots, products, objects, vehicles, mecha, environments, food assets and other persistent visual assets.
 
-Asset Blueprint does not replace the root [Creative Workflow](../CREATIVE_WORKFLOW.md) or [Validation](../VALIDATION.md). The Creative Workflow remains authoritative for project understanding, world definition, physics, materials, object interaction, lighting, camera, perspective, composition, commercial intent and scene logic. Root YCOS validation remains mandatory and runs before asset-specific validation.
+Asset Blueprint is not a replacement for Project Definition, Creative Intent, world simulation, physics, materials, lighting, camera, composition, Scene Locks, commercial judgement or [Global Validation](../VALIDATION.md). It is not an asset library, model adapter, prompt library or automatic visual-board generator.
 
-## Activation Levels
+## Conceptual Boundaries
 
-- **Level 0 — No Blueprint:** Continue through the existing YCOS workflow unchanged.
-- **Level 1 — Lightweight Blueprint:** Use for limited or medium-risk consistency.
-- **Level 2 — Full Blueprint:** Use for persistent, multi-angle, multi-scene, video, brand, product, IP or high-risk continuity.
+- **Asset Blueprint** defines what the asset is and how its identity remains consistent.
+- **Creative Workflow** defines the believable and commercially effective world in which the asset appears.
+- **Scene Locks** define the current project world.
+- **Permanent Asset Locks** define persistent asset identity.
 
-The Full Blueprint extends the Lightweight Blueprint. It does not use a separate or incompatible format.
+Scene Locks and Permanent Asset Locks govern different domains. Neither silently overwrites the other.
 
-The Asset Consistency Decision occurs after Project Understanding / Project Definition and before detailed execution. The Blueprint may inform later world, camera, scene and execution decisions, but it does not replace them.
+## When to Activate
 
-## Module Documents
+Make the optional Asset Consistency Decision after Project Understanding and before detailed execution.
 
-- [Asset Blueprint Protocol](ASSET_BLUEPRINT_PROTOCOL.md) defines activation, intake, authority, references, locks and change classification.
-- [Asset Blueprint Template](ASSET_BLUEPRINT_TEMPLATE.md) defines the Lightweight and Full Blueprint structures.
-- [Asset Execution](ASSET_EXECUTION.md) translates an active Blueprint into task-specific execution.
-- [Asset Validation](ASSET_VALIDATION.md) extends root YCOS validation with asset continuity checks.
-- [Asset Lifecycle](ASSET_LIFECYCLE.md) defines lifecycle states, versioning and change control.
+- **Level 0 — No Blueprint:** One-off exploration, mood testing, generic non-recurring elements or no persistent identity requirement. Continue through YCOS unchanged.
+- **Level 1 — Lightweight Blueprint:** Limited reuse, several images, basic angle changes, a short-term project or medium consistency risk.
+- **Level 2 — Full Blueprint:** Persistent IP, brand-sensitive assets, multi-angle or multi-scene work, image sequences, video, image-to-video, cross-model use, long-term reuse or high identity and structural risk.
 
-## Boundaries
+The required level should be proportional to reuse frequency, consistency requirements, structural complexity and generation failure risk. Level 2 extends Level 1 rather than replacing it with another format.
 
-This module is AI-model agnostic. It defines creative reasoning and continuity controls, not model-specific prompt syntax.
+## Text-First Default
 
-It does not establish an asset library, generate sample assets, store reference images, create tool adapters, provide prompt libraries, define machine-readable schemas or introduce scripts or dependencies.
+`Build | Asset Blueprint` defaults to a text-based Draft Blueprint. Do not generate a character sheet, turnaround, infographic, presentation board, comparison board, redesigned asset, new angle or new asset image unless the user explicitly requests visual generation.
 
+The text Blueprint remains authoritative over any generated visual Blueprint sheet.
+
+## Documents
+
+1. [ASSET_BLUEPRINT_PROTOCOL.md](ASSET_BLUEPRINT_PROTOCOL.md) — authoritative activation, intake, evidence, reference, lock and review rules.
+2. [ASSET_BLUEPRINT_TEMPLATE.md](ASSET_BLUEPRINT_TEMPLATE.md) — reusable Lightweight Blueprint and Full Blueprint format.
+3. [ASSET_EXECUTION.md](ASSET_EXECUTION.md) — translation from an approved Blueprint into task-specific image, retouch and video instructions.
+4. [ASSET_VALIDATION.md](ASSET_VALIDATION.md) — asset-specific validation after mandatory Global Validation.
+5. [ASSET_LIFECYCLE.md](ASSET_LIFECYCLE.md) — lifecycle status, versioning, compatibility and GitHub storage principles.
+
+## Scope Exclusions
+
+This module is AI-model agnostic. It does not create assets, examples, reference images, tool adapters, prompt or shot libraries, JSON schemas, databases, automation scripts, binary images, video files, LoRA training specifications or actual Blueprint records.

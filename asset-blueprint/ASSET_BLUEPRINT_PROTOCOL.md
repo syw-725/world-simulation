@@ -1,179 +1,360 @@
 # Asset Blueprint Protocol
 
-## Purpose
+## Purpose and Scope
 
-The Asset Blueprint Protocol defines how an optional Asset Blueprint is selected, created, reviewed, activated and applied within YCOS.
+Asset Blueprint is an optional consistency-control layer under the [Creative Workflow](../CREATIVE_WORKFLOW.md) used to define, protect and reuse the identity, structure, proportions, materials, colours, behaviour and cross-angle or cross-scene translation rules of persistent visual assets.
 
-It maintains reusable asset identity without replacing the authoritative world, physics, material, lighting, camera, composition, commercial and scene reasoning in the root [Creative Workflow](../CREATIVE_WORKFLOW.md).
+It may be used for recurring characters, creatures, mascots, products, objects, vehicles, mecha, environments, food assets and other persistent visual assets.
 
-## Asset Consistency Decision
+It does not replace:
 
-After Project Understanding / Project Definition and before detailed execution, determine the required activation level.
+- Project Definition
+- Creative Intent
+- World Simulation
+- Physical Logic
+- Material Behaviour
+- Lighting
+- Camera
+- Composition
+- Scene Locks
+- Global commercial judgement
+- [Global Validation](../VALIDATION.md)
+
+Asset Blueprint determines whether the subject remains the same approved asset. Creative Workflow determines whether that asset exists in a believable and commercially effective visual world.
+
+## Activation Levels
 
 ### Level 0 — No Blueprint
 
-Use when persistent asset consistency is not required. Continue through the original YCOS workflow unchanged.
+Use for:
+
+- One-off exploration
+- Mood testing
+- Generic non-recurring elements
+- Work with no persistent identity requirement
+
+Level 0 continues through the existing YCOS workflow unchanged.
 
 ### Level 1 — Lightweight Blueprint
 
-Use for limited or medium-risk consistency. Complete sections 1–12 of the [Asset Blueprint Template](ASSET_BLUEPRINT_TEMPLATE.md).
+Use for:
+
+- Limited reuse
+- Several images
+- Basic angle changes
+- Short-term projects
+- Medium consistency risk
+
+Complete the Lightweight Blueprint sections of the [template](ASSET_BLUEPRINT_TEMPLATE.md).
 
 ### Level 2 — Full Blueprint
 
-Use for persistent, multi-angle, multi-scene, video, brand, product, IP or high-risk continuity. Complete sections 1–25 of the same template.
+Use for:
 
-The Full Blueprint extends the Lightweight Blueprint rather than replacing it with an incompatible format. Activation is optional and does not create another YCOS mode or Bootstrap sequence.
+- Persistent IP
+- Brand-sensitive assets
+- Multi-angle work
+- Multi-scene work
+- Image sequences
+- Video and image-to-video
+- Cross-model use
+- Long-term reuse
+- High identity or structural risk
+
+Level 2 extends the same Level 1 format with the Full Blueprint sections.
+
+The required Blueprint level should be proportional to reuse frequency, consistency requirements, structural complexity and generation failure risk. Asset Blueprint remains optional and does not create another YCOS mode or Bootstrap sequence.
+
+## Text-First Governance
+
+When the user requests `Build | Asset Blueprint`, default to a text-based Draft Blueprint.
+
+Do not immediately generate:
+
+- A visual character sheet or turnaround sheet
+- An infographic, presentation board or comparison board
+- A redesigned asset
+- New viewing angles
+- A new character, product or object image
+
+Visual generation is permitted only when the user explicitly requests direct generation, a visual Blueprint sheet, additional angles, turnaround views, character or object sheet artwork, or approved Blueprint visualisation.
+
+If the user says not to generate yet, stop after the text Draft and review requirements.
+
+The required first response contains only:
+
+- Build Mode status
+- Project Definition
+- Recommended Blueprint Level
+- Asset Intake Record
+- Reference Role Separation
+- Evidence Classification
+- Proposed Permanent Asset Locks
+- Proposed Controlled Variations
+- Known Failure Risks
+- Open Decisions
+- Review Questions
+
+Do not display private chain-of-thought.
 
 ## Asset Intake
 
-A Blueprint may be created from:
+Support:
 
-- Text
-- One image
-- Multiple images
-- Text and image combined
+- Text-led Intake
+- Image-led Intake
+- Multi-image Intake
+- Hybrid Intake
+- Existing generated asset Intake
+- Existing Blueprint Revision
 
-The intake workflow is:
+Incomplete input is acceptable. Do not assume that a complete three-dimensional character, product or object specification exists.
 
-1. **Input classification** — identify the available source types and intended asset use.
-2. **Reference Separation** — separate sources and assign each source an explicit Reference Role.
-3. **Observable extraction** — record directly visible or explicitly stated information without adding assumptions.
-4. **Uncertainty mapping** — identify missing, ambiguous, inconsistent or conflicting information.
-5. **Draft Blueprint** — organize the evidence without treating the draft as approved identity.
-6. **User review** — confirm, reject, revise or leave content unresolved.
-7. **Activation** — activate the reviewed Blueprint at Level 1 or Level 2. Locking remains a separate lifecycle decision.
+The Intake process is:
 
-## Evidence Status
+1. **Intake classification** — identify the input type, intended use and expected continuity risk.
+2. **Reference Separation** — give every source a Reference Role, authority and Approved Scope.
+3. **Observable extraction** — record what is explicitly stated or directly visible without adding assumptions.
+4. **Uncertainty mapping** — identify Undefined, Inferred and Conflicted information.
+5. **Draft Blueprint creation** — organise the available evidence without treating it as approved identity.
+6. **User review** — confirm, correct, reject or request evidence.
+7. **Active or Locked approval** — activate reviewed content or formally approve Permanent Asset Locks.
 
-Every extracted or drafted statement must use one of these statuses:
+## Reference Separation
 
-- **Confirmed** — explicitly approved by the user or an approved authority.
-- **Observed** — directly visible or present in a source but not confirmed as canonical.
-- **Inferred** — reasoned from available evidence but not directly established.
-- **Proposed** — a design suggestion awaiting approval.
-- **Undefined** — not established by available sources.
-- **Conflicted** — supported by incompatible sources or instructions.
+Possible Reference Roles are:
 
-Observed, Inferred or Proposed content must not automatically become a Permanent Asset Lock. Promotion to a Permanent Asset Lock requires deliberate approval and change control.
+- Identity
+- Facial Identity
+- Silhouette
+- Structure
+- Proportion
+- Angle
+- Material
+- Colour
+- Logo or Marking
+- Costume or Accessory
+- Pose
+- Interaction
+- Motion
+- Camera
+- Lighting
+- Environment
+- Style
+- Diagnostic Failure Reference
+
+Every reference entry records:
+
+- Reference ID
+- Source
+- Reference Role
+- Source Authority
+- Approved Scope
+- Excluded Signals
+- Confidence
+- Known Limitations
+- Notes
+
+A reference image is never an instruction to copy every visible signal. Background, pose, lighting, camera, composition, environment, Temporary State Changes and style do not become permanent asset identity unless explicitly approved.
+
+## Evidence Classification
+
+Use exactly these classifications:
+
+### Confirmed
+
+- Explicitly stated or approved by the user
+- Or already approved in an Active or Locked Blueprint
+
+### Observed
+
+- Clearly visible in a supplied reference
+- Not yet explicitly approved
+
+### Inferred
+
+- A reasonable deduction
+- Not directly visible or confirmed
+
+### Proposed
+
+- A design recommendation or completion suggested by the system
+
+### Undefined
+
+- Insufficient information
+
+### Conflicted
+
+- Two or more sources provide incompatible information
+
+Visible image content alone is Observed, not Confirmed. Observed, Inferred, Proposed, Undefined and Conflicted information must not automatically become Permanent Asset Locks.
 
 ## Source Authority
 
-Use this authority order within each source's approved scope:
+Use this hierarchy within each source's authorised scope:
 
-1. Latest explicit user instruction
+1. User's latest explicit instruction
 2. Locked Asset Blueprint
-3. User-designated Primary Reference
-4. Confirmed Active Blueprint content
-5. Secondary Reference
-6. Contextual Reference
-7. Observed but unconfirmed content
-8. Inference
-9. Proposed design suggestion
+3. User-approved Permanent Asset Locks
+4. Approved Primary Reference within its authorised scope
+5. Confirmed Active Blueprint content
+6. Secondary Reference within its authorised scope
+7. Contextual Reference
+8. Observed information
+9. Inferred information
+10. Proposed information
 
-Authority is scoped, not global. A Primary pose reference does not overwrite asset colour, identity, material, costume or structure unless those scopes were explicitly approved.
+Do not average, merge or creatively combine conflicting identity information without approval. Unresolved differences must be marked **Pending Confirmation**.
 
-A latest explicit user instruction has authority for the current task, but an instruction that affects locked identity must enter the four-way change classification. It must not silently rewrite a Locked Blueprint.
+Authority is scoped. A Primary pose reference does not overwrite identity, colour, material, costume or structure unless those signals are in its Approved Scope.
 
-### Diagnostic Reference
+## Conflict Resolution
 
-A Diagnostic Reference is used to identify errors, drift or undesirable outcomes. It is never used as a positive identity source.
+Classify conflicts as:
 
-## Reference Roles
+- **Direct Conflict** — sources disagree within the same approved domain.
+- **Version Conflict** — sources represent different asset versions.
+- **Perspective Conflict** — viewpoint or lens effects appear to change structure.
+- **Style Conflict** — style translation appears to change identity.
+- **Artifact Conflict** — a suspected error appears as a design feature.
 
-Supported Reference Roles are:
+Use this process:
 
-- Identity Reference
-- Structure Reference
-- Proportion Reference
-- Angle Reference
-- Material Reference
-- Colour Reference
-- Pose / Interaction Reference
-- Motion Reference
-- Camera Reference
-- Environment Reference
-- Lighting Reference
-- Style Reference
-- Diagnostic Reference
+Detect conflict → classify conflict → check Source Authority → check existing Permanent Asset Locks → determine whether the difference is an intentional variation, perspective effect, style translation, version change or AI artifact → resolve or mark Pending Confirmation → update Blueprint status where appropriate.
 
-Every reference entry must record:
+Possible outcomes are:
 
-- Source
-- Role
-- Authority
-- Approved scope
-- Excluded signals
-- Confidence
-- Notes
+- Resolved
+- Pending Confirmation
+- Preserved as Variation
 
-## Reference Packages
-
-Create a task-specific Reference Package for each execution. Include only references needed for the task and their approved scopes. Do not load all references by default.
-
-A Reference Package must distinguish positive identity sources from Diagnostic References and preserve excluded signals. Selection for one task does not change the authority or canonical status of the underlying Blueprint.
-
-## Asset Locks and Scene Locks
-
-Permanent Asset Locks and Scene Locks govern separate domains.
-
-**Permanent Asset Locks** govern intrinsic asset identity, including approved silhouette, proportions, structure, markings, materials, primary colour logic, logos and recognition anchors.
-
-**Scene Locks** govern the current project world, including environment, camera, lighting, composition, perspective and hero placement.
-
-Neither category silently overwrites the other. Scene conditions may affect visible appearance but may not silently redesign identity. Asset identity may inform scene planning but may not silently override authoritative world or scene reasoning.
-
-When a genuine conflict occurs:
-
-1. Detect and record the conflict.
-2. Determine whether the requested outcome is a scene adaptation, Controlled Variation, Temporary State Change or New Version / Redesign.
-3. Preserve both approved authorities where possible.
-4. Request clarification or create a deliberate asset revision when they cannot coexist.
-
-## Four-Way Change Classification
+## Asset Locks and Change Classes
 
 ### 1. Permanent Asset Locks
 
-Canonical intrinsic identity approved for the current asset version.
+Permanent Asset Locks may include:
+
+- Core identity
+- Silhouette
+- Proportions
+- Structure
+- Intrinsic colours
+- Intrinsic materials
+- Logo and markings
+- Required accessories
+- Facial identity
+- Packaging form
+- Mechanical construction
+
+A feature becomes a Permanent Asset Lock only when explicitly required by the user, explicitly approved during review, or already present in an Active or Locked Blueprint.
 
 ### 2. Controlled Variations
 
-Approved reusable states or designs within the same asset version. A Controlled Variation must define what changes, what remains locked and where the variation is permitted.
+Controlled Variations:
+
+- Must be explicitly approved
+- Remain within the same Asset Version
+- Define changed and unchanged elements
+- Must not be silently invented
+
+When no variation is approved, state: **No Controlled Variations approved yet.**
 
 ### 3. Temporary State Changes
 
-Shot-, scene- or sequence-specific conditions that do not modify canonical identity. These may include pose, expression, wetness, dirt, damage, opened components, held props or scene lighting.
+Temporary State Changes may include wetness, dirt, damage, opening or closing, food preparation state, held props, temporary costume, environmental colour cast and motion deformation.
 
-### 4. New Version / Redesign
+Temporary State Changes remain separate from permanent identity.
 
-A deliberate change to Permanent Asset Locks or core identity. Changes to core silhouette, proportions, structure, logos, primary colour logic or recognition anchors require a new major asset version.
+### 4. New Version or Redesign
 
-## Conflict Handling
+Changes to core silhouette, proportions, structure, primary colour system, logo, facial design or required accessories require a new major Asset Version or redesign review.
 
-Do not resolve Conflicted information through silent inference.
+## Asset Locks and Scene Locks
 
-Record:
+Permanent Asset Locks and Scene Locks govern different domains.
 
-- Conflicting sources or instructions
-- Their roles, authorities and approved scopes
-- The affected Blueprint fields
-- Whether the conflict can be isolated as a Controlled Variation or Temporary State
-- The user decision or deliberate revision required
+- Permanent Asset Locks govern approved persistent asset identity.
+- Scene Locks govern the current project world, including environment, camera, lighting, perspective, composition and hero placement.
 
-Until resolved, preserve the last approved Active or Locked content within its scope.
+Neither silently overwrites the other. Detect genuine conflicts, classify the requested difference and preserve both approved authorities where possible. Request clarification or create a deliberate major Asset Version when they cannot coexist.
 
-## Activation Output
+## Material and Lighting Separation
 
-An activated Level 1 or Level 2 Blueprint must identify:
+Separate intrinsic material identity from temporary lighting appearance.
 
-- Asset Version
-- Lifecycle state
-- Activation level
-- Confirmed identity content
-- Permanent Asset Locks, if any
-- Controlled Variations
-- Permitted Variation
-- Unresolved, Undefined or Conflicted content
-- Applicable references and scoped authority
+- Preserve transparent amber plastic; do not preserve exact highlight intensity.
+- Preserve matte fabric; do not preserve the current shadow direction.
+- Preserve metallic material identity; do not preserve reflected environmental colours as intrinsic colour.
 
-Task execution then follows [Asset Execution](ASSET_EXECUTION.md), the root Creative Workflow and mandatory root Validation.
+Do not exclude a material when the user explicitly requires it to remain. Exclude only temporary lighting, reflections, colour casts and environmental appearance where appropriate.
 
+## Single-View Limitation
+
+When only one reference angle exists:
+
+- Do not claim complete three-dimensional knowledge.
+- Do not confirm unseen rear, side, top, hidden or internal structures.
+- Label unseen information Undefined or Inferred.
+- Do not treat perspective distortion as real structural proportion.
+- Do not generate missing views unless explicitly requested or approved.
+- State whether additional references are required for Full Blueprint accuracy.
+
+## AI Artifact Filtering
+
+Check visible features for possible AI artifacts, including malformed logos, duplicated components, inconsistent symmetry, merged accessories, random buttons, unstable patterns, incorrect limb count, impossible connections, melted edges and inconsistent material transitions.
+
+Suspected artifacts must be labelled **Diagnostic**, **Inferred Error** or **Pending Confirmation**. They must not be preserved automatically.
+
+## Task-Specific Reference Packages
+
+Possible Task-specific Reference Packages include:
+
+- Identity Package
+- Angle Translation Package
+- Scene Adaptation Package
+- Style Translation Package
+- Video Continuity Package
+
+Rules:
+
+- Use the minimum sufficient references.
+- Select one Primary source for each important role.
+- Do not use unresolved conflicting references together.
+- Contextual References cannot override Identity References.
+- Diagnostic References are not positive generation references.
+- Explicitly exclude unrelated signals.
+- More reference images are not automatically better.
+
+## Review Gate
+
+After presenting a text Draft, stop for user review.
+
+The user may confirm or correct findings, reject proposed locks, approve Permanent Asset Locks, approve Controlled Variations, resolve conflicts, request more evidence, request a visual Blueprint sheet, or request direct image or video generation.
+
+Only user-approved content may move from Proposed or Observed into Confirmed Permanent Asset Locks.
+
+## Visual Blueprint Generation
+
+When explicitly requested:
+
+1. Load the approved text Blueprint.
+2. Use only Confirmed information and approved Permanent Asset Locks as hard identity constraints.
+3. Distinguish supplied references from generated reconstructions.
+4. Do not present invented missing views as confirmed design.
+5. Do not reintroduce excluded background, pose, camera, lighting or style signals.
+6. Validate the visual board against the text Blueprint.
+7. Keep the text Blueprint authoritative.
+
+## Direct Generation Exception
+
+When direct generation is explicitly requested:
+
+- Complete Asset Intake and evidence separation internally.
+- Use Confirmed information as hard constraints.
+- Use Observed information only within its Approved Scope.
+- Do not silently promote Inferred or Proposed content to Permanent Asset Locks.
+- Execute the requested output.
+- Run Global Validation, then Asset Validation.
+
+Direct generation does not bypass identity consistency control.

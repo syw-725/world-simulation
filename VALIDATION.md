@@ -21,7 +21,11 @@ It evaluates consistency.
 
 A visually attractive image is not considered successful if it contradicts the established world, physical logic or project objective.
 
-This root validation remains authoritative and mandatory. When optional Asset Blueprint Level 1 or Level 2 is active, complete every applicable global YCOS validation check first, then run [Asset Validation](asset-blueprint/ASSET_VALIDATION.md) as an extension. Passing asset validation cannot compensate for failing this validation.
+This root validation remains authoritative and mandatory.
+
+## Persistent Asset Validation — Optional
+
+When Asset Blueprint Level 1 or Level 2 is active, complete every applicable Global Validation check first, then use [Asset Validation](asset-blueprint/ASSET_VALIDATION.md) only as an extension. Persistent assets require additional identity, structure, marking, angle, motion, Temporary State and continuity checks. Asset Validation never replaces Global Validation, and passing it cannot compensate for failing this validation.
 
 ---
 

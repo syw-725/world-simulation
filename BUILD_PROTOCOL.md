@@ -92,7 +92,7 @@ Bootstrap automatically performs:
 
 7. Execute image generation, analysis or retouching
 
-The optional Asset Consistency Decision may select Level 0 — No Blueprint, Level 1 — Lightweight Blueprint or Level 2 — Full Blueprint as defined by [Asset Blueprint](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md). Level 0 leaves the existing workflow unchanged. This decision does not create another mode or Bootstrap sequence.
+The optional Asset Consistency Decision identifies persistent visual assets when Build Mode is active. Level 0 — No Blueprint continues normally, Level 1 — Lightweight Blueprint loads or creates a Lightweight Blueprint, and Level 2 — Full Blueprint loads or creates a Full Blueprint as defined by [Asset Blueprint](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md). Asset Blueprint is optional, does not replace Creative Workflow, and does not create another mode or Bootstrap sequence.
 
 This happens once only.
 

@@ -2,155 +2,265 @@
 
 ## Purpose
 
-Asset execution translates an Active or Locked Asset Blueprint into instructions for a specific image, retouch or video task.
+Asset Execution translates an approved Asset Blueprint into task-specific instructions for image generation, retouching, image editing, image-to-video and multi-shot video continuity.
 
-An Asset Blueprint is not a complete generation prompt. It defines reusable identity and continuity requirements. The root [Creative Workflow](../CREATIVE_WORKFLOW.md) remains authoritative for the project world, physics, materials, object interaction, lighting, camera, perspective, composition, commercial intent and scene logic.
+An Asset Blueprint is not a complete generation prompt. The [Creative Workflow](../CREATIVE_WORKFLOW.md) remains authoritative for Project Definition, world logic, physics, materials, lighting, camera, composition, commercial intent and Scene Locks.
 
-Execution remains AI-model agnostic. Tool or model constraints may affect implementation strategy but do not redefine asset identity.
+## Execution Data Layers
 
-## Execution Package
+Use these layers:
 
-Create a task-specific Execution Package from:
+1. Asset Blueprint
+2. Selected Variant
+3. Current Temporary State
+4. Project Definition
+5. Scene Locks
+6. Shot-specific Instructions
+7. Tool or Model Constraints
 
-1. **Asset Blueprint** — the applicable Active or Locked identity definition and Asset Version.
-2. **Selected Variant** — the approved Controlled Variation, if any.
-3. **Temporary State** — the shot-, scene- or sequence-specific condition.
-4. **Project Definition** — objective, audience, deliverable, format, commercial intent and constraints.
-5. **Scene Locks** — environment, camera, lighting, composition, perspective, hero placement and other locked scene decisions.
-6. **Shot-specific Instructions** — action, framing, interaction, timing and intended change for the current output.
-7. **Tool / Model Constraints** — relevant capabilities, limitations, input requirements and continuity risks.
+Do not paste the complete Blueprint into every prompt. Translate only the required information into a **Task-specific Execution Package**.
 
-The Execution Package must also include the task-specific Reference Package, unresolved conflicts, required validation level and known failure modes relevant to the task.
+## Task-Specific Execution Package
 
-## Execution Anchors
+### Task Context
 
-### Identity Anchor
+- Objective
+- Deliverable
+- Platform and format
+- Blueprint Level
+- Tool or Model Constraints
 
-A compact model-neutral statement of who or what the asset is and which recognition anchors must remain identifiable.
+### Active Asset
 
-### Structural Anchor
-
-A compact model-neutral statement of silhouette, proportions, construction, topology and component relationships required by the current view or action.
-
-### Integrity Anchor
-
-A compact model-neutral statement of what must not drift, merge, disappear, multiply, change category or be mistaken for a Temporary State.
-
-The three anchors are selected from approved Blueprint content. They do not replace the complete Blueprint, Project Definition, Scene Locks or physical reasoning.
-
-## Translation Process
-
-1. Confirm activation level, Asset Version and lifecycle state.
-2. Select the Controlled Variation, if applicable.
-3. Declare the Temporary State and its scope.
-4. Select a task-specific Reference Package.
-5. Load Project Definition and Scene Locks.
-6. Detect conflicts between identity, scene and shot requirements.
-7. Classify each requested asset change using the four-way change classification.
-8. Build the Identity, Structural and Integrity Anchors.
-9. Adapt the asset to the world, camera and shot without redesigning intrinsic identity.
-10. Execute using the relevant tool or model constraints.
-11. Run root YCOS validation first, followed by [Asset Validation](ASSET_VALIDATION.md).
-
-## Domain-Safe Translation
-
-Permanent Asset Locks and Scene Locks govern separate domains and must not silently overwrite each other.
-
-- Preserve approved intrinsic identity while allowing physically correct lighting, reflection, atmospheric, occlusion and camera effects.
-- Preserve authoritative Scene Locks while selecting views, poses and interactions that maintain recognition.
-- Treat scene-dependent visible changes as adaptations or Temporary States, not canonical identity changes.
-- When coexistence is impossible, stop silent execution and follow the conflict process in the [Asset Blueprint Protocol](ASSET_BLUEPRINT_PROTOCOL.md).
-
-## Image-Generation Workflow
-
-1. Complete Project Understanding and the Asset Consistency Decision.
-2. Establish the applicable world and scene logic through the root Creative Workflow.
-3. Build the Execution Package and Reference Package.
-4. Define the three Execution Anchors.
-5. Translate canonical identity into the selected camera, perspective, lighting, composition and style.
-6. Generate without promoting incidental output details into the Blueprint.
-7. Run root YCOS validation.
-8. Run asset validation and apply the resulting action.
-
-Generated details are output evidence only. They remain Observed until deliberately confirmed and must not become Permanent Asset Locks automatically.
-
-## Image-Retouch Workflow
-
-1. Diagnose the image using the root Creative Workflow.
-2. Use Diagnostic References to identify drift or undesirable outcomes without treating them as positive identity sources.
-3. Identify the exact identity, scene or local defect.
-4. Build a focused Execution Package that locks unrelated content.
-5. Preserve Scene Locks and unaffected Permanent Asset Locks.
-6. Retouch the minimum required region while updating physically necessary secondary effects.
-7. Run root retouch validation first.
-8. Run asset validation to confirm identity and state continuity.
-
-A local identity correction must not redesign the scene. A scene correction must not silently redesign the asset.
-
-## Video and Multi-Shot Workflow
-
-1. Define the project, sequence purpose and continuity risk.
-2. Select the Asset Version and Controlled Variation for the sequence.
-3. Define the initial Temporary State and permitted state progression.
-4. Assign Motion Complexity Level 1–4.
-5. Create a Sequence Continuity Sheet.
-6. Create a separate Execution Package for every shot.
-7. Select task-specific Reference Packages for each shot.
-8. Validate each shot against the Blueprint, previous approved shot and intended state progression.
-9. Validate the complete sequence for temporal, identity, motion and commercial continuity.
-
-## Sequence Continuity Sheet
-
-The Sequence Continuity Sheet records, per shot:
-
-- Shot identifier and order
+- Asset name
 - Asset Version
-- Selected Controlled Variant
-- Entry and exit Temporary State
-- Required identity, structural and integrity anchors
-- Camera, action and interaction
-- Motion Complexity Level
-- Scene Locks and permitted scene changes
-- Reference Package
-- Continuity dependencies from previous and following shots
-- Validation result, severity and required correction
+- Blueprint status
+- Selected Controlled Variation
+- Current Temporary State
 
-The sheet is a project continuity record. It is not an Asset Version, Controlled Variant, Temporary State or substitute Blueprint.
+### Identity Requirements
 
-## Per-Shot Execution Package
+- Permanent Asset Locks
+- Recognition Anchors
+- Required silhouette and proportion relationships
+- Required colours, materials, logos or markings
 
-Every shot receives its own Execution Package. It must preserve sequence-level decisions while containing only the references and instructions needed for that shot.
+### Allowed Changes
 
-If a shot requires a different Controlled Variation or a change to Permanent Asset Locks, classify and approve that change before execution. Do not conceal an identity revision as shot-specific adaptation.
+- Permitted Variation
+- Controlled Variation scope
+- Temporary State Changes
+- Elements requiring approval before change
 
-## Motion Complexity Levels
+### Active Reference Package
+
+- Primary source for each required Reference Role
+- Approved Scope
+- Excluded Signals
+- Diagnostic References kept separate
+
+### Scene Integration
+
+- Project Definition
+- Scene Locks
+- Contact, support, occlusion and scale
+- Environmental and material response
+
+### Shot Instructions
+
+- Camera and composition
+- Action or interaction
+- Start and end condition
+- Shot-specific exclusions
+
+### Continuity Requirements
+
+- Previous state
+- Required current state
+- Required next state
+- Screen direction, orientation and scale
+
+### Known Risks
+
+- Known Failure Modes
+- Single-view limitations
+- Tool or model risks
+- Unresolved conflicts
+
+### Validation Targets
+
+- Global Validation targets
+- Asset Validation gates
+- Output size and crop requirements
+
+### Execution Decision
+
+- Generate
+- Retouch
+- Regenerate
+- Request clarification
+- Replan references, Blueprint, shot or tool strategy
+
+## Prompt Translation
+
+Translate approved source information into:
+
+- **Identity Anchor** — concise approved identity and Recognition Anchors.
+- **Structural Anchor** — silhouette, proportions, topology and connection logic needed for the task.
+- **Integrity Anchor** — identity elements that must not drift, disappear, merge, multiply or change category.
+- **Current Variant and State** — approved Controlled Variation and Temporary State Changes.
+- **Scene and Physical Interaction** — support, contact, pressure, moisture, heat, occlusion and environmental response.
+- **Camera and Composition** — selected view, lens behaviour, framing and hierarchy.
+- **Lighting and Material Response** — intrinsic materials translated through current scene lighting.
+- **Action or Motion** — movement, articulation, timing and start/end state.
+- **Consistency Safeguards** — Known Failure Modes and validation-critical constraints.
+- **Exclusions** — unrelated signals and prohibited interpretations.
+
+Prompt Anchors are execution outputs, not the source of truth. Approved Blueprint Locks and References remain authoritative.
+
+## Image Generation
+
+Load Blueprint → select Controlled Variation and Temporary State → build Task-specific Reference Package → apply Project Definition → define Scene Locks → define Camera and Composition → create Task-specific Execution Package → generate → Global Validation → Asset Validation.
+
+Generated output does not become new Blueprint authority. New visible content is Observed until explicitly approved.
+
+## Image Retouching
+
+### Preserve
+
+- All correct existing elements
+- Unrelated Permanent Asset Locks
+- Unrelated Scene Locks
+- Approved composition and world logic
+
+### Correct
+
+- Only required identity, structural, material, logo, perspective or continuity errors
+
+### Reconcile
+
+- Shadows
+- Reflections
+- Contact
+- Occlusion
+- Moisture
+- Pressure
+- Perspective
+- Secondary physical effects
+
+### Validate
+
+- Global world first
+- Asset identity second
+
+Do not reconstruct the complete scene unless required.
+
+## Video and Multi-Shot Execution
+
+Asset Blueprint → Sequence Continuity Sheet → Shot List → Per-shot Execution Package → Keyframe Generation → Image-to-Video → Shot Validation → Sequence Validation.
+
+### Sequence Continuity Format
+
+- Sequence ID
+- Active Asset and Blueprint Version
+- Controlled Variation
+- Initial Temporary State
+- Required final state
+- Location and environment
+- Overall screen direction
+- Sequence-level Scene Locks
+- Continuity risks
+
+### Shot Execution Format
+
+- Shot ID
+- Shot objective
+- Blueprint Version
+- Controlled Variation
+- Temporary State
+- Active Reference Package
+- Camera and composition
+- Action and Motion Complexity Level
+- Location and orientation
+- Costume and props
+- Damage and wetness
+- Scale and lighting
+- Entry and exit direction
+- Global and Asset Validation targets
+
+### Shot End State
+
+- Asset identity state
+- Position and orientation
+- Costume and props
+- Damage and wetness
+- Opened or closed components
+- Scale
+- Lighting condition
+- Screen direction
+- Dependencies for the next shot
+
+Track Blueprint Version, Variant, Temporary State, location, orientation, costume, props, damage, wetness, scale, lighting, screen direction, and entry and exit direction for every shot.
+
+## Motion Complexity
 
 ### Level 1 — Minimal Motion
 
-Small movement with limited deformation, articulation, viewpoint change or occlusion. Examples of complexity include subtle expression, breathing, small product motion or a simple camera hold.
+- Breathing
+- Blinking
+- Slight head movement
+- Subtle fabric movement
+- Slow camera push
 
 ### Level 2 — Controlled Motion
 
-Moderate pose, articulation, interaction or camera movement with predictable continuity and limited occlusion.
+- One step
+- Raising an arm
+- Small turn
+- Picking up one object
+- Simple sitting action
 
 ### Level 3 — Complex Motion
 
-Large articulation, rapid action, substantial camera change, interaction, deformation, occlusion or view translation requiring stronger per-shot structural control.
+- Running
+- Jumping
+- Full-body rotation
+- Intense interaction
+- Two-character physical contact
+
+Split Level 3 into multiple shots where identity risk is high.
 
 ### Level 4 — Multi-event Motion
 
-A shot containing multiple sequential actions, state changes, exchanges or cause-and-effect events. Examples include attack, impact, fall and recovery in one shot; multiple object exchanges; transformation followed by action; or several narrative events within one generation.
+- Several causal actions in one shot
+- Attack, impact, fall and recovery
+- Complex exchanges
+- Transformation sequences
 
-Level 4 should normally be decomposed into multiple shots unless there is a deliberate and validated reason not to do so.
+Level 4 should normally be divided into multiple shots unless there is a deliberate and validated reason not to do so.
 
-Motion Complexity Level describes execution risk. It does not change the Blueprint activation level or Asset Version.
+Motion Complexity does not change Blueprint Level or Asset Version.
 
-## Model-Neutral Execution Principles
+## Tool-Neutral Execution
 
-- Express identity through approved semantic and structural anchors rather than model-specific syntax.
-- Adapt package detail to tool capabilities without changing source authority.
-- Use the smallest Reference Package that covers the task.
-- Treat generated outputs as results to validate, not new canonical sources.
-- Prefer controlled retouch when drift is local and regeneration when structure is broadly wrong.
-- Replan at S4 rather than repeating the same failed strategy.
-- Preserve commercial readability as well as continuity.
+Keep the Blueprint independent of any specific commercial platform.
+
+### Text-to-Image
+
+Emphasise concise Identity, Structural and Integrity Anchors, a minimum sufficient Task-specific Reference Package and clear exclusions.
+
+### Image-to-Image
+
+Separate source identity from source pose, scene, camera, lighting and style. Control transformation strength through the chosen tool without changing Blueprint authority.
+
+### Image Editing
+
+Preserve correct pixels and relationships. Localise the change and reconcile secondary physical effects.
+
+### Image-to-Video
+
+Emphasise start-frame identity, Shot End State, Motion Complexity, temporal drift risks and sequence continuity.
+
+### Dedicated Character Model or LoRA
+
+Treat the model as an execution tool, not as identity authority. Validate its learned behaviour against the approved Blueprint and references. Do not add training specifications to this module.
