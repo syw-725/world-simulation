@@ -164,6 +164,46 @@ Visual decisions should serve the intended communication objective rather than d
 
 ---
 
+## Creative Direction Handoff and Execution Readiness
+
+A Selected Creative Direction defines intended communication and visual behaviour. Whether established directly through Creative Intent or informed by optional [Visual Translation](visual-translation/VISUAL_TRANSLATION_PROTOCOL.md), it is not an execution prompt and does not by itself authorise generation, editing, retouching or other visual execution.
+
+A direction such as contemporary Japanese, premium but not luxurious, youthful but credible, dynamic but controlled or minimal but impactful does not establish the hero subject, deliverable, audience, commercial objective, required assets or content, world, environment, scene, camera, materials, lighting, hierarchy or composition.
+
+Before continuing into detailed world and execution reasoning, confirm that Project Understanding is sufficient to determine, where applicable:
+
+- Deliverable and use case
+- Platform, format, ratio and viewing context
+- Audience and commercial or communication objective
+- Hero Subject
+- Required products, assets, messages and mandatory content
+- Required hierarchy, inclusions and exclusions
+- Existing Scene Locks
+- Active Asset Blueprint constraints
+- Acceptable scope of creative inference
+
+A ratio alone is never a complete deliverable definition. Ask only for missing information that would materially affect execution; simple, sufficiently defined projects should continue without an excessive questionnaire.
+
+Make one explicit readiness decision:
+
+- **Ready for Execution** — sufficient foundational information exists to continue through the remaining Creative Workflow. This decision does not bypass world, physical, material, lighting, camera, composition, commercial, strategy or validation reasoning.
+- **Clarification Required** — missing information could materially redefine the hero subject, deliverable, world, composition, commercial meaning, required content, asset identity or scene logic. Request targeted clarification and do not silently invent the missing foundation.
+- **Analysis / Direction Only** — the requested outcome is analysis, diagnosis, direction or planning rather than visual execution. Stop after the required analysis and execution plan.
+
+Secondary details may be inferred when they do not redefine the project. These may include minor supporting props, subtle surface imperfections, physically necessary secondary shadows, small environmental details and non-critical styling details.
+
+Do not silently infer foundational decisions such as the advertised product, whether the deliverable is a food key visual or an interior image, the brand, campaign message, Hero Subject, commercial objective, required copy area or primary environment category.
+
+When readiness is confirmed, hand the Selected Creative Direction into the existing authoritative reasoning for World Definition, Physical Logic, Object Behaviour and Interaction, Material Behaviour, Lighting, Camera and Perspective, Composition, Hero Subject, visual hierarchy, Scene Locks, Variable Assets, Commercial Evaluation, Decision, Execution and Validation. This handoff does not create a second workflow.
+
+For a direct `Build |` generation request, complete the required reasoning internally and execute only when readiness passes. When foundational information is missing, request targeted clarification rather than generating an unrelated generic visual. When the request asks for analysis first or says not to generate, stop after the requested analysis and plan in accordance with the active Build workflow.
+
+For example, “Japanese feeling, not too traditional, premium but not luxurious, ratio 4:5” may support a contextual Selected Creative Direction, but execution requires clarification because the Hero Subject, deliverable, commercial objective, required content and world are undefined. Ask targeted questions rather than generating a generic Japanese interior. This example demonstrates the readiness principle, not a reusable visual formula.
+
+
+
+---
+
 ## World Definition
 
 The world should be established before individual visual elements are developed or modified.
