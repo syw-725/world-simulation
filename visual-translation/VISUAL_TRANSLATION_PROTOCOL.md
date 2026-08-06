@@ -31,7 +31,7 @@ Activate Visual Translation only when a project contains an important gap betwee
 
 Do not activate it merely because a creative task exists. Skip it when the visual direction is already explicit, the task is purely technical, or translation would add no meaningful decision value.
 
-Activation is task-specific and may be brief. It ends when a Selected Direction provides enough visual principles and decisions for the existing Creative Workflow to continue.
+Activation is task-specific and may be brief. It ends when a Selected Creative Direction provides enough visual principles and decisions for the existing Creative Workflow to continue. Selected Creative Direction corresponds to the authoritative Creative Workflow decision; it is not a separate approval stage.
 
 ## Relationship with the Creative Workflow
 
@@ -40,10 +40,13 @@ The root Creative Workflow remains authoritative. Visual Translation operates in
 A typical integration is:
 
 1. Project Understanding establishes the objective, brand, audience, platform, deliverable, constraints and required content.
-2. Creative Intent identifies what the audience should notice, understand, feel or do.
-3. Optional Visual Translation converts the unresolved communication intent into a Selected Direction expressed through observable visual decisions.
-4. The remaining Creative Workflow establishes the world, physical and material logic, lighting, camera, composition, commercial evaluation, decision and execution strategy.
-5. Root [Validation](../VALIDATION.md) remains mandatory.
+2. The optional Asset Consistency Decision determines Level 0 — No Blueprint, Level 1 — Lightweight Blueprint or Level 2 — Full Blueprint under the [Asset Blueprint Protocol](../asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md).
+3. Creative Intent identifies what the audience should notice, understand, feel or do.
+4. Optional Visual Translation converts the unresolved communication-to-visual gap into a Selected Creative Direction expressed through observable visual decisions.
+5. The remaining Creative Workflow establishes the world, physical and material logic, lighting, camera, composition, commercial evaluation, decision and execution strategy.
+6. Root [Validation](../VALIDATION.md) remains mandatory.
+
+Visual Translation does not relocate, replace, bypass or duplicate the Asset Consistency Decision. When Asset Blueprint Level 1 or Level 2 is active, its approved identity and continuity constraints inform translation within their defined scope.
 
 Because creative reasoning is iterative, later world, material, lighting, camera, composition or commercial findings may require the translation to be refined. Visual Translation may inform those decisions but cannot overrule their established logic. A translated principle such as “lighter” does not authorize implausible lighting; “dynamic” does not authorize inconsistent perspective; “premium” does not justify reduced product or message clarity.
 
@@ -84,20 +87,20 @@ Record, when applicable:
 
 Do not convert an adjective directly into a visual formula during intake. First establish what the term means for this project, audience and communication objective.
 
-## Communication Intent Extraction
+## Communication Intent Refinement
 
-Extract communication intent as an audience-facing outcome rather than a list of visual adjectives.
+Visual Translation consumes the Creative Intent already established by the Creative Workflow. It does not independently redefine or replace Creative Intent, and it does not create a second mandatory intent stage. Refinement is limited to the unresolved communication-to-visual gap.
 
-Determine:
+Use these audience-facing questions only as translation checks derived from the established Creative Intent:
 
 - **Notice:** What should attract attention first?
 - **Understand:** What message, benefit or distinction should become clear?
 - **Feel:** What emotional response should support that understanding?
 - **Do:** What action or next thought should the work encourage?
-- **Remember:** What single idea, asset or recognition anchor should persist?
-- **Avoid:** What incorrect reading, category signal or emotional response must not occur?
 
-When several intentions compete, rank them. The primary communication intent governs the translation; secondary intentions may support it but should not weaken hierarchy or commercial readability.
+When relevant, also consider what the audience should **Remember** and what incorrect reading or response to **Avoid**. These are optional supplemental considerations, not required additions to Creative Intent.
+
+If several established intentions compete during translation, preserve their Creative Workflow priority or request clarification. Do not silently create a new priority order. Secondary intentions may support the primary intent but should not weaken hierarchy or commercial readability.
 
 ## Semantic Decomposition
 
@@ -119,6 +122,7 @@ Cultural language must be treated as contextual direction, not as a fixed visual
 
 Before proposing decisions:
 
+- identify the basis for the interpretation: explicit user brief, approved reference, established brand or audience knowledge, informed and relevant research, or an unresolved assumption requiring clarification;
 - identify the relevant place, audience, period, subculture, category and communication setting;
 - distinguish contemporary lived culture from historical, ceremonial, touristic or exported imagery;
 - determine whether the request concerns values, restraint, rhythm, craft, behaviour, spatial organisation, material sensibility, graphic conventions or explicit symbols;
@@ -126,9 +130,11 @@ Before proposing decisions:
 - distinguish recognition needed by the intended audience from decoration added for outsiders;
 - calibrate how explicit or implicit the cultural signal should be.
 
+Do not infer collective cultural traits without adequate evidence. Abstract descriptions such as restraint, rhythm, craft, simplicity, warmth or precision are not inherent cultural facts and must be justified within the specific project context. Do not claim cultural authenticity without appropriate authority and evidence.
+
 “More Japanese, but not traditionally Japanese,” for example, requires clarification of audience, market, brand and relevant contemporary context. It must not automatically produce historic motifs, national symbols, calligraphic effects or a predetermined palette.
 
-When cultural interpretation cannot be made responsibly from available information, keep the uncertainty visible and request targeted clarification before execution.
+Keep the evidence basis and any uncertainty visible. When the cultural basis could materially affect the direction, request targeted clarification or informed research before execution. This requirement supports interpretation; it does not create a separate research workflow.
 
 ## Visual Language Dimensions
 
@@ -169,6 +175,8 @@ Define the amount, distribution and purpose of nonessential detail. Greater impa
 ### Motion Character, When Applicable
 
 Consider pace, continuity, acceleration, easing character, transition logic, repetition and stillness. Motion should support comprehension and emotional tone rather than distract from the message.
+
+Motion Character describes communication, pacing, emotional behaviour and visual movement qualities. It does not assign, replace or modify Motion Complexity Levels in [Asset Execution](../asset-blueprint/ASSET_EXECUTION.md), which describe execution and continuity risk.
 
 ### Emotional Tone
 
@@ -213,11 +221,11 @@ Examples:
 | Stronger impact without adding clutter | Improve the speed and force of the primary read | Increase hero scale or contrast; reduce secondary competition; simplify grouping; strengthen focal isolation | Do not add effects, props, text or decoration solely to create intensity |
 | Turn the product message into an icon | Make one benefit recognisable at small size | Isolate the benefit's action or relationship; reduce it to one distinctive silhouette or interaction; test at intended size | Do not encode multiple claims or rely on unexplained symbolism |
 
-These examples demonstrate reasoning patterns, not reusable formulas.
+These examples demonstrate reasoning structure only, not reusable presets. Every example-derived decision must be re-justified against the current brand, audience, category, medium and objective. A different project may require the opposite visual treatment to communicate the same abstract quality.
 
-## Selected Direction and Decision Rules
+## Selected Creative Direction and Decision Rules
 
-Visual Translation should converge on one Selected Direction when the evidence supports a clear choice.
+Visual Translation should converge on one Selected Creative Direction when the evidence supports a clear choice.
 
 Select the direction that best:
 
@@ -261,19 +269,23 @@ Visual Translation can recommend the communication value of a variation, but it 
 
 ## Translation Output Format
 
-Use the smallest output that gives the next Creative Workflow stage clear direction. A complete output may contain:
+The compact format is the normal default. Use only the information required to give the next Creative Workflow stage clear direction:
 
-1. **Activation reason** — the ambiguity or communication-to-visual gap being resolved.
-2. **Communication Intent** — ranked Notice, Understand, Feel, Do, Remember and Avoid outcomes.
-3. **Context interpretation** — audience, brand, market, cultural and medium-specific meaning.
-4. **Semantic decomposition** — core meanings, positive signals, exclusions and trade-offs.
-5. **Selected Direction** — one concise directional statement and its rationale.
-6. **Visual language decisions** — only the applicable dimensions, each with observable decisions and limits.
-7. **Lock interaction** — Scene Locks, Permanent Asset Locks and unresolved conflicts affected by the direction.
-8. **Variation classification** — relevant Variable Assets, Controlled Variations or Temporary State Changes.
-9. **Execution handoff** — decisions the Creative Workflow must resolve through world, physical, material, lighting, camera, composition and commercial reasoning.
-10. **Validation evidence** — observable criteria for determining whether the translation succeeded.
-11. **Uncertainties** — assumptions or questions that could materially change the direction.
+1. **Communication Gap and Relevant Intent** — the unresolved translation problem and the applicable established Creative Intent.
+2. **Selected Creative Direction** — one concise direction and its rationale.
+3. **Applicable Visual Decisions and Exclusions** — only the visual language dimensions that materially support the direction, with observable decisions and limits.
+4. **Constraints, Creative Workflow Handoff and Observable Success Criteria** — what must remain unchanged, what later workflow reasoning must resolve and how the translation can be assessed.
+
+Add a conditional extension only when it materially affects the task:
+
+- cultural basis and evidence;
+- a Scene Lock or Permanent Asset Lock conflict;
+- a Variable Asset or Asset Blueprint change classification;
+- material uncertainty;
+- an unresolved assumption or clarification requirement;
+- motion-specific considerations.
+
+Do not include conditional extensions automatically, and do not expand the compact output into a routine mandatory template.
 
 The output is a reasoning and decision record, not a generation prompt.
 
@@ -295,24 +307,17 @@ The output is a reasoning and decision record, not a generation prompt.
 - Generating a complete execution prompt instead of handing decisions back to the Creative Workflow.
 - Evaluating success by aesthetic appeal alone.
 
-## Validation Criteria
+## Translation Completion Check
 
-Visual Translation passes only when:
+Translation is ready to hand back to the Creative Workflow when:
 
-- activation was necessary and remained optional;
-- the output traces back to confirmed Project Understanding and Creative Intent;
+- it traces back to confirmed Project Understanding and the established Creative Intent;
 - abstract language has a context-dependent meaning rather than a fixed formula;
-- the primary communication objective and audience response are clear;
-- selected visual dimensions contain observable, executable decisions;
-- the Selected Direction is decisive and commercially readable;
+- the Selected Creative Direction is decisive, commercially readable and supported by applicable observable decisions;
 - exclusions and trade-offs prevent the most likely incorrect readings;
-- cultural signals are contextual, proportionate and free from unjustified stereotype;
-- the protocol has not created a new mode, engine, Bootstrap sequence or parallel workflow;
-- world, physical, material, lighting, camera, composition and commercial authority remains with the Creative Workflow;
-- Scene Locks remain authoritative unless deliberately revised;
-- Permanent Asset Locks and asset change classifications remain authoritative under Asset Blueprint;
-- Reference Separation has not been duplicated outside Asset Blueprint;
-- the output is model-neutral, tool-neutral and not prompt-centric;
-- the decisions provide evidence that can be assessed during mandatory root Validation.
+- any cultural interpretation identifies its basis and keeps material uncertainty visible;
+- affected constraints, locks, variations and unresolved conflicts are identified for the authoritative workflow or Asset Blueprint process;
+- the handoff states what later world, physical, material, lighting, camera, composition and commercial reasoning must resolve;
+- observable success criteria are sufficient for later evaluation.
 
-After translation-specific criteria pass, the project must still complete every applicable Creative Workflow stage and the root Validation. When Asset Blueprint Level 1 or Level 2 is active, its required execution and asset validation extensions also apply.
+Passing this completion check does not replace any remaining Creative Workflow stage or mandatory root [Validation](../VALIDATION.md). When Asset Blueprint Level 1 or Level 2 is active, its required execution and asset validation extensions also apply.
