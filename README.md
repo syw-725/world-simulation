@@ -2,6 +2,8 @@
 
 Version 1.0
 
+**Start here:** Read [BOOTSTRAP.md](BOOTSTRAP.md) before using YCOS in a new session or workspace.
+
 ---
 
 ## Overview
