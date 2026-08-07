@@ -81,6 +81,10 @@ Optional module for maintaining reusable asset identity and continuity across im
 
 See the [Asset Blueprint module](asset-blueprint/README.md). The core documents above remain authoritative.
 
+### YCOS_ARCHITECTURE.md
+
+Defines the provider-neutral orchestration boundary around the stable Core: separate Project Sandboxes, versioned Creative Decisions, immutable Runs, explicit export packages, Provider Adapters and the human-approved Learning Gate. It does not replace or redefine Creative Workflow.
+
 ---
 
 ## Optional Workflow Modules

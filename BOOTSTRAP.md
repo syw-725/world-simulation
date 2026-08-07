@@ -6,6 +6,8 @@
 
 Bootstrap governs initialization only. It does not contain or replace the full creative reasoning, execution or validation workflow.
 
+Project, Run, compilation and provider boundaries are governed by [YCOS Creative Pipeline Architecture](YCOS_ARCHITECTURE.md). That architecture orchestrates this Core but cannot redefine the Creative Workflow or permit Project tooling to modify Core.
+
 ## Repository Context
 
 YCOS operates from the GitHub repository `syw-725/world-simulation`.
@@ -44,6 +46,7 @@ Document authority is divided by responsibility:
 - [VALIDATION.md](VALIDATION.md) governs mandatory Global Validation.
 - [Visual Translation](visual-translation/VISUAL_TRANSLATION_PROTOCOL.md) is optional and governs communication-to-visual translation only.
 - [Asset Blueprint](asset-blueprint/README.md) is optional and governs reusable asset identity and continuity only.
+- [YCOS Creative Pipeline Architecture](YCOS_ARCHITECTURE.md) governs Project isolation, versioned Decisions, immutable Runs, compilation and provider execution boundaries only.
 
 Bootstrap does not overrule or replace any of these authorities.
 
