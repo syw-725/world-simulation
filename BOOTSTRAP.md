@@ -8,6 +8,8 @@ Bootstrap governs initialization only. It does not contain or replace the full c
 
 Project, Run, compilation and provider boundaries are governed by [YCOS Creative Pipeline Architecture](YCOS_ARCHITECTURE.md). That architecture orchestrates this Core but cannot redefine the Creative Workflow or permit Project tooling to modify Core.
 
+Before creating or updating a Project in `syw-725/ycos-projects`, complete the fail-closed [Project Bootstrap](PROJECT_BOOTSTRAP.md). Project Bootstrap resolves an immutable Core revision, required Core dependencies, repository isolation and the Project schema; it does not replace this session initialization or authorise generation.
+
 ## Repository Context
 
 YCOS operates from the GitHub repository `syw-725/world-simulation`.
