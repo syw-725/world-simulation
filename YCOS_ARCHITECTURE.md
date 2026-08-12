@@ -26,6 +26,8 @@ Commercial project data belongs in the separate private `syw-725/ycos-projects` 
 
 Projects may identify Core dependencies by repository, document and version or commit. They must not embed or mutate Core documents. Tooling must resolve all paths within the Project repository and reject destinations in Core.
 
+A Project may maintain a canonical [Project Asset Registry](asset-blueprint/PROJECT_ASSET_REGISTRY.md). The Registry says which Project assets exist and where their authoritative records are; Asset Blueprint remains authoritative for identity; the Project Asset Resolver produces a minimum shot-specific configuration. No resolver may discover assets across Projects or write to Core.
+
 ### Creative Decision
 
 A Creative Decision is the provider-neutral canonical creative specification. Significant values carry a value, status (`locked`, `preferred` or `open`) and internal rationale. Rationale is not exported to providers automatically.
@@ -105,3 +107,5 @@ The pipeline surrounds the existing workflow with project, versioning, compilati
 10. Project learning cannot enter Core automatically.
 11. External models receive tasks, not the YCOS brain.
 12. Creative Truth and Provider Execution remain separate.
+13. Asset identity is a stable Project-scoped ID, never a filename or display name.
+14. Asset resolution exports minimum selected context, never whole Blueprints or Registries.

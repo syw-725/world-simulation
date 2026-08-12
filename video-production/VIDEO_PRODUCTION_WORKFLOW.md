@@ -78,7 +78,7 @@ Each unit uses `draft`, `revision_required` or `approved`. Partial approval is s
 
 ## Shot Blueprint Specification
 
-A Shot Blueprint is the provider-neutral creative source describing what a temporal event must be. It records identity/source references, purpose/duration, World and required Assets, start/end state, camera, subject/environment motion, lighting, physics, Scene Locks, Variable Assets, allowed variation, forbidden changes and transitions. Start/end state captures meaningful subject, props, environment, material and camera state—not microscopic simulation. Provider-specific controls never belong here.
+A Shot Blueprint is the provider-neutral creative source describing what a temporal event must be. It records identity/source references, purpose/duration, World and required Assets, start/end state, camera, subject/environment motion, lighting, physics, Scene Locks, Variable Assets, allowed variation, forbidden changes and transitions. Required persistent assets use semantic Project Asset Registry selections (`asset_id`, Asset Version, optional Controlled Variant, shot-specific Temporary State and selected references), resolved under the [Project Asset Registry boundary](../asset-blueprint/PROJECT_ASSET_REGISTRY.md). Start/end state captures meaningful subject, props, environment, material and camera state—not microscopic simulation. Provider-specific controls never belong here.
 
 ## Continuity Specification
 
@@ -105,7 +105,7 @@ Provider/model preferences are execution metadata only. The package may be store
 
 ## Generation Gates
 
-Compilation fails closed with `generation_status: blocked` unless Project Definition and approved Creative Decision exist; the Story and beat resolve; relevant World, Assets and approved References resolve; the Storyboard unit is approved; the Shot Blueprint validates; Scene Locks resolve; hard continuity and required state transitions resolve; and strategy-required frames/references exist. Missing creative decisions are never invented.
+Compilation fails closed with `generation_status: blocked` unless Project Definition and approved Creative Decision exist; the Story and beat resolve; relevant World, semantic Asset selections and approved References resolve; Asset Versions and Controlled Variants are compatible and active; the Storyboard unit is approved; the Shot Blueprint validates; Scene Locks resolve without overwriting Permanent Asset Locks; hard continuity and required state transitions resolve; and strategy-required frames/references exist. Missing creative decisions are never invented.
 
 ## External Provider Boundary
 

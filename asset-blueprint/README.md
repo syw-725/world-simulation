@@ -12,6 +12,8 @@ Asset Blueprint is not a replacement for Project Definition, Creative Intent, wo
 - **Creative Workflow** defines the believable and commercially effective world in which the asset appears.
 - **Scene Locks** define the current project world.
 - **Permanent Asset Locks** define persistent asset identity.
+- **Project Asset Registry** records which assets exist in one Project and where their authoritative Blueprints are located.
+- **Asset Resolver** selects the exact approved Project asset configuration needed by a shot or Generation Package.
 
 Scene Locks and Permanent Asset Locks govern different domains. Neither silently overwrites the other.
 
@@ -38,6 +40,7 @@ The text Blueprint remains authoritative over any generated visual Blueprint she
 3. [ASSET_EXECUTION.md](ASSET_EXECUTION.md) — translation from an approved Blueprint into task-specific image, retouch and video instructions.
 4. [ASSET_VALIDATION.md](ASSET_VALIDATION.md) — asset-specific validation after mandatory Global Validation.
 5. [ASSET_LIFECYCLE.md](ASSET_LIFECYCLE.md) — lifecycle status, versioning, compatibility and GitHub storage principles.
+6. [PROJECT_ASSET_REGISTRY.md](PROJECT_ASSET_REGISTRY.md) — boundary between Project asset indexing, Blueprint authority and semantic resolution.
 
 ## Scope Exclusions
 
