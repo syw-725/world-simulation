@@ -27,6 +27,10 @@ This root validation remains authoritative and mandatory.
 
 When Asset Blueprint Level 1 or Level 2 is active, complete every applicable Global Validation check first, then use [Asset Validation](asset-blueprint/ASSET_VALIDATION.md) only as an extension. Persistent assets require additional identity, structure, marking, angle, motion, Temporary State and continuity checks. Asset Validation never replaces Global Validation, and passing it cannot compensate for failing this validation.
 
+## Video Validation — Conditional Extension
+
+For video Projects, apply the [Video Production Workflow](video-production/VIDEO_PRODUCTION_WORKFLOW.md) temporal checks after every applicable Global Validation check. Validate start/end state, hard and soft continuity, camera path, subject and environment motion, transitions, temporal coherence, material-state causality and shot dependencies. Detect identity drift, morphing, mutation, logo/packaging deformation, texture crawl, flicker, background warping, geometry instability, duplication/disappearance, inconsistent reflections/shadows, material flicker, camera discontinuity, false slow motion, fluid-volume errors and spatial breaks. Video validation extends rather than replaces this root authority.
+
 ---
 
 ## World Consistency

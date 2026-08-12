@@ -46,6 +46,8 @@ The Creative Compiler turns one Decision version into a provider-neutral Generat
 
 Compiled prompts are disposable provider outputs. They are not canonical knowledge.
 
+For video, the [Video Production Workflow](video-production/VIDEO_PRODUCTION_WORKFLOW.md) adds Story, Storyboard, Shot Blueprint and Continuity as persistent creative truth. Its canonical Video Generation Package is shot-scoped, derived and recompilable. `Shot Blueprint ≠ Generation Package`; changing a provider, model or strategy never rewrites the approved Shot Blueprint.
+
 ### Provider Adapter and AI Generator
 
 A Provider Adapter receives only a Generation Package and explicit upload manifest. Its minimal contract is `validate`, `compile`, `stage`, `execute`, `collect` and `record`. Provider-specific prompts, parameters, API/CLI formats, upload and download behaviour remain in the adapter.
@@ -64,6 +66,8 @@ External execution fails closed unless both conditions are explicit:
 - `execution_mode: live`
 
 The default mode is `dry-run`. Dry Run validates and stages the allowlist without authentication, network contact, upload or credit use.
+
+Video compilation follows the Least Context Principle: YCOS Brain → Project Context → Shot Context → Generation Context. Only Generation Context may cross the External Provider Boundary. Internal knowledge and Learnings must be translated into production instructions, never copied as history or reasoning.
 
 ## Isolation and Learning Gate
 
@@ -99,3 +103,5 @@ The pipeline surrounds the existing workflow with project, versioning, compilati
 8. Prompts are compiled outputs, never canonical knowledge.
 9. Creative Decisions are canonical.
 10. Project learning cannot enter Core automatically.
+11. External models receive tasks, not the YCOS brain.
+12. Creative Truth and Provider Execution remain separate.

@@ -48,10 +48,13 @@ Build | Image Analyze
 Build | Image Retouch
 Build | Key Visual
 Build | Food Photography
+Build | Storyboard > Video
 
 Entering Build Mode does NOT immediately generate an image.
 
 It first enters the Bootstrap process.
+
+`Build | Storyboard > Video` starts the temporal [YCOS Video Production Workflow](video-production/VIDEO_PRODUCTION_WORKFLOW.md). It means Project Definition → Creative Direction → Story → Storyboard → Approval → Shot Blueprint → Continuity → Generation Package → Execution; it does not mean immediate video generation.
 
 ==========================================================
 BOOTSTRAP

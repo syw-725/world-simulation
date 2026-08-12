@@ -89,6 +89,10 @@ Defines the provider-neutral orchestration boundary around the stable Core: sepa
 
 Defines the fail-closed operational gate that resolves an immutable Core revision, required Core dependencies, repository isolation and the Project schema before a Project is created or updated.
 
+### video-production/
+
+[YCOS Video Production Workflow V1](video-production/VIDEO_PRODUCTION_WORKFLOW.md) extends the Creative Pipeline with Story, Storyboard, Shot Blueprint, temporal Continuity, provider-neutral video Generation Packages and Video Review. It reuses World Simulation, Asset Blueprint, Reference Separation, Scene Locks, Variable Assets, Validation and Learnings; it is not a separate Video OS.
+
 ---
 
 ## Optional Workflow Modules

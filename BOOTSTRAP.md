@@ -35,6 +35,7 @@ Use this canonical loading order:
    - [Visual Translation Protocol](visual-translation/VISUAL_TRANSLATION_PROTOCOL.md)
    - [Asset Blueprint overview](asset-blueprint/README.md)
    - the applicable [Asset Blueprint Protocol](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md), [Execution](asset-blueprint/ASSET_EXECUTION.md), [Lifecycle](asset-blueprint/ASSET_LIFECYCLE.md) and [Validation](asset-blueprint/ASSET_VALIDATION.md) documents
+   - [Video Production Workflow](video-production/VIDEO_PRODUCTION_WORKFLOW.md) for `Build | Storyboard > Video` and other video-production work
 
 Do not load every optional document automatically. Load only the optional material required for the task and its applicable validation.
 

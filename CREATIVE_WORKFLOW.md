@@ -67,6 +67,8 @@ Tasks that require creative judgement must use this workflow.
 
 Tasks that involve only technical file operations, such as file conversion, export or metadata changes, may bypass unnecessary creative reasoning.
 
+For `Build | Storyboard > Video`, this workflow remains the creative reasoning authority and the [YCOS Video Production Workflow](video-production/VIDEO_PRODUCTION_WORKFLOW.md) adds only the temporal Story, Storyboard, Shot Blueprint, Continuity, Generation Package and Video Review layers. It does not create a separate operating system or replace World Definition, Asset Blueprint, Scene Locks, Variable Assets or Validation.
+
 Technical image changes that affect composition, perspective, lighting, content or scene continuity should still use the relevant parts of this workflow.
 
 
