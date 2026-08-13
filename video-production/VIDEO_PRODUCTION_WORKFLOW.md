@@ -11,12 +11,11 @@ Video Production is a temporal extension of the existing YCOS Creative Pipeline,
 `Build | Storyboard > Video` starts this workflow. It does not immediately generate video.
 
 ```text
-Brief → Creative Decision → Project Definition → World / Asset / Reference Resolution
-→ Story → Story Approval → Storyboard → Storyboard Approval Gate
-→ Shot Blueprint → Continuity Definition → Shot Validation
-→ Canonical Generation Package Compilation → External Provider Boundary
-→ Provider Execution → Shot Review → Revision / Regeneration → Shot Approval
-→ Assembly → Final QA → Learnings
+User Text / Image Intake → Project and Asset Alignment → Story Alignment
+→ Storyboard Draft → User Storyboard Review → Whole-Storyboard Approval Gate
+→ Shot Blueprint → Continuity → Generation Package
+→ Explicit Video Generation Authorization → Provider Execution
+→ Shot Review → Assembly → Final QA → Learnings
 ```
 
 All existing Bootstrap, Build Protocol, Execution Readiness and validation rules remain active.
@@ -66,15 +65,47 @@ Information narrows monotonically:
 
 Existing fields remain valid. A video Project may add an optional `video` object with `target_duration`, `aspect_ratio`, `platform`, `fps` and `delivery_format`. These fields are never required for non-video Projects.
 
+## Intake and Alignment
+
+Video intake may contain a text brief, character/product/object images, environment references, style/lighting/camera references, intended duration/platform/aspect ratio, required elements and forbidden changes. Intake records are non-generative: uploading a file never authorizes Storyboard imagery or video execution.
+
+Before Storyboard drafting, create an Alignment Summary containing `project_understanding`, `creative_direction`, `story_objective`, `registered_assets`, `reference_roles`, `confirmed_constraints`, `proposed_interpretations`, `unresolved_questions` and `storyboard_readiness`.
+
+Reference Separation remains mandatory. A supplied image does not automatically make its background, pose, lighting, camera, styling or Temporary State part of permanent asset identity. Materially unresolved story, identity or continuity decisions set `storyboard_readiness: blocked`. Minor visual interpretations may remain explicitly proposed.
+
 ## Story Specification
 
 Story defines what happens, why it happens, narrative order and communication purpose. It does not define detailed camera execution. It records `story_id`, `project_id`, approval status, objective, message and ordered beats. Each beat has an identifier, purpose, description, target duration, required assets and transition intent.
 
 ## Storyboard Specification and Gate
 
-Storyboard translates approved Story beats into visual sequence intent. A unit records `shot_id`, `story_beat_ref`, order, duration, frame description/composition/framing, action preview, transitions and an optional approved frame reference. A storyboard image is visual intent, not a video prompt or executable package.
+Storyboard is the primary human alignment artifact. It translates approved Story beats into visual sequence intent. Every unit records `shot_id`, `story_beat_ref`, `order`, `target_duration`, `frame_description`, `composition`, `framing`, `characters_and_assets`, `action_preview`, `environment`, `transition_intent`, `continuity_notes` and status.
 
-Each unit uses `draft`, `revision_required` or `approved`. Partial approval is supported. Only an approved unit may proceed through the Shot Blueprint Generation Gate.
+```text
+Storyboard description ≠ Storyboard image ≠ approved identity reference
+≠ generation input ≠ video prompt
+```
+
+Generated Storyboard imagery is provisional visual intent unless the user explicitly approves it for a stated Reference Role.
+
+Units retain partial review status, but the project gate belongs to an immutable Storyboard version with lifecycle `draft → in_review → revision_required → approved → superseded`. Project-level approval requires the approved Story, every required unit approved, confirmed order and approximate duration, resolved required assets/material continuity, alignment readiness, and explicit user approval of the exact Storyboard version.
+
+Partial unit approval never authorizes Shot Blueprint or Generation Package compilation by default. Partial production would require a separate future policy and explicit authorization.
+
+## Separate Approval Authorities
+
+- **Asset Approval** confirms persistent identity and approved variations.
+- **Story Approval** confirms narrative content and order.
+- **Storyboard Approval** confirms visual sequence intent.
+- **Generation Authorization** authorizes external video execution.
+
+None implies another. Structured actions name the exact target, for example `Approve Story v001`, `Approve Storyboard v001`, or `Authorize Video Generation for Storyboard v001`. Ambiguous casual confirmation such as “looks good” does not create approval; request the exact artifact and version.
+
+## Versioning and Invalidation
+
+Approval is tied to an immutable Storyboard version. A material revision creates a new version in review, supersedes but preserves the old version, revokes generation readiness and marks affected Shot Blueprints, Continuity and Generation Packages stale. Approved creative truth is never silently edited.
+
+After Storyboard approval, changes to an affected asset identity, Asset Version, required prop, environment or continuity state reopen Storyboard review. The approval records the resolved Asset Versions used for impact checks.
 
 ## Shot Blueprint Specification
 
@@ -106,6 +137,12 @@ Provider/model preferences are execution metadata only. The package may be store
 ## Generation Gates
 
 Compilation fails closed with `generation_status: blocked` unless Project Definition and approved Creative Decision exist; the Story and beat resolve; relevant World, semantic Asset selections and approved References resolve; Asset Versions and Controlled Variants are compatible and active; the Storyboard unit is approved; the Shot Blueprint validates; Scene Locks resolve without overwriting Permanent Asset Locks; hard continuity and required state transitions resolve; and strategy-required frames/references exist. Missing creative decisions are never invented.
+
+Dry-run Generation Package compilation is a validation operation and does not contact a provider, but still requires the currently approved whole Storyboard version. Compilation is not Generation Authorization.
+
+External execution additionally requires an active authorization record naming the currently approved Storyboard version, authorized scope, timestamp and authorizer. Authorization becomes stale when that Storyboard is superseded or an affected approved Asset Version changes.
+
+Uploading references, approving an Asset Blueprint or Story, requesting a Storyboard, approving one frame, or compiling a Generation Package never authorizes video generation.
 
 ## External Provider Boundary
 
