@@ -1,7 +1,9 @@
 # AI-Assisted Video Production Specification
 
-Version: 1.1  
-Status: Project standard  
+Version: 1.2
+
+Status: Project standard
+
 Applies to: All video planning, storyboarding, AI generation, review, revision,
 post-production, and delivery work in this project
 
@@ -68,6 +70,12 @@ and archived.
    not in this permanent workflow specification.
 10. **Storyboard approval is a hard stop.** The user must double-check and
     explicitly approve the complete storyboard before video generation begins.
+11. **Transition design precedes style-approved editing.** Review the approved
+    footage, propose footage-specific transition systems, and obtain user
+    confirmation before treating an edit render as the first style-approved cut.
+12. **Preserve deterministic edit history.** Keep source clips immutable, keep
+    every shot independently editable, and create a new version for every edit
+    revision.
 
 ## 3. Required inputs
 
@@ -103,8 +111,11 @@ that are intentionally allowed to change from project to project:
 - `AUDIO_DIRECTION.md` — VO, music, sound effects, pronunciation, pacing, and
   rights notes when audio is in scope;
 - `STORYBOARD_APPROVAL.md` — shot list, latest approved board version, user
-  approval date, and any approved exceptions; and
-- `GENERATION_MANIFEST.yaml` plus `QC_REPORT.md` — production and review record.
+  approval date, and any approved exceptions;
+- `TRANSITION_DESIGN.md` — approved transition system, alternatives, cut map,
+  review comments, and approval status; and
+- `GENERATION_MANIFEST.yaml`, `EDIT_MANIFEST.yaml`, and `QC_REPORT.md` —
+  generation, deterministic edit, version, and review records.
 
 Do not copy a previous project's creative pack as an approved default. It may
 be used only as a structural template; all creative content must be replaced or
@@ -171,6 +182,20 @@ subject-matter or brand approval before final production.
 ## 4. Stage gates
 
 Each stage must pass before moving to the next.
+
+The complete production and editing path is:
+
+```text
+Brief/content lock → Character sheet / identity lock → Style direction
+→ Storyboard → Pilot frame/shot → Higgsfield video generation
+→ Shot-level QA → Transition Design Review → Remotion deterministic edit
+→ Audio/captions/graphics → Cut-point QA → Delivery/versioning
+```
+
+Higgsfield is named here when it is the approved provider for the project; it
+is not a permanent model default and may be replaced by another approved
+provider without changing the workflow. The asset, animatic, rights, model, and
+cost gates below remain mandatory before the applicable generation steps.
 
 ### Gate 1 — Brief lock
 
@@ -315,7 +340,7 @@ or motion design before generating the remaining set.
 
 Deliverable: approved pilot clips.
 
-### Gate 9 — Batch generation
+### Gate 9 — Higgsfield or approved-provider batch generation
 
 - submit one job per shot unless a model-specific reason requires otherwise;
 - use small, controlled subject movements;
@@ -328,29 +353,120 @@ Deliverable: approved pilot clips.
 
 Deliverable: individually numbered generation clips and generation manifest.
 
-### Gate 10 — Post-production
+### Gate 10 — Shot-level QA
+
+Review every available generated clip independently using the applicable checks
+in Section 8. Assign one of the Section 9 outcomes, record accepted trims and
+known post-production fixes, and confirm that each required storyboard shot has
+a usable approved or approved-with-post-fix clip.
+
+Only the resulting usable clip set may enter Transition Design Review. A
+missing, rejected, or continuity-blocked shot must be regenerated, explicitly
+removed, or replaced through an approved storyboard change before editing.
+
+Deliverable: approved shot set with shot-level QA records.
+
+### Gate 11 — Transition Design Review
+
+This review is mandatory after all usable video clips complete shot-level QA
+and before the first style-approved edit render. Codex or the editor must first
+analyse:
+
+- the video's visual medium, such as live action, sketch, paper craft, 3D, or a
+  project-specific hybrid;
+- brand colours, line work, patterns, icons, products, and scene elements;
+- each shot's direction, speed, zoom, gesture, and object movement;
+- the visual relationship between every pair of adjacent shots;
+- the narrative function of each cut: continuation, comparison, reveal, topic
+  change, or CTA;
+- subtitle placement and information density; and
+- VO phrasing, music beats, and opportunities for transition sound effects.
+
+Before formal editing begins, propose two or three transition systems derived
+from the current project's footage and approved creative pack. Clearly mark one
+as the **recommended option**. For every option, explain:
+
+- the stylistic rationale;
+- where it is and is not suitable;
+- transition duration and direction;
+- whether outgoing and incoming pictures overlap; and
+- which approved brand or picture elements it may use.
+
+Provide a shot-by-shot Transition Map using at least this structure:
+
+| Cut | Visual relationship | Recommended transition | Duration | Direction / branded element | Rationale |
+| --- | --- | --- | --- | --- | --- |
+| 01 → 02 | Describe the adjacent shots | Name the selected treatment | Frames or seconds | Direction, overlap, or approved element | Explain the narrative and visual fit |
+
+Generic crossfades, slides, wipes, or zooms are not formal defaults. If they are
+used only to test timing, the output must be labelled **generic assembly
+draft**. A generic assembly draft is not the first style-approved edit.
+Transitions must respond to the project's style and content and may use
+approved picture or brand elements when useful. A clean cut remains valid when
+the analysis identifies it as the strongest deliberate choice.
+
+The user may approve the complete transition system once or comment on
+individual cuts in natural language. Record the system version, selected
+option, per-cut exceptions, comments, reviewer, date, and approval status in
+`TRANSITION_DESIGN.md`. Until the user confirms the system or affected cuts, do
+not present generic transition assembly as a style-approved first edit.
+
+Deliverable: approved transition system and complete Transition Map.
+
+### Gate 12 — Remotion deterministic edit
+
+Build the approved transition system as a deterministic Remotion edit:
+
+- keep every clip independent, addressable, and editable on the timeline;
+- preserve original source clips unchanged and never overwrite them;
+- set each trim, visible duration, direction, and transition timing precisely;
+- implement only approved overlaps and visual or branded transition elements;
+- recalculate the total running time after every transition overlap or trim;
+- keep the approved Transition Map traceable to the edit configuration; and
+- render every modification as a new version without overwriting an earlier
+  render or edit state.
+
+The first style-approved edit render may be created only from an approved
+Transition Design Review. It remains a review artifact, not a final master.
+
+Deliverable: versioned Remotion edit and edit manifest.
+
+### Gate 13 — Audio, captions, and graphics
 
 Use deterministic editing or motion-graphics tools for:
 
 - final typography and subtitles;
 - exact numbers, labels, units, legal copy, and disclaimers;
 - logos and brand end cards;
-- ticks, arrows, boxes, crosses, and icon reveals;
-- VO, music, sound effects, and audio mixing;
-- shot transitions, timing trims, and final colour matching; and
-- platform-specific safe-area adjustments.
+- ticks, arrows, boxes, crosses, icon reveals, and approved transition elements;
+- VO, music, transition sound effects, and final audio mixing;
+- timing trims, final colour matching, and platform-specific safe areas.
 
 Do not ask a generative video model to reproduce a brand logo or exact long-form
-text when it can be composited reliably in post.
+text when it can be composited reliably in post. Recheck transition timing when
+caption density, VO timing, graphics, or music edits alter a cut.
 
-Deliverable: review master.
+Deliverable: versioned review master with final audio, captions, and graphics.
 
-### Gate 11 — Final QC and approval
+### Gate 14 — Cut-point QA
+
+Inspect every transition immediately before, during, and after the cut. Apply
+the checks in Section 8.7, record failures and fixes, and repeat the inspection
+after any timing, direction, overlap, caption, graphics, or audio change.
+
+Deliverable: completed cut-point QA record for the current review master.
+
+### Gate 15 — Final QC, approval, delivery, and versioning
 
 Run every item in Section 8. Record the reviewer, date, version, failures,
-fixes, and final approval.
+fixes, and final approval. Confirm that the delivered master and platform
+variants resolve to the approved storyboard, Transition Map, source clips,
+Remotion edit version, generation manifest, edit manifest, and QC report.
 
-Deliverable: approved master and delivery package.
+Never overwrite an approved master or earlier review render. Every delivery
+revision receives a new version and remains traceable to its source state.
+
+Deliverable: approved master and versioned delivery package.
 
 ## 5. Prompt construction standard
 
@@ -384,6 +500,7 @@ video-project/
     PRODUCT_PROP_BOARD.md
     AUDIO_DIRECTION.md
     STORYBOARD_APPROVAL.md
+    TRANSITION_DESIGN.md
   brief/
   references/
     characters/
@@ -400,6 +517,9 @@ video-project/
     clips/
     rejected/
   post-production/
+    source-clips/
+    remotion/
+    renders/
   qc/
   delivery/
   manifests/
@@ -413,6 +533,8 @@ Use stable, sortable names:
 project_shot-01_review-board_v01.png
 project_shot-01_clean-plate_v02.png
 project_shot-01_seedance-v2_v03.mp4
+project_transition-map_v02.md
+project_edit-manifest_v04.yaml
 project_master_9x16_1080x1920_v05.mp4
 ```
 
@@ -441,6 +563,34 @@ actual_credits: 18
 output_file: path
 review_notes: ""
 ```
+
+### 6.4 Edit manifest
+
+For every deterministic edit version, record:
+
+```yaml
+edit_version: 04
+storyboard_version: path-or-version
+transition_design_version: path-or-version
+source_clips:
+  - shot: 01
+    file: immutable-source-path
+    trim_in_seconds: 0.0
+    trim_out_seconds: 4.0
+cuts:
+  - cut: 01-to-02
+    transition: approved-transition-name
+    duration_seconds: 0.35
+    direction: approved-direction
+    overlap: true
+calculated_total_duration_seconds: 28.65
+output_file: versioned-review-render-path
+review_notes: ""
+```
+
+Source paths must resolve to immutable clips. Recalculate total duration from
+the visible trimmed durations and approved overlaps rather than assuming that
+the sum of source durations equals the final running time.
 
 ## 7. Credit and external-service controls
 
@@ -509,7 +659,19 @@ inspect critical frames closely.
 - [ ] Resolution, frame rate, aspect ratio, and compression meet delivery specs.
 - [ ] No unintended black frames, freezes, or corrupted media occur.
 
-### 8.7 Audio
+### 8.7 Cut-point QA
+
+For every transition, inspect frames immediately before, during, and after the
+cut:
+
+- [ ] No black frame or blank frame appears.
+- [ ] No unintended double exposure appears.
+- [ ] No seam, white edge, or background gap appears.
+- [ ] The transition does not obscure a person, product, label, or key text.
+- [ ] Character scale and position do not jump unexpectedly.
+- [ ] Transition timing, direction, overlap, and style match the approved Map.
+
+### 8.8 Audio
 
 - [ ] VO is intelligible, correctly pronounced, and appropriately paced.
 - [ ] Music supports rather than competes with the VO.
@@ -517,13 +679,14 @@ inspect critical frames closely.
 - [ ] Loudness is consistent and there is no clipping, noise, or abrupt cutoff.
 - [ ] Required music, voice, and sound-effect rights are documented.
 
-### 8.8 Delivery
+### 8.9 Delivery
 
 - [ ] Master filename and version are correct.
 - [ ] Required platform variants are included.
 - [ ] Thumbnail, caption file, transcript, and disclaimer assets are included
       when required.
 - [ ] Approved source clips, project files, manifest, and QC record are archived.
+- [ ] The approved Transition Map and Remotion edit version are archived.
 - [ ] Final approver and approval date are recorded.
 
 ## 9. Review outcome categories
@@ -546,6 +709,21 @@ reliably in post-production.
 These are workflow lessons, not creative defaults. They must not carry a prior
 project's visual style, setting, cast, objects, or model choice into a new
 project.
+
+### 10.1 Watsons pilot — transition-design process learning
+
+The Watsons pilot's first assembly used generic crossfades and slides before
+footage-specific transition options were proposed. Later review established a
+project-specific hybrid live-action and hand-drawn sketch language. The final
+edit then used Watsons teal, irregular hand-drawn edges, and cut-specific zoom,
+sketch wipe, slide, direct cut, and crossfade treatments.
+
+Those visual choices belong only to that approved project; Watsons, teal,
+sketch, hybrid treatment, and its transition mix are not defaults for future
+work. The reusable process learning is that every future project must complete
+Transition Design Review before a style-approved first edit is rendered.
+
+### 10.2 General production learnings
 
 - generating a recurring character before receiving and approving the character
   package causes avoidable identity revisions;
@@ -576,6 +754,8 @@ At the end of each project, record:
 - what was approved and delivered;
 - total generation and post-production cost;
 - rejected and regenerated shots;
+- approved transition system, per-cut exceptions, and final edit version;
+- transition or cut-point failures and their fixes;
 - recurring failure modes;
 - changes required to this specification; and
 - the specification version used.
