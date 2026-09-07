@@ -16,6 +16,8 @@ Its goal is to produce consistent, believable and commercially effective creativ
 
 The system separates reasoning from execution.
 
+YCOS automatically selects and reassesses visual rendering capability based on task phase, Hero Constraints and production-fidelity requirements.
+
 ---
 
 ## Repository Structure
@@ -83,7 +85,7 @@ See the [Asset Blueprint module](asset-blueprint/README.md). The core documents 
 
 ### YCOS_ARCHITECTURE.md
 
-Defines the provider-neutral orchestration boundary around the stable Core: separate Project Sandboxes, versioned Creative Decisions, immutable Runs, explicit export packages, Provider Adapters and the human-approved Learning Gate. It does not replace or redefine Creative Workflow.
+Defines the provider-neutral orchestration boundary around the stable Core: separate Project Sandboxes, versioned Creative Decisions, immutable Runs, explicit export packages, capability-based renderer routing, Provider Adapters and the human-approved Learning Gate. It does not replace or redefine Creative Workflow.
 
 ---
 

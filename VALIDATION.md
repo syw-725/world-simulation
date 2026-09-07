@@ -128,6 +128,20 @@ When performing image retouching, verify that:
 
 ---
 
+## Rendering Capability and Transition Validation
+
+When visual rendering capability has been assessed or a renderer has changed, verify that:
+
+- Acceptance criteria are defined for the Hero Constraint at the required output size and viewing distance.
+- A prompt, reference, Decision, Generation Package or adapter problem has not been misclassified as a renderer limit.
+- Each diagnostic retry tested a documented correction hypothesis; no unbounded retries occurred after credible ceiling evidence or the approved diagnostic budget.
+- The selected renderer was sufficient for the production requirement.
+- A renderer transition retained the approved Decision version, Scene Locks and permitted variance.
+- Composition, camera, lighting direction, wardrobe, identity and other applicable locks were verified in the output, not merely passed in the prompt.
+- The Run records the provider-neutral target capability and the actual provider, model and settings used.
+
+---
+
 ## Final Decision
 
 Before completing the task, confirm:
@@ -145,5 +159,7 @@ Before completing the task, confirm:
 ✓ Commercial objective has been achieved.
 
 ✓ No significant AI artifacts remain.
+
+✓ Rendering capability and any renderer transition have been validated when applicable.
 
 Only after all validation stages have passed should the final result be delivered.

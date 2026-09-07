@@ -453,6 +453,21 @@ When one direction is clearly stronger, the workflow should recommend it directl
 
 ---
 
+## Rendering Capability Assessment
+
+Execution uses the lowest sufficient visual rendering capability for the approved Creative Decision. Renderer choice is an execution decision; it does not replace the existing reasoning for world, materials, lighting, camera, composition, Scene Locks or commercial purpose.
+
+Assess capability when the task first enters visual execution, after Decision Lock, when delivery fidelity requirements materially change, or when validation provides evidence that the current renderer cannot meet a Hero Constraint. Typical Hero Constraints include identity fidelity, photographic human realism, material microtexture, typography, product accuracy and complex spatial consistency.
+
+The assessment must define the acceptance criteria at the required output size and viewing distance, then choose one outcome: retain the current renderer, reconfigure its inputs or settings, switch to another available capability, or stop because no available capability is sufficient within the approved constraints. Do not switch merely because a task is near final; retain the renderer when it is sufficient.
+
+Before declaring a renderer insufficient, diagnose whether the failure arises from an unclear or contradictory Decision, insufficient references, an incomplete Generation Package, an adapter or parameter error, or a genuine capability limit. Each diagnostic retry must test a stated correction hypothesis. Stop repeated retries once the approved diagnostic budget is exhausted or credible evidence establishes a capability limit.
+
+For a renderer transition, the provider-neutral Generation Package must carry the approved Decision version, Scene Locks, allowed variance and explicit reference manifest. The next render must be validated for preservation of composition, camera, lighting direction, wardrobe, identity and every other applicable lock before its new detail is accepted.
+
+
+---
+
 ## Scene Locks
 
 Scene Locks define the persistent elements of the project world.

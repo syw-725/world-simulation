@@ -29,7 +29,8 @@ Use this canonical loading order:
 2. [BUILD_PROTOCOL.md](BUILD_PROTOCOL.md)
 3. [CREATIVE_WORKFLOW.md](CREATIVE_WORKFLOW.md)
 4. [VALIDATION.md](VALIDATION.md)
-5. Optional documents only when applicable:
+5. [YCOS Creative Pipeline Architecture](YCOS_ARCHITECTURE.md) when the task enters visual execution, requires provider selection or may use an external renderer
+6. Optional documents only when applicable:
    - [Visual Translation Protocol](visual-translation/VISUAL_TRANSLATION_PROTOCOL.md)
    - [Asset Blueprint overview](asset-blueprint/README.md)
    - the applicable [Asset Blueprint Protocol](asset-blueprint/ASSET_BLUEPRINT_PROTOCOL.md), [Execution](asset-blueprint/ASSET_EXECUTION.md), [Lifecycle](asset-blueprint/ASSET_LIFECYCLE.md) and [Validation](asset-blueprint/ASSET_VALIDATION.md) documents
@@ -60,8 +61,8 @@ Initialize the session by:
 4. Determining whether optional Visual Translation is applicable.
 5. Performing the Asset Consistency Decision at the position defined by the Creative Workflow.
 6. Applying the Creative Workflow's Execution Readiness decision before visual execution.
-7. Continuing through the existing Creative Workflow.
-8. Running mandatory Global Validation and any applicable Asset Validation.
+7. Applying Rendering Capability Assessment when the task enters visual execution, then continuing through the existing Creative Workflow.
+8. Running mandatory Global Validation, including renderer-transition validation when applicable, and any applicable Asset Validation.
 9. Reporting honestly if required documents or context were unavailable.
 
 This sequence initializes and routes the task. The linked authoritative documents define the actual reasoning, execution and validation rules.

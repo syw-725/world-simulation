@@ -42,9 +42,26 @@ A Run is exactly one execution attempt and references exactly one Decision versi
 
 ### Generation Package
 
-The Creative Compiler turns one Decision version into a provider-neutral Generation Package. This package describes objective, subject, environment, camera, composition, lighting, materials, physics, references, Scene Locks, Variable Assets, negative constraints, output requirements and media type.
+The Creative Compiler turns one Decision version into a provider-neutral Generation Package. This package describes objective, subject, environment, camera, composition, lighting, materials, physics, references, Scene Locks, Variable Assets, negative constraints, output requirements and media type. When rendering capability is assessed, the package also carries the provider-neutral target capability, approved lock references, permitted variance and any required transition references.
 
 Compiled prompts are disposable provider outputs. They are not canonical knowledge.
+
+### Visual Rendering Capability Routing
+
+Rendering capability is routed by the same lowest-sufficient-capability philosophy used elsewhere in YCOS. The routing decision considers task phase, approved Creative Decision, Hero Constraint, acceptance criteria, cost and time limits, and the capabilities currently available through Provider Adapters.
+
+A renderer is not treated as a permanent final renderer. Discovery and development use the lowest sufficient capability to test the relevant uncertainty. At Decision Lock, when fidelity requirements materially change, or after evidenced validation failure, YCOS performs a Rendering Capability Assessment. The outcome is one of:
+
+- **retain** — the current renderer is sufficient;
+- **reconfigure** — the renderer remains sufficient but its inputs or settings require correction;
+- **switch** — a different available capability is required;
+- **blocked** — no available capability can satisfy the defined acceptance criteria within approved constraints.
+
+Production does not automatically require a more capable renderer. A switch requires evidence that the requirement cannot be met by correcting the Decision, references, Generation Package, adapter configuration or the current renderer within the approved diagnostic budget. Repeated untested retries are prohibited.
+
+Capability requirements are stable, provider-neutral categories such as `specialist_human_photorealism`, `identity_preserving_editing` or `high_precision_typography`. A Run records the actual selected provider, model and settings at execution time. Model names do not become Core architecture.
+
+The assessment must reference the Decision version, define measurable acceptance criteria, record evidence for any insufficiency finding, record the routing outcome, and identify the approved Scene Locks and permitted variance. A renderer transition carries the approved Decision and explicit reference manifest into the Generation Package; post-render validation verifies that the locks were actually preserved.
 
 ### Provider Adapter and AI Generator
 
@@ -99,3 +116,5 @@ The pipeline surrounds the existing workflow with project, versioning, compilati
 8. Prompts are compiled outputs, never canonical knowledge.
 9. Creative Decisions are canonical.
 10. Project learning cannot enter Core automatically.
+11. Renderer selection is evidence-based and provider-neutral.
+12. A renderer transition cannot silently alter approved Scene Locks.
