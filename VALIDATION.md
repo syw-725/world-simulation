@@ -1,6 +1,6 @@
 # ==========================================================
 # VALIDATION
-# Version 1.0
+# Version 1.1
 # ==========================================================
 
 ## Purpose
@@ -128,9 +128,20 @@ When performing image retouching, verify that:
 
 ---
 
-## Rendering Capability and Transition Validation
+## Cost-Aware Routing and Transition Validation
 
-When visual rendering capability has been assessed or a renderer has changed, verify that:
+When reasoning capability, executor or visual renderer has been assessed or changed, verify that:
+
+- All five routing signals are recorded on one declared scale: `reasoning_complexity`, `error_cost`, `generation_volume`, `context_weight` and `execution_specialization`.
+- The selected capability is the lowest sufficient capability for the current phase and has a stated sufficiency rationale and reassessment trigger.
+- A Context Budget identifies required sources, authority priority, limit, usage and overflow action before heavy context loading.
+- Context overflow preserved authoritative constraints and invoked the declared retrieval, summarisation, batching, clarification or blocked action without silent truncation.
+- Reasoning and execution remain separate, and a suitable specialist executor was preferred before stronger general reasoning capability. Any override has evidence.
+- Frontier-class or Astra escalation includes a complete Frontier Justification with task-specific evidence, alternatives considered, expected benefit, bounded scope and an exit or downgrade condition.
+- Production Lock is recorded before bounded production, and post-lock routing defaults to retain or downgrade unless new evidence supports escalation or reopening.
+- Every post-lock revision is delta-only: the failed criterion or requested change, affected fields, dependencies, preserved locks and revalidation scope are explicit.
+- Routing was reassessed across applicable brainstorm, decision, production, QA and escalation or downgrade transitions.
+- Legacy manifests without a `routing` object remain valid; when the v2 policy is declared, its required fields validate and unknown existing fields are preserved.
 
 - Acceptance criteria are defined for the Hero Constraint at the required output size and viewing distance.
 - A prompt, reference, Decision, Generation Package or adapter problem has not been misclassified as a renderer limit.
@@ -161,5 +172,7 @@ Before completing the task, confirm:
 ✓ No significant AI artifacts remain.
 
 ✓ Rendering capability and any renderer transition have been validated when applicable.
+
+✓ Cost-aware routing, Context Budget, Astra Gate, Production Lock and delta revision have been validated when applicable.
 
 Only after all validation stages have passed should the final result be delivered.

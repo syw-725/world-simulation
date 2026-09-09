@@ -1,6 +1,6 @@
 # ==========================================================
 # CREATIVE WORKFLOW
-# Version 1.2
+# Version 1.3
 # ==========================================================
 
 ## Philosophy
@@ -449,13 +449,33 @@ Alternative directions should remain only when they provide meaningful value or 
 
 When one direction is clearly stronger, the workflow should recommend it directly rather than presenting multiple equal options without a decision.
 
+Approval of a sufficiently complete execution strategy establishes **Production Lock**. Production Lock freezes the approved objective, direction, Scene Locks, Asset Blueprint constraints, acceptance criteria and execution boundaries for production. It does not make the Decision immutable: a necessary revision creates a new Decision version, but only the affected delta is reopened unless evidence shows a wider dependency.
+
+
+
+---
+
+## Cost-Aware Routing and Phase Reassessment
+
+Cost-Aware Adaptive Capability Routing v2 operates inside this workflow. It does not create another creative process and does not replace Project Understanding, Creative Intent, Decision, Execution or Validation.
+
+At task entry and whenever the task moves between brainstorm, decision, production, QA or escalation, assess `reasoning_complexity`, `error_cost`, `generation_volume`, `context_weight` and `execution_specialization`. Select the lowest sufficient capability for the current phase, not the highest capability available. Record why the selection is sufficient and the event that will cause reassessment.
+
+Before loading large histories, documents or assets, define a Context Budget: the sources required for the current decision, their priority, the allowed context or summarisation limit and the overflow action. When the budget would be exceeded, preserve authoritative constraints and current Decision state, then retrieve, summarise or process the remainder in bounded batches. Do not silently discard locked requirements or escalate model capability merely to absorb unbounded context.
+
+Separate reasoning from execution. General reasoning establishes intent, constraints, decisions and acceptance criteria. When `execution_specialization` identifies a suitable image, design, code, document, research or other specialist executor, route the approved package to that executor before considering a stronger general reasoning model. The executor receives only the information and assets required by its explicit contract.
+
+Frontier-class capability is an exception controlled by the Astra Gate. Escalation requires a Frontier Justification that names the unmet requirement, cites task-specific evidence from a lower-capability attempt or a defensible pre-execution risk, explains why clarification, decomposition, retrieval, a specialist executor or reconfiguration is insufficient, and defines the exit or downgrade condition. The policy name remains Astra Gate for operational continuity, but routing requirements remain provider-neutral and actual model/provider selection belongs to the Run.
+
+After Production Lock, default to a lower sufficient capability for bounded production, formatting, variants and QA. Revision is delta-only: state the failed criterion or requested change, identify affected fields and dependencies, preserve all unrelated locks, and revalidate the changed delta plus its declared dependencies. Reopen full creative reasoning only when evidence shows that the approved foundation is invalid.
+
 
 
 ---
 
 ## Rendering Capability Assessment
 
-Execution uses the lowest sufficient visual rendering capability for the approved Creative Decision. Renderer choice is an execution decision; it does not replace the existing reasoning for world, materials, lighting, camera, composition, Scene Locks or commercial purpose.
+Visual rendering is a specialised executor route under Cost-Aware Adaptive Capability Routing v2. Execution uses the lowest sufficient visual rendering capability for the approved Creative Decision. Renderer choice is an execution decision; it does not replace the existing reasoning for world, materials, lighting, camera, composition, Scene Locks or commercial purpose.
 
 Assess capability when the task first enters visual execution, after Decision Lock, when delivery fidelity requirements materially change, or when validation provides evidence that the current renderer cannot meet a Hero Constraint. Typical Hero Constraints include identity fidelity, photographic human realism, material microtexture, typography, product accuracy and complex spatial consistency.
 

@@ -16,7 +16,7 @@ Its goal is to produce consistent, believable and commercially effective creativ
 
 The system separates reasoning from execution.
 
-YCOS automatically selects and reassesses visual rendering capability based on task phase, Hero Constraints and production-fidelity requirements.
+YCOS uses **Cost-Aware Adaptive Capability Routing v2** to select and reassess the lowest sufficient reasoning capability and execution path at each task phase. Frontier capability is an evidenced exception, not a default. Visual rendering remains one specialised execution route inside the existing Creative Workflow.
 
 ---
 
@@ -85,7 +85,7 @@ See the [Asset Blueprint module](asset-blueprint/README.md). The core documents 
 
 ### YCOS_ARCHITECTURE.md
 
-Defines the provider-neutral orchestration boundary around the stable Core: separate Project Sandboxes, versioned Creative Decisions, immutable Runs, explicit export packages, capability-based renderer routing, Provider Adapters and the human-approved Learning Gate. It does not replace or redefine Creative Workflow.
+Defines the provider-neutral orchestration boundary around the stable Core: separate Project Sandboxes, versioned Creative Decisions, immutable Runs, explicit export packages, Cost-Aware Adaptive Capability Routing v2, capability-based renderer routing, Provider Adapters and the human-approved Learning Gate. It also defines the additive, backward-compatible routing manifest contract, Astra Gate, context budgets, delta revisions and acceptance trace. It does not replace or redefine Creative Workflow.
 
 ---
 
@@ -106,6 +106,10 @@ BUILD_PROTOCOL.md
 ↓
 
 CREATIVE_WORKFLOW.md
+
+↓
+
+Cost-Aware routing assessment and phase reassessment
 
 ↓
 
@@ -139,6 +143,8 @@ YCOS follows four fundamental principles:
 
 4. Produce commercially useful creative outputs instead of visually impressive but inconsistent images.
 
+Across those principles, use the lowest sufficient capability, keep reasoning separate from specialised execution, reassess at phase boundaries, and revise only the affected delta after Production Lock. Provider and model names remain execution records rather than Core dependencies.
+
 When the optional Asset Blueprint module is active, it preserves reusable asset identity without replacing global world simulation, physics, materials, lighting, camera, composition, commercial judgement, scene logic or validation.
 
 ---
@@ -148,3 +154,5 @@ When the optional Asset Blueprint module is active, it preserves reusable asset 
 Current Version
 
 YCOS v1.0
+
+Routing Policy: YCOS Cost-Aware Adaptive Capability Routing v2

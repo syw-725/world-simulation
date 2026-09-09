@@ -1,6 +1,6 @@
 ==========================================================
 YCOS (Yan Creative Operating System)
-Version 1.0
+Version 1.1
 ==========================================================
 
 MISSION
@@ -97,6 +97,30 @@ The optional Asset Consistency Decision identifies persistent visual assets when
 This happens once only.
 
 The workflow remains active until the task finishes.
+
+==========================================================
+COST-AWARE ADAPTIVE CAPABILITY ROUTING V2
+==========================================================
+
+Bootstrap activates one Creative Workflow. Cost-Aware Routing is a decision layer inside that workflow, not a separate mode or parallel workflow.
+
+Before selecting reasoning capability or an executor, assess:
+
+• reasoning_complexity
+
+• error_cost
+
+• generation_volume
+
+• context_weight
+
+• execution_specialization
+
+Use the lowest sufficient capability and reassess when the task moves between brainstorm, decision, production, QA or escalation. Prefer a specialised executor when execution_specialization shows that it can perform the approved Decision more directly than a general reasoning model.
+
+Frontier-class capability is gated. An Astra escalation requires a Frontier Justification with task-specific evidence that lower capability is insufficient or that the expected cost of error outweighs the additional capability cost. Model and provider names are recorded only in the Run; the Core routing rule remains provider-neutral.
+
+After Production Lock, default to a lower sufficient capability for bounded execution and delta revision. Reopen or escalate only the affected decision surface and preserve every unrelated lock.
 
 ==========================================================
 BUILD WORKFLOW

@@ -1,6 +1,6 @@
 # AI-Assisted Video Production Specification
 
-Version: 1.2
+Version: 1.3
 
 Status: Project standard
 
@@ -76,6 +76,11 @@ and archived.
 12. **Preserve deterministic edit history.** Keep source clips immutable, keep
     every shot independently editable, and create a new version for every edit
     revision.
+13. **Route capability by phase.** Apply [YCOS Cost-Aware Adaptive Capability
+    Routing v2](YCOS_ARCHITECTURE.md#cost-aware-adaptive-capability-routing-v2)
+    across planning, decision, production and QA. Use the lowest sufficient
+    capability, prefer the appropriate specialist executor, and default to
+    downgrade and delta-only revision after Production Lock.
 
 ## 3. Required inputs
 
@@ -313,6 +318,13 @@ character, environment, object, style, claim, or shot. Material changes return
 the project to Gate 5 for a new user storyboard approval.
 
 ### Gate 7 — Model and cost preflight
+
+Complete or update the Cost-Aware Routing v2 assessment before comparing
+candidate models. Record all five routing signals, the Context Budget, selected
+provider-neutral capability and executor classes, sufficiency rationale and
+reassessment trigger. A frontier-class candidate must pass the Astra Gate with
+a complete Frontier Justification; context volume or final-delivery status alone
+is not sufficient evidence.
 
 For each candidate model, record:
 
@@ -562,7 +574,13 @@ estimated_credits: 18
 actual_credits: 18
 output_file: path
 review_notes: ""
+routing: null # optional additive YCOS Cost-Aware Routing v2 object
 ```
+
+Legacy generation manifests without `routing` remain valid. When `routing`
+declares `policy: ycos-cost-aware-routing-v2`, it must follow the additive
+manifest contract and conditional validation rules in
+[YCOS_ARCHITECTURE.md](YCOS_ARCHITECTURE.md#backward-compatible-routing-manifest).
 
 ### 6.4 Edit manifest
 
@@ -596,6 +614,8 @@ the sum of source durations equals the final running time.
 
 Before an external upload or generation:
 
+- confirm that the current routing assessment passed, including the Astra Gate
+  when frontier capability is selected;
 - identify the exact files being transmitted and the destination service;
 - confirm that the user authorised that upload and has rights to the assets;
 - estimate the cost before submitting paid jobs;

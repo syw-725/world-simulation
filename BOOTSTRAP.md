@@ -29,7 +29,7 @@ Use this canonical loading order:
 2. [BUILD_PROTOCOL.md](BUILD_PROTOCOL.md)
 3. [CREATIVE_WORKFLOW.md](CREATIVE_WORKFLOW.md)
 4. [VALIDATION.md](VALIDATION.md)
-5. [YCOS Creative Pipeline Architecture](YCOS_ARCHITECTURE.md) when the task enters visual execution, requires provider selection or may use an external renderer
+5. [YCOS Creative Pipeline Architecture](YCOS_ARCHITECTURE.md) when the task requires capability routing, enters visual execution, requires provider selection or may use an external renderer
 6. Optional documents only when applicable:
    - [Visual Translation Protocol](visual-translation/VISUAL_TRANSLATION_PROTOCOL.md)
    - [Asset Blueprint overview](asset-blueprint/README.md)
@@ -62,8 +62,9 @@ Initialize the session by:
 5. Performing the Asset Consistency Decision at the position defined by the Creative Workflow.
 6. Applying the Creative Workflow's Execution Readiness decision before visual execution.
 7. Applying Rendering Capability Assessment when the task enters visual execution, then continuing through the existing Creative Workflow.
-8. Running mandatory Global Validation, including renderer-transition validation when applicable, and any applicable Asset Validation.
-9. Reporting honestly if required documents or context were unavailable.
+8. Applying Cost-Aware Adaptive Capability Routing v2 at the initial phase and every material phase transition, including context budgeting, executor separation and the Astra Gate when frontier capability is proposed.
+9. Running mandatory Global Validation, including routing-record and renderer-transition validation when applicable, and any applicable Asset Validation.
+10. Reporting honestly if required documents or context were unavailable.
 
 This sequence initializes and routes the task. The linked authoritative documents define the actual reasoning, execution and validation rules.
 
@@ -110,5 +111,6 @@ Before claiming initialization is complete, confirm:
 - the repository is available;
 - required core files were found and read;
 - optional modules were identified only where applicable;
+- a routing assessment will be created before capability or executor selection when routing is required;
 - no document authority was replaced;
 - the task can now enter the existing Build and Creative Workflow.

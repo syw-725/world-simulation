@@ -46,9 +46,123 @@ The Creative Compiler turns one Decision version into a provider-neutral Generat
 
 Compiled prompts are disposable provider outputs. They are not canonical knowledge.
 
+### Cost-Aware Adaptive Capability Routing v2
+
+Cost-Aware Adaptive Capability Routing v2 extends the existing routing boundary; it does not create a second workflow. Creative Workflow remains the source of creative decisions. Routing selects the lowest sufficient reasoning capability and execution path for the current phase, then reassesses rather than binding the whole task to one model or executor.
+
+Every routing assessment records these provider-neutral signals:
+
+- `reasoning_complexity` — depth, ambiguity, dependency count and synthesis required;
+- `error_cost` — consequence and reversibility of a wrong decision or execution;
+- `generation_volume` — expected number and size of variants, assets or repeated operations;
+- `context_weight` — amount, diversity and authority structure of required context;
+- `execution_specialization` — whether a specialist executor can perform the approved operation more directly and reliably.
+
+Signals may use project-defined scales, but a manifest must use one consistent scale and declare it. A routing outcome records the task phase, selected provider-neutral capability class, selected executor class, sufficiency rationale, cost constraint and reassessment trigger.
+
+#### Frontier Justification and Astra Gate
+
+Frontier-class reasoning is never selected solely because it is available, new or near final delivery. The operational **Astra Gate** applies to any frontier-class model and therefore does not make the Core dependent on an OpenAI model name.
+
+The Gate passes only when a Frontier Justification records:
+
+1. the specific unmet requirement or high-cost risk;
+2. task-specific evidence from a lower-capability attempt, validation result or defensible pre-execution risk assessment;
+3. why clarification, decomposition, retrieval, reconfiguration or a specialist executor is insufficient;
+4. the expected benefit relative to added cost;
+5. a bounded scope and explicit exit or downgrade condition.
+
+Without this evidence, validation rejects frontier escalation. The Run records the actual provider and model only after the provider-neutral Gate decision.
+
+#### Context Budget
+
+A Context Budget is established before heavy context loading. It lists required sources, authority priority, allowed context or summarisation limit, current usage and overflow action. If the budget would be exceeded, the router preserves locked requirements and the current Decision, then uses targeted retrieval, summaries or bounded batches. It may request clarification or report blocked when authoritative conflicts cannot fit or be safely resolved. Context overflow alone is not evidence for Astra escalation.
+
+#### Delta Revision and Production Lock
+
+Production Lock begins when the execution strategy and its acceptance criteria are approved. After Production Lock, the default routing action is downgrade to the lowest sufficient production or QA capability. A revision identifies the failed criterion or requested change, affected fields and declared dependencies; it preserves all other Decision fields, Scene Locks and asset constraints. Full re-exploration requires evidence that the approved foundation is invalid.
+
+#### Executor Separation
+
+Reasoning produces a provider-neutral Decision and acceptance criteria. Execution occurs through the most suitable specialised executor or Provider Adapter. When `execution_specialization` indicates an adequate specialist, the router must prefer it before escalating general reasoning capability. Executors receive a bounded package and may not silently redefine the Decision.
+
+### Backward-Compatible Routing Manifest
+
+Routing v2 is an additive contract. Existing Project manifests, Decisions, Generation Packages and Runs without a `routing` object remain valid and use legacy routing behaviour. Writers may add the following object without renaming or changing existing fields:
+
+```yaml
+routing:
+  policy: ycos-cost-aware-routing-v2
+  signal_scale: low-medium-high
+  phase: brainstorm
+  signals:
+    reasoning_complexity: medium
+    error_cost: low
+    generation_volume: high
+    context_weight: low
+    execution_specialization: medium
+  context_budget:
+    required_sources: []
+    authority_priority: []
+    limit: project-defined
+    used: project-defined
+    overflow_action: targeted-retrieval
+  selected_capability: standard-reasoning
+  selected_executor: general-reasoning
+  sufficiency_rationale: "Sufficient for divergent concept exploration."
+  cost_constraint: project-defined
+  reassess_on: decision-selection
+  production_lock: false
+  delta_revision: null
+  frontier_justification: null
+  history: []
+```
+
+When active, the conditional records use these additive shapes:
+
+```yaml
+frontier_justification:
+  unmet_requirement: "Cross-document conflict with irreversible production impact."
+  evidence: []
+  insufficient_alternatives: []
+  expected_benefit_vs_cost: "project-defined"
+  bounded_scope: "Resolve the named conflict only."
+  exit_condition: "Return to standard reasoning after the Decision is locked."
+
+delta_revision:
+  trigger: "failed criterion or requested change"
+  affected_fields: []
+  dependencies: []
+  preserved_locks: []
+  revalidation_scope: []
+```
+
+Fields under `routing` are optional for legacy readers. V2-aware writers preserve unknown existing fields, and v2-aware validators distinguish a missing routing object (legacy-compatible) from a present but invalid v2 object. When `policy: ycos-cost-aware-routing-v2` is present, all five signals, phase, capability, executor, sufficiency rationale, cost constraint and reassessment trigger are required. `frontier_justification` becomes required only for a frontier-class selection; `delta_revision` becomes required only for a post-lock revision. `history` accumulates phase reassessments without rewriting completed Run records and becomes required once more than one routed phase has occurred.
+
+### Routing Validation Rules
+
+1. Frontier/Astra escalation fails unless the Frontier Justification contains task-specific evidence and all five Gate elements.
+2. After Production Lock, retain or downgrade is the default; escalation or reopened exploration requires new evidence tied to an unmet acceptance criterion.
+3. A post-lock revision fails if it does not identify the delta and preserve unrelated locks.
+4. A suitable specialised executor is preferred before a stronger general reasoning model; an override requires evidence.
+5. Context Budget overflow invokes its declared overflow action and preserves authoritative constraints; it cannot silently truncate context or justify frontier escalation by itself.
+6. Phase transitions trigger reassessment, and each reassessment records its cause and next trigger.
+7. Capability and executor requirements remain provider-neutral; provider/model names appear only in Run execution records.
+
+### Acceptance Trace
+
+| Phase | Expected routing behaviour | Required evidence or record |
+|---|---|---|
+| Brainstorm | Use a low-cost capability suitable for divergent volume; bound context and variants. | Five signals, Context Budget, sufficiency rationale, `reassess_on: decision-selection`. |
+| Decision | Reassess for synthesis and error cost; increase capability only if the decision requires it. | Phase-change record, selected direction, acceptance criteria and next trigger. |
+| Production | Establish Production Lock; prefer the specialist executor and default downgrade for bounded execution. | Locked Decision, executor contract, preserved locks and production capability record. |
+| QA | Validate output with the lowest sufficient review capability; create a delta-only revision on failure. | Failed criterion, affected fields, dependencies, preserved locks and revalidation scope. |
+| Escalation | Pass Astra Gate only with a complete Frontier Justification. | Lower-capability evidence or defensible risk, alternatives ruled out, bounded frontier scope and exit condition. |
+| Downgrade | Return to the lowest sufficient capability when the frontier condition clears or production becomes bounded. | Gate exit condition, new sufficiency rationale and next reassessment trigger. |
+
 ### Visual Rendering Capability Routing
 
-Rendering capability is routed by the same lowest-sufficient-capability philosophy used elsewhere in YCOS. The routing decision considers task phase, approved Creative Decision, Hero Constraint, acceptance criteria, cost and time limits, and the capabilities currently available through Provider Adapters.
+Rendering capability is a specialised executor route governed by the same cost-aware, lowest-sufficient-capability policy. The routing decision considers task phase, approved Creative Decision, Hero Constraint, acceptance criteria, cost and time limits, and the capabilities currently available through Provider Adapters.
 
 A renderer is not treated as a permanent final renderer. Discovery and development use the lowest sufficient capability to test the relevant uncertainty. At Decision Lock, when fidelity requirements materially change, or after evidenced validation failure, YCOS performs a Rendering Capability Assessment. The outcome is one of:
 
@@ -118,3 +232,7 @@ The pipeline surrounds the existing workflow with project, versioning, compilati
 10. Project learning cannot enter Core automatically.
 11. Renderer selection is evidence-based and provider-neutral.
 12. A renderer transition cannot silently alter approved Scene Locks.
+13. Frontier capability requires an evidenced Frontier Justification and a bounded exit condition.
+14. Production Lock defaults to downgrade and delta-only revision.
+15. Specialist execution is preferred before escalating general reasoning capability.
+16. Context Budget overflow preserves authoritative constraints and follows an explicit overflow action.
