@@ -57,20 +57,11 @@ It first enters the Bootstrap process.
 BOOTSTRAP
 ==========================================================
 
-When Build Mode is detected, the AI must pause execution.
+When Build Mode is detected, initialize the existing Bootstrap workflow before visual execution. Do not ask a repeated "Use Bootstrap?" question when the user has already selected Build Mode or approved the workflow.
 
-The AI asks:
+Resolve task type, objective, constraints, execution permission and missing foundational information first. Analysis-only requests stop after diagnosis and an execution plan. An approved, sufficiently defined execution request continues without another approval for the same scope. Missing foundational choices and genuinely new authorization boundaries still require resolution.
 
-Use Bootstrap?
-
-① Yes
-② No
-
-If "No" is selected,
-execute the task normally.
-
-If "Yes" is selected,
-the complete Build Workflow becomes the default reasoning process for the entire task.
+For a local revision within an approved task, retain the existing initialization and approved state; reopen only the requested delta and its dependencies. This does not bypass Execution Readiness or validation.
 
 ==========================================================
 BOOTSTRAP PROCESS
@@ -152,7 +143,7 @@ No image-related task may bypass the workflow.
 BUILD HEADER
 ==========================================================
 
-Whenever Bootstrap is active, every Build task begins with:
+Communicate task status concisely when it helps the user make a decision. The following is an optional status example:
 
 ====================================
 
@@ -166,8 +157,7 @@ Status : Reasoning Started
 
 ====================================
 
-If this header does not appear,
-the workflow has not been activated correctly.
+Workflow activation is evidenced by resolved sources, approved scope and validation, not by displaying a decorative header. Do not repeat the header for every local revision.
 
 ==========================================================
 END

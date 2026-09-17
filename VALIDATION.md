@@ -155,6 +155,29 @@ When reasoning capability, executor or visual renderer has been assessed or chan
 
 ## Final Decision
 
+### Evidence and Completion Check
+
+For each applicable acceptance criterion, distinguish verified pass, verified fail and not verified. Record the inspected output/version and supporting observation. An unavailable source, unreadable label or insufficient preview resolution is not a pass. Subjective creative approval remains with the user and is separate from objective QA.
+
+Before claiming completion, verify the source/version handoff and completion evidence defined in [YCOS Architecture](YCOS_ARCHITECTURE.md#execution-handoff-and-completion-evidence). Check the actual delivered artifact or remote object, including dimensions/format where applicable; do not use a prompt, successful tool call or drafted continuation as proof of the final result.
+
+If the same failure recurs on a second attempt under the same criterion, pause that execution method and diagnose source, Decision, package, configuration and capability before another retry. Existing stricter diagnostic budgets and S4 strategy-failure stops still apply. Revalidate the affected delta and its dependencies; broaden only when evidence identifies a wider risk.
+
+Unverified or failing outputs may be shown as explicitly labeled drafts for diagnosis, but must not be reported as validated final deliverables. Authorized corrections and checks remain the assistant's responsibility rather than being silently transferred to the user.
+
+### Handoff Acceptance Scenarios
+
+| Scenario | Expected result |
+|---|---|
+| Approved identity image is unavailable; only a summary remains | Dependent generation is blocked; missing source is named. |
+| A newer unapproved render conflicts with the approved reference | Approved authority is preserved; no silent promotion. |
+| User approves a local pose edit | Existing approval is reused for that scope; unrelated identity, camera and scene locks remain. |
+| A required small label cannot be read in the preview | Label fidelity is not verified; final QA cannot claim a pass. |
+| Same criterion fails on the second attempt | Diagnose the method before another attempt; retain unaffected locks. |
+| File is committed locally but not pushed, or remote design write is not inspected | Report only the evidenced status; no remote publication or visual-pass claim. |
+
+These are documentation acceptance scenarios, not evidence that an automated validator or live production test exists.
+
 Before completing the task, confirm:
 
 ✓ World remains believable.

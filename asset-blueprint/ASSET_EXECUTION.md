@@ -22,6 +22,10 @@ Do not paste the complete Blueprint into every prompt. Translate only the requir
 
 ## Task-Specific Execution Package
 
+This is the asset execution view of the [Generation Package](../YCOS_ARCHITECTURE.md), not a separately maintained source of truth. Derive the following sections from the approved Decision and asset sources; rebuild the view when those sources change. Existing package names remain compatible.
+
+Before translating identity, resolve the approved version and verify that the executing capability can read the required source image. Record reference role, approved scope and read status in the existing handoff. A remembered character description, unavailable link or newer unapproved render cannot replace an approved identity source. Missing required references block dependent execution, not unrelated authorized work.
+
 ### Task Context
 
 - Objective
