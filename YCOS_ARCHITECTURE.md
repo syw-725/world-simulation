@@ -46,6 +46,36 @@ The Creative Compiler turns one Decision version into a provider-neutral Generat
 
 Compiled prompts are disposable provider outputs. They are not canonical knowledge.
 
+The Task-specific Execution Package described by Asset Execution is the asset execution view within this Generation Package, not a second canonical document. It is derived, disposable and recompilable from the referenced approved Decision and asset sources. Legacy names and file layouts remain valid; this clarification requires no schema migration.
+
+### Execution Handoff and Completion Evidence
+
+Use existing Decision, Project and Run records to maintain the current approved state. Do not introduce a parallel state store or infer approval from a filename, a recent output or a remembered description.
+
+Before execution or an executor handoff, resolve a minimum view containing:
+
+- the deliverable and acceptance criteria;
+- the baseline output or Decision version and approval scope;
+- each required asset/reference identifier, version or immutable locator, role and actual read status;
+- preserved Scene Locks and asset constraints, the requested delta and affected dependencies;
+- the responsible executor, next action and current work status.
+
+Classify supplied images as Edit Target, Reference Image, Asset Identity Source or Diagnostic Image, with finer reference roles where useful. Diagnostic failures are never positive identity authority. Within the same authorized scope, the latest explicitly approved revision supersedes earlier revisions; the latest generated image does not. A partial approval applies only to the approved fields. Explicit requests to use an earlier baseline remain valid.
+
+Required sources must actually be readable by the executing capability. A memory summary or a source link alone is not evidence of visual access. If a required identity source is unavailable, block the dependent execution and report the specific missing source while continuing independent authorized work. Preserve the existing upload allowlist and private-data boundaries during handoff.
+
+Responsibility remains explicit:
+
+| Responsibility | Owner |
+|---|---|
+| Business priorities, hero message, taste, material tradeoffs and final creative approval | User; the assistant structures choices and identifies conflicts. |
+| Intake, source/version resolution, execution routing, handoff, objective QA and authorized delivery/archiving | Assistant; the user need not restate known constraints or manage routine transfers. |
+| Bounded production and technical checks | Selected executor, under the approved package; it cannot redefine the Decision. |
+
+Chat, Work, Codex and specialist applications are possible execution environments, not additional sequential gates. Select the lowest sufficient available environment and transfer only when the task needs it. Never claim a transfer occurred merely because a continuation instruction was drafted. Source retrieval alone does not require a full repository audit or stronger model.
+
+A completion report identifies the exact artifact/version or remote object, what changed, the checks actually performed, their results and any unresolved limitation. Distinguish draft, executed, checked, awaiting approval and approved; for repository work separately report local edit, commit, remote branch, merge and deployment when applicable. A local commit does not prove remote publication, and a successful write does not prove visual acceptance. Keep these as evidence in existing records, not a required new schema for legacy readers.
+
 ### Cost-Aware Adaptive Capability Routing v2
 
 Cost-Aware Adaptive Capability Routing v2 extends the existing routing boundary; it does not create a second workflow. Creative Workflow remains the source of creative decisions. Routing selects the lowest sufficient reasoning capability and execution path for the current phase, then reassesses rather than binding the whole task to one model or executor.
