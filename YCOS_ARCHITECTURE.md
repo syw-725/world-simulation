@@ -40,6 +40,16 @@ A revision creates a new version. Reviews create observations; observations beco
 
 A Run is exactly one execution attempt and references exactly one Decision version. A completed Run is immutable. Any changed generation request creates a new Run. Runs may compile decisions and record provider results but may never modify Decisions.
 
+### Working State v0.1
+
+A Working State is an optional, Project-local operational checkpoint linked to one versioned Creative Decision and, when an attempt exists, its Run. Its schema and tooling belong in `syw-725/ycos-projects`. It is stored under `internal/working-state/<task-id>/` and is not a provider input or a learning signal.
+
+Goal, approved Decision identity, locks and permitted variables are resolved from the referenced Decision rather than stored as competing creative specifications. The checkpoint records the current problem, last attempt and criterion-level result (`PASS`, `PARTIAL`, `FAIL` or `BLOCKED`), minimum next action, affected elements, dependencies and revalidation criteria. If a new Decision changes a field that was locked in the preceding checkpoint, a linked explicit override record must name the prior Decision, every changed locked field, the user instruction and approval evidence; the new approved Decision remains authoritative. Revision checkpoints append to the same task; changed creative specifications still require a new Decision version and changed execution requests still require a new Run.
+
+`OPEN`, `DIRECTION APPROVED`, `PRODUCTION LOCK`, `REVISION`, `VALIDATION` and `COMPLETE` are resume labels within the existing workflow, not a second state machine or approval mechanism. Resume must verify the referenced records before acting. Recording `COMPLETE` requires a completed Run on the current Decision and passing evidence for every declared criterion; this records a review and does not replace mandatory Global Validation or applicable Asset Validation.
+
+The existing delta-revision, Production Lock, routing, Astra Gate, external-execution approval and learning gates retain authority. A checkpoint cannot unlock a Decision, select or escalate an executor, authorize generation, modify a completed Run or promote observations. Legacy Projects and Runs without Working State remain valid. V0.1 provides explicit save/show operations; it does not automatically execute the recorded next action or export customer content to StackPilot.
+
 ### Generation Package
 
 The Creative Compiler turns one Decision version into a provider-neutral Generation Package. This package describes objective, subject, environment, camera, composition, lighting, materials, physics, references, Scene Locks, Variable Assets, negative constraints, output requirements and media type. When rendering capability is assessed, the package also carries the provider-neutral target capability, approved lock references, permitted variance and any required transition references.
