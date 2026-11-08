@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#101d24">
-<title>TITAN ARCADE — Movement Lab v0.2</title>
+<title>TITAN ARCADE — Movement Lab v0.3</title>
 <style>
 :root{color-scheme:dark;--ink:#ecf1ea;--sub:#b0c9cb;--gold:#f1ca83;--bg:#101d24}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0d171e;color:var(--ink);font-family:system-ui,-apple-system,'PingFang TC','Noto Sans TC',sans-serif;overscroll-behavior:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -54,13 +54,13 @@ body{display:flex;align-items:center;justify-content:center}button{font:inherit;
 <div id="shell">
 <canvas id="game" width="400" height="225" aria-label="橫向動作遊戲測試地圖"></canvas>
 <div id="hud">
- <div id="topline"><h1>TITAN ARCADE <span>· MOVEMENT LAB 0.2</span></h1><nav id="labs" aria-label="訓練區"><button class="labtab active" data-lab="0">01 跑跳</button><button class="labtab" data-lab="1">02 鋼索</button><button class="labtab" data-lab="2">03 巨人</button></nav><div id="smallbuttons"><button id="help" aria-label="玩法說明">?</button><button id="reset" aria-label="重新開始關卡">↻</button></div></div>
+ <div id="topline"><h1>TITAN ARCADE <span>· MOVEMENT LAB 0.3</span></h1><nav id="labs" aria-label="訓練區"><button class="labtab active" data-lab="0">01 跑跳</button><button class="labtab" data-lab="1">02 鋼索</button><button class="labtab" data-lab="2">03 巨人</button></nav><div id="smallbuttons"><button id="help" aria-label="玩法說明">?</button><button id="reset" aria-label="重新開始關卡">↻</button></div></div>
  <div id="tip" role="status">在畫面左半按住向右滑，越過障礙並抵達旗幟。</div>
  <div id="stats">HP <em id="hp">♥ ♥ ♥</em><br>GAS <em id="gas">█████</em><br><span id="progress">01 / 03</span></div>
 </div>
-<div id="controls"><div id="stickarea" role="group" aria-label="左半畫面隱形浮動方向搖桿操作區"></div><div id="actionbuttons"><button id="jump" class="action">跳躍</button><button id="dodge" class="action">閃避</button><button id="grapple" class="action">鋼索</button><button id="attack" class="action">攻擊</button></div></div>
+<div id="controls"><div id="stickarea" role="group" aria-label="左半畫面隱形浮動方向搖桿操作區"></div><div id="actionbuttons"><button id="jump" class="action">跳躍</button><button id="dodge" class="action">閃避</button><button id="grapple" class="action" aria-label="長按鋼索，放手釋放">鋼索</button><button id="attack" class="action">攻擊</button></div></div>
 <div id="below">90s ARCADE SPRITE FRAMES · 60 FPS PHYSICS</div>
-<div id="panel" class="show" role="dialog" aria-modal="true" aria-label="教學說明"><div id="panelinner"><h2 id="panel-title">移動訓練開始</h2><p id="panel-desc">目標係測試 90 年代街機嘅跳格動畫，以及鋼索移動同後頸斬擊嘅操作。</p><ul id="panel-list"><li>01 跑跳：左半畫面任意位置按住向右滑動，右手按「跳躍」避開障礙。</li><li>02 鋼索：按「鋼索」勾住屋頂，再按一次釋放。</li><li>03 巨人：用鋼索到巨人後方，靠近金色弱點後按「攻擊」。</li></ul><button id="panel-btn">開始 01 跑跳訓練</button></div></div>
+<div id="panel" class="show" role="dialog" aria-modal="true" aria-label="教學說明"><div id="panelinner"><h2 id="panel-title">移動訓練開始</h2><p id="panel-desc">目標係測試 90 年代街機嘅跳格動畫，以及鋼索移動同後頸斬擊嘅操作。</p><ul id="panel-list"><li>01 跑跳：左半畫面任意位置按住向右滑動，右手按「跳躍」避開障礙。</li><li>02 鋼索：按住「鋼索」勾住屋頂，左手操控飛行；鬆開按鈕即釋放鋼索。</li><li>03 巨人：長按鋼索繞到巨人後方，鬆開後按「攻擊」斬後頸。</li></ul><button id="panel-btn">開始 01 跑跳訓練</button></div></div>
 </div>
 <script>
 (() => {'use strict';
@@ -74,22 +74,23 @@ const stageData=[
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const approach=(v,t,change)=>v<t?Math.min(t,v+change):Math.max(t,v-change);
 const keys={left:false,right:false};const state={stage:0,time:0,view:0,step:0,won:false,started:false,mode:'intro',labDone:[false,false,false],message:'',noticeUntil:0,shake:0,particles:[],titan:null,resetCount:0,grappleCount:0,attacks:0,combo:false};
-let p,rope=null,joy={pointer:null,x:0,y:0,originX:0,originY:0},accum=0,last=0,frame=0;
-function setup(stage){state.stage=stage;const d=stageData[stage];p={x:d.spawn,y:FLOOR,vx:0,vy:0,face:1,ground:true,gas:100,hp:3,inv:0,attack:0,dodge:0,anim:0,jumped:false,walked:false,hooked:false,released:false};rope=null;state.view=0;state.won=false;state.mode='play';state.combo=false;state.titan=stage===2?{x:326,foot:FLOOR,face:-1,alive:true,clock:0,attack:0,stun:0}:null;state.particles=[];state.shake=0;joy.pointer=null;joy.x=0;joy.y=0;joy.originX=joy.originY=0;keys.left=false;keys.right=false;paintHUD();document.querySelectorAll('.labtab').forEach((el,i)=>el.classList.toggle('active',i===stage));}
+let p,rope=null,joy={pointer:null,x:0,y:0,originX:0,originY:0},grapplePointer=null,grappleKeyHeld=false,accum=0,last=0,frame=0;
+function setup(stage){state.stage=stage;const d=stageData[stage];p={x:d.spawn,y:FLOOR,vx:0,vy:0,face:1,ground:true,gas:100,hp:3,inv:0,attack:0,dodge:0,anim:0,jumped:false,walked:false,hooked:false,released:false};rope=null;grapplePointer=null;grappleKeyHeld=false;Q('grapple').classList.remove('pressed');state.view=0;state.won=false;state.mode='play';state.combo=false;state.titan=stage===2?{x:326,foot:FLOOR,face:-1,alive:true,clock:0,attack:0,stun:0}:null;state.particles=[];state.shake=0;joy.pointer=null;joy.x=0;joy.y=0;joy.originX=joy.originY=0;keys.left=false;keys.right=false;paintHUD();document.querySelectorAll('.labtab').forEach((el,i)=>el.classList.toggle('active',i===stage));}
 function paintHUD(){Q('hp').textContent='♥ '.repeat(p?.hp??3);Q('gas').textContent='█'.repeat(Math.ceil((p?.gas??100)/20))+'░'.repeat(5-Math.ceil((p?.gas??100)/20));Q('progress').textContent=['01 / 03','02 / 03','03 / 03'][state.stage];}
 function message(t,seconds=2.4){state.message=t;state.noticeUntil=state.time+seconds;}
 function setPanel(title,desc,items,action,fn){Q('panel-title').textContent=title;Q('panel-desc').textContent=desc;Q('panel-list').innerHTML=items.map(s=>'<li>'+s+'</li>').join('');Q('panel-btn').textContent=action;Q('panel-btn').onclick=()=>{Q('panel').classList.remove('show');state.started=true;state.mode='play';if(fn)fn();};Q('panel').classList.add('show');state.mode='panel';}
 function tip(){if(state.mode==='panel')return;let t=state.message&&state.time<state.noticeUntil?state.message:'';
  if(!t&&state.won)t='✓ 訓練完成！按畫面中央「下一個訓練」';
  if(!t&&state.stage===0)t=!p.walked?'① 左半畫面按住向右滑，開始移動':!p.jumped?'② 按右上「跳躍」，越過前方石堆':'③ 繼續向右，抵達金色旗幟';
- if(!t&&state.stage===1)t=!p.hooked?'① 按「鋼索」勾住金色屋頂錨點':rope?'② 保持向右，借鋼索加速；再按「鋼索」釋放':!p.released?'② 再按一次「鋼索」釋放':'③ 飛越斷橋，落到右邊旗幟';
+ if(!t&&state.stage===1)t=!p.hooked?'① 長按「鋼索」勾住金色屋頂錨點':rope?'② 按住鋼索，同時向右操控；放手釋放':!p.released?'② 放開「鋼索」按鈕釋放':'③ 飛越斷橋，落到右邊旗幟';
  if(!t&&state.stage===2&&state.titan?.alive&&p.x>state.titan.x&&Math.hypot(p.x-(state.titan.x+26),p.y-14-(state.titan.foot-89))<70&&!p.ground)t='⚡ 後頸攻擊窗口！立即按右下「攻擊」';
- if(!t&&state.stage===2)t=!p.hooked?'① 先勾住金色屋頂錨點，飛向巨人後方':rope?'② 保持向右、按「鋼索」釋放，飛近後頸':'③ 接近巨人右後方金色弱點，按「攻擊」';
+ if(!t&&state.stage===2)t=!p.hooked?'① 長按鋼索勾住金色屋頂錨點':rope?'② 按住鋼索向右移動；放手飛往後頸':'③ 鬆開鋼索後，靠近金色後頸按「攻擊」';
  Q('tip').textContent=t;paintHUD();}
 const pos=()=>({x:Math.round(p.x),y:Math.round(p.y)});
 function jump(){if(!state.started||state.mode!=='play'||state.won)return;if(p.ground){p.vy=-214;p.ground=false;p.jumped=true;message('跳躍成功！角色以逐格動畫切換姿勢。',1.25);}else message('空中無二段跳；試試鋼索！',1.0);}
 function bestAnchor(){const a=stageData[state.stage].anchors;let best=null,score=9999;for(const q of a){const d=Math.hypot(q.x-p.x,q.y-(p.y-13));if(d>230||d<23)continue;const ahead=(q.x-p.x)*p.face>=-50?0:90;const s=d+ahead;if(s<score){score=s;best=q;}}return best;}
-function grapple(){if(!state.started||state.mode!=='play'||state.won)return;if(rope){rope=null;p.released=true;message('鋼索已釋放！保留飛行慣性。',1.5);return;}if(p.gas<5){message('GAS 不足！',1.5);return;}const a=bestAnchor();if(!a){message('距離錨點太遠，請接近金色標記。',1.6);return;}const d=Math.hypot(a.x-p.x,a.y-(p.y-13));rope={x:a.x,y:a.y,len:Math.max(68,d-20)};p.y-=2;p.ground=false;p.hooked=true;state.grappleCount++;p.gas=Math.max(0,p.gas-5);p.vy=Math.min(p.vy,-195);p.vx+=p.face*75;message('已連接鋼索：向右擺盪，再按一次釋放。',2.0);}
+function grapple(){if(!state.started||state.mode!=='play'||state.won||rope)return false;if(p.gas<5){message('GAS 不足！',1.5);return false;}const a=bestAnchor();if(!a){message('距離錨點太遠，請接近金色標記。',1.6);return false;}const d=Math.hypot(a.x-p.x,a.y-(p.y-13));rope={x:a.x,y:a.y,len:Math.max(68,d-20)};p.y-=2;p.ground=false;p.hooked=true;state.grappleCount++;p.gas=Math.max(0,p.gas-5);p.vy=Math.min(p.vy,-195);p.vx+=p.face*75;message('按住「鋼索」保持連接；放手即釋放，保留動量。',2.0);return true;}
+function releaseGrapple(){if(!rope)return;rope=null;p.released=true;message('鋼索已釋放！保留飛行慣性。',1.5);}
 function dodge(){if(!state.started||state.mode!=='play'||state.won)return;if(p.dodge>0)return;p.dodge=.29;p.inv=Math.max(p.inv,.32);p.vx=p.face*205;message('閃避！短暫無敵。',.65);}
 function attack(){if(!state.started||state.mode!=='play'||state.won)return;if(p.attack>0)return;p.attack=.27;state.attacks++;const t=state.titan;if(!t||!t.alive){message('斬擊！本訓練先練熟移動。',.7);return;}
  const nx=t.x+26,ny=t.foot-89,dist=Math.hypot(p.x-nx,(p.y-14)-ny);
@@ -174,12 +175,29 @@ function releaseStick(e){if(e.pointerId!==joy.pointer)return;joy.pointer=null;jo
 stick.addEventListener('pointerup',releaseStick);
 stick.addEventListener('pointercancel',releaseStick);
 stick.addEventListener('lostpointercapture',releaseStick);
-for(const [id,fn] of [['jump',jump],['dodge',dodge],['grapple',grapple],['attack',attack]]){const b=Q(id);b.addEventListener('pointerdown',e=>{e.preventDefault();b.classList.add('pressed');fn();});for(const ev of ['pointerup','pointercancel','pointerleave'])b.addEventListener(ev,()=>b.classList.remove('pressed'));}
-window.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','ArrowUp','ArrowDown',' ','Space'].includes(e.key))e.preventDefault();if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=true;if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=true;if(e.repeat)return;switch(e.key.toLowerCase()){case ' ':case 'w':case 'arrowup':jump();break;case 'k':grapple();break;case 'j':attack();break;case 'l':dodge();break;case 'r':setup(state.stage);break;}});window.addEventListener('keyup',e=>{if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=false;if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=false;});window.addEventListener('blur',()=>{keys.left=keys.right=false;joy.pointer=null;joy.x=joy.y=0;});
+// Grapple is hold-to-connect, release-to-detach. Pointer capture ensures release works even outside the button.
+const grappleButton=Q('grapple');
+grappleButton.setAttribute('aria-label','長按連接鋼索，放手釋放');
+grappleButton.addEventListener('pointerdown',e=>{
+ if(grapplePointer!==null)return;
+ e.preventDefault();grapplePointer=e.pointerId;grappleButton.classList.add('pressed');
+ try{grappleButton.setPointerCapture(e.pointerId);}catch(_){}
+ grapple();
+});
+function grappleEnd(e){
+ if(e.pointerId!==grapplePointer)return;
+ grapplePointer=null;grappleButton.classList.remove('pressed');releaseGrapple();
+}
+for(const ev of ['pointerup','pointercancel','lostpointercapture'])grappleButton.addEventListener(ev,grappleEnd);
+for(const [id,fn] of [['jump',jump],['dodge',dodge],['attack',attack]]){
+ const b=Q(id);b.addEventListener('pointerdown',e=>{e.preventDefault();b.classList.add('pressed');fn();});
+ for(const ev of ['pointerup','pointercancel','pointerleave'])b.addEventListener(ev,()=>b.classList.remove('pressed'));
+}
+window.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','ArrowUp','ArrowDown',' ','Space'].includes(e.key))e.preventDefault();if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=true;if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=true;if(e.repeat)return;switch(e.key.toLowerCase()){case ' ':case 'w':case 'arrowup':jump();break;case 'k':grappleKeyHeld=true;grapple();break;case 'j':attack();break;case 'l':dodge();break;case 'r':setup(state.stage);break;}});window.addEventListener('keyup',e=>{if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=false;if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=false;if(e.key.toLowerCase()==='k'){grappleKeyHeld=false;releaseGrapple();}});function resetHeldInputs(){keys.left=keys.right=false;joy.pointer=null;joy.x=joy.y=0;grapplePointer=null;grappleKeyHeld=false;grappleButton.classList.remove('pressed');releaseGrapple();}window.addEventListener('blur',resetHeldInputs);document.addEventListener('visibilitychange',()=>{if(document.hidden)resetHeldInputs();});
 for(const b of document.querySelectorAll('.labtab'))b.addEventListener('click',()=>{setup(Number(b.dataset.lab));message('已切換訓練區，左半畫面按住滑動移動，右手按動作按鈕。',2.7);});
-Q('reset').onclick=()=>{setup(state.stage);message('已重新開始目前訓練。',1.6);};Q('help').onclick=()=>setPanel('操作與任務說明','這是先驗證操控手感的簡易遊戲原型；角色採用刻意跳格的街機動畫。',['左半畫面任意位置按住滑動：隱形浮動搖桿（放手即停止）','右手按鍵：跳躍、鋼索、閃避、攻擊','鋼索按一下連接，再按一下釋放，保留速度','桌面鍵盤：A/D 移動、W/空白跳、K 鋼索、J 攻擊、L 閃避','用頂部 01／02／03 可直接跳到不同訓練'], '返回遊戲');
+Q('reset').onclick=()=>{setup(state.stage);message('已重新開始目前訓練。',1.6);};Q('help').onclick=()=>setPanel('操作與任務說明','這是先驗證操控手感的簡易遊戲原型；角色採用刻意跳格的街機動畫。',['左半畫面任意位置按住滑動：隱形浮動搖桿（放手即停止）','右手按鍵：跳躍、鋼索、閃避、攻擊','鋼索鍵長按連接／維持；放開按鈕釋放並保留速度','桌面鍵盤：A/D 移動、W/空白跳、長按 K 鋼索、J 攻擊、L 閃避','用頂部 01／02／03 可直接跳到不同訓練'], '返回遊戲');
 setup(0);state.started=false;state.mode='panel';Q('panel-btn').onclick=()=>{Q('panel').classList.remove('show');state.started=true;state.mode='play';message('開始！向右行、跳過石堆。',1.7);};requestAnimationFrame(tick);
-window.__movementLab={getState:()=>({stage:state.stage,mode:state.mode,player:{...p},rope:rope?{...rope}:null,completed:[...state.labDone],titan:state.titan?{...state.titan}:null}),goStage:i=>{setup(clamp(i,0,2));state.started=true;},debug:{jump,grapple,attack,dodge}};
+window.__movementLab={getState:()=>({stage:state.stage,mode:state.mode,player:{...p},rope:rope?{...rope}:null,completed:[...state.labDone],titan:state.titan?{...state.titan}:null}),goStage:i=>{setup(clamp(i,0,2));state.started=true;},debug:{jump,grapple,releaseGrapple,attack,dodge}};
 })();
 </script>
 </body></html>
