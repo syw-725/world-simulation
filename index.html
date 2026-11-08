@@ -1,0 +1,363 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0e1720"><title>TITAN TACTICS — Pixel Card & Grid Test</title><style>:root{color-scheme:dark;--bg:#0e1720;--panel:#172631;--panel2:#1e303c;--border:#3e535d;--gold:#d7b886;--mist:#b2c5c9;--cyan:#83c0c0;--red:#ef988b}*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;color:#ecf1ea;background:radial-gradient(ellipse at 45% -20%,#273e45 0%,#0e1720 54%);font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC','PingFang TC',sans-serif;min-height:100dvh;-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;touch-action:manipulation}button:disabled{cursor:not-allowed;opacity:.5}main{width:min(100%,490px);padding:14px 14px max(env(safe-area-inset-bottom),20px);margin:auto}.top{display:flex;align-items:start;justify-content:space-between;gap:10px}.eyebrow{font-size:10px;letter-spacing:.20em;color:var(--gold);font-weight:750}.top h1{margin:5px 0 3px;font-weight:800;font-size:20px;letter-spacing:.015em}.subtitle{font-size:11px;color:#9fb2b7;margin:0}.help-button{background:#283c48;border:1px solid #4d6670;border-radius:9px;color:#dee4e6;padding:11px 14px;min-height:44px}.stats{margin-top:13px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:var(--panel);border:1px solid #2c414b;border-radius:8px;padding:8px 10px}.stat small{display:block;font-size:10px;color:#a5bdc3;letter-spacing:.02em}.stat strong{font-size:17px;font-weight:750;display:block;margin-top:3px}.strip{font-size:11px;color:#e8cfb6;min-height:34px;border:1px solid #54463d;background:#352d2c;padding:8px 10px;margin-top:10px;border-radius:6px;line-height:1.4}.board-wrap{position:relative;margin-top:8px;border:3px solid #4e625b;outline:1px solid #1b312d;border-radius:5px;box-shadow:0 9px 27px #0006;overflow:hidden}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(7,minmax(0,1fr));aspect-ratio:6/7;background:#435348;position:relative}.tile{display:flex;justify-content:center;align-items:center;position:relative;padding:0;border:1px solid #263d33aa;border-radius:0;background:#4d5e50;min-width:0;overflow:hidden;color:white}.tile.stone{background:#586554}.tile.roof{background:repeating-linear-gradient(35deg,#667369,#667369 7px,#59685e 7px,#59685e 13px);border-color:#3b4544}.roof-icon{position:absolute;bottom:3px;right:4px;color:#a4b9ad;font-size:10px}.tile.rubble{background:#3e4940}.rubble-icon{font-size:25px;color:#839088}.tile.enemy-area{background:#73574d}.tile.danger{box-shadow:inset 0 0 0 3px #d18e72;background:#6f564a}.tile.soldier-area{background:#536d70}.tile.targetable{outline:3px solid #f1d17a;outline-offset:-4px;z-index:1}.tile.selected-unit{box-shadow:inset 0 0 0 3px #7ccfd6;z-index:3}.tile:focus-visible{outline:3px solid white;z-index:4}.tile:hover{filter:brightness(1.10)}.sprite{image-rendering:pixelated;filter:drop-shadow(1px 3px 0px #0008)}.soldier-sprite{width:55%;height:68%;position:absolute;bottom:12%;z-index:4}.titan-overlay{z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;position:relative;min-height:0;min-width:0}.titan-sprite{width:65%;height:88%;max-height:106%;position:absolute;bottom:5%}.titan-label{position:absolute;bottom:0;left:0;right:0;text-align:center;background:#382a27dd;color:#f2d3bf;font-size:9px;line-height:16px;font-weight:bold}.titan-overlay.abnormal .titan-label{background:#693c38}.civ-icon{display:inline-flex;align-items:center;justify-content:center;background:#d2b787;color:#4e4133;border:2px solid #604f3f;width:23px;height:23px;font-size:17px;font-weight:900;border-radius:2px}.under-board{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10px;color:#b8c8cb;margin:10px 0 0}.legend{display:flex;gap:12px;align-items:center}.dot{display:inline-block;width:10px;height:10px;background:#87bcb8;border:1px solid #d0e6de;margin-right:4px}.dot.gold{background:#d1ad6e}.dot.red{background:#a65d50}.soldiers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:9px 0 8px}.soldier-option{display:flex;align-items:center;text-align:left;gap:8px;border-radius:7px;min-height:49px;padding:7px;background:var(--panel);border:1px solid #405660;color:white;min-width:0}.soldier-option.active{outline:2px solid var(--cyan);background:#244049}.soldier-option small{display:block;font-size:10px;color:#afc4c5;white-space:nowrap}.soldier-option b{font-size:12px}.soldier-marker{width:13px;height:21px;flex-shrink:0;background:#8eb2ae;box-shadow:inset 0 -6px #3f6466}.soldier-marker.gold{background:#d0af76;box-shadow:inset 0 -6px #827047}.hand-top{display:flex;align-items:center;justify-content:space-between;margin:10px 0 7px}.section-label{font-size:11px;color:#e3e1d2;font-weight:800;letter-spacing:.08em}.section-secondary{color:#a8b7b9;font-size:10px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.card-btn{position:relative;min-width:0;min-height:98px;padding:9px 4px 7px;display:flex;align-items:center;flex-direction:column;justify-content:space-around;border-radius:8px;color:#f5f0e7;border:2px solid #617782;background:linear-gradient(160deg,#344f5c,#1d3442);box-shadow:0 3px 0 #0a1218}.card-btn.red{border-color:#976765;background:linear-gradient(160deg,#664241,#35272a)}.card-btn.gold{border-color:#a18a59;background:linear-gradient(160deg,#675c3d,#3d392e)}.card-btn.green{border-color:#6d8e73;background:linear-gradient(160deg,#45644c,#253e35)}.card-btn.armed{outline:3px solid #f3d6a4;transform:translateY(-3px)}.card-cost{position:absolute;top:3px;left:5px;font-size:11px;font-weight:900;color:#f3ddb6}.card-icon{font-size:15px;font-family:monospace;font-weight:900;letter-spacing:-1px;opacity:.85;margin-top:10px}.card-title{font-weight:800;font-size:12px;letter-spacing:-.06em;text-align:center;white-space:nowrap}.card-type{font-size:10px;color:#c7d6d2}.card-info{min-height:29px;color:#b8c8c8;font-size:11px;line-height:1.4;padding:9px 0 6px}.action-bar{display:grid;grid-template-columns:1fr 2fr;gap:8px}.action-bar button{min-height:47px;border-radius:7px;font-weight:750}.restart{background:#293c44;color:#d3e2e0;border:1px solid #6d8790}.end-turn{background:#bf9d69;color:#12252a;border:1px solid #e6c68d}.testlog{margin-top:12px;padding:10px;background:#14212a;border:1px solid #2f414a;border-radius:8px}.testlog strong{display:block;font-size:10px;letter-spacing:.10em;color:#bbccce}.testlog ul{font-size:10px;color:#a9bdbe;line-height:1.7;margin:4px 0 0;padding-left:16px}.footer{margin:10px 0 0;font-size:10px;line-height:1.5;color:#728e95}.notice{position:fixed;left:50%;top:35px;transform:translateX(-50%) translateY(-8px);padding:10px 15px;background:#e8d19d;color:#27322e;font-size:12px;font-weight:700;border-radius:8px;max-width:calc(100% - 30px);pointer-events:none;opacity:0;transition:.2s;box-shadow:0 4px 20px #000a;z-index:30}.notice.show{opacity:1;transform:translateX(-50%)}.notice.error{background:#e8a4a0}.overlay{position:fixed;inset:0;background:#02070bc9;z-index:40;display:flex;align-items:center;justify-content:center;padding:24px}.overlay[hidden]{display:none}.modal{max-width:350px;width:100%;background:#1b2c35;border:2px solid #65776f;border-radius:11px;padding:20px;color:#f5f2e5;box-shadow:0 18px 60px #000a}.modal h2{font-size:23px;margin:0 0 10px}.modal p,.modal li{font-size:13px;line-height:1.7;color:#bdd0d0}.modal ul{padding-left:19px}.modal button{display:block;width:100%;border:none;border-radius:8px;padding:14px;background:#d4b176;color:#1f2c2a;font-weight:800;margin-top:10px;min-height:44px}.help-steps{margin-bottom:0}@media(min-width:650px){main{margin-top:14px}.board{max-height:520px}}@media(max-width:355px){main{padding:9px}.card-title{font-size:11px}.card-btn{min-height:88px}.top h1{font-size:18px}.stat{padding:6px}.soldier-option b{font-size:11px}}
+/* Mobile portrait: keep the tactical board and primary hand in the first viewport. */
+@media(max-width:520px){
+  main{padding:9px 10px max(env(safe-area-inset-bottom),8px)}
+  .top h1{font-size:18px;margin:3px 0 1px}
+  .eyebrow{font-size:9px;letter-spacing:.12em}
+  .subtitle{font-size:10px}
+  .help-button{min-height:39px;padding:8px 10px;font-size:11px}
+  .stats{margin-top:7px;gap:5px}
+  .stat{padding:5px 7px}
+  .stat small{font-size:9px}
+  .stat strong{font-size:15px;margin-top:1px}
+  .strip{min-height:28px;margin-top:5px;padding:5px 8px;font-size:10px}
+  .board-wrap{width:min(100%,315px);margin:5px auto 0}
+  .under-board{margin:5px 0 0;font-size:9px}
+  .legend{gap:6px}
+  .soldiers{margin:5px 0 4px;gap:5px}
+  .soldier-option{min-height:42px;padding:5px 6px}
+  .soldier-option b{font-size:11px}
+  .soldier-option small{font-size:9px}
+  .hand-top{margin:4px 0 5px}
+  .section-label{font-size:10px}.section-secondary{font-size:9px}
+  .card-btn{min-height:83px;padding:5px 2px}
+  .card-icon{font-size:14px;margin-top:10px}
+  .card-title{font-size:11px}
+  .card-type{font-size:9px}
+  .card-info{padding:5px 1px 4px;min-height:24px;font-size:10px}
+  .action-bar button{min-height:44px;font-size:13px}
+  .testlog,.footer{display:none}
+}
+</style></head>
+<body><main><header class="top"><div><div class="eyebrow">PIXEL TACTICS / EXPERIMENT 001</div><h1>TITAN TACTICS</h1><p class="subtitle">巨人戰棋 × 卡牌連技　｜　可操作規則原型</p></div><button class="help-button" id="instructions" type="button">玩法說明</button></header>
+<section class="stats" aria-label="任務資訊"><div class="stat"><small>回合 TURN</small><strong id="turn">1 / 6</strong></div><div class="stat"><small>行動能量 EP</small><strong id="ep">3 / 3</strong></div><div class="stat"><small>生存平民</small><strong id="saved">2 / 2</strong></div></section>
+<div id="preview-warning" role="alert" style="background:#583b2a;color:#fff0dc;border:2px solid #cc8e63;border-radius:9px;margin:12px 0;padding:12px;font-size:13px;line-height:1.65"><strong>無法啟動遊戲：目前只顯示 HTML 靜態預覽。</strong><div>如地圖沒有士兵／巨人，而這段提示仍在，代表你的檔案預覽器沒有執行 JavaScript。ChatGPT iPhone 檔案預覽並不適合直接試玩；請把此 HTML 上傳到 HTTPS 靜態網站，再用 Safari 打開網址。只改檔名或重新下載不能解決。</div></div><div class="strip" id="forecast" role="status">載入敵人行動預告…</div><div class="board-wrap"><div class="board" id="board" aria-label="6 乘 7 戰棋地圖"></div></div><div class="under-board"><div class="legend"><span><i class="dot"></i>新兵</span><span><i class="dot gold"></i>支援兵</span><span><i class="dot red"></i>巨人威脅</span></div><span>6 × 7 GRID</span></div>
+<div class="soldiers" id="soldiers"></div><div class="hand-top"><span class="section-label">戰術手牌</span><span class="section-secondary">每回合抽 4 張 · 卡庫 12 張</span></div><div class="cards" id="cards"></div><div class="card-info" id="card-info"></div><div class="action-bar"><button id="restart" class="restart" type="button">重置測試</button><button id="end-turn" class="end-turn" type="button">結束回合 ↗</button></div><div class="testlog"><strong>戰場日誌 / BATTLE LOG</strong><ul id="log"></ul></div><p class="footer">Proof of Concept v0.2 (static preview detection) · 角色以程式簡化像素形狀呈現，並非正式素材。此為機制測試，未包含抽蛋、關卡存檔或完整巨人碰撞系統。</p></main><div class="notice" id="notice" role="status"></div>
+<div class="overlay" id="end-screen" hidden><div class="modal"><div class="eyebrow">MISSION RESULT</div><h2 id="end-headline">任務完成</h2><p id="end-summary"></p><p>測試問題：你有冇覺得「繞背 → 斬後頸」比單純攻擊 HP 更有策略性？操控同地圖喺手機上夠唔夠清楚？</p><button id="play-again" type="button">再次測試</button></div></div>
+<div class="overlay" id="help" hidden><div class="modal"><div class="eyebrow">TESTING GUIDE</div><h2>操作說明</h2><ul class="help-steps"><li>先選下方其中一名士兵，點地圖空格可免費移動 2 格，每回合每人一次。</li><li>點擊手牌，再點擊巨人或屋頂（按卡牌要求）即可出牌。</li><li><b>推薦先試：</b>選「繞背機動」→ 點巨人 → 再選「後頸斬擊」→ 點同一隻巨人。</li><li>每回合有 3 EP；每位士兵有 3 Gas。巨人每回合按預告行動。</li><li>防守 6 回合且至少一名平民存活，或討伐全部巨人，即算勝利。</li><li>第 3 回合會出現移動較快的「奇行種」。</li></ul><button id="close-help" type="button">開始測試</button></div></div>
+<script>/* Tactical Card Test Engine v0.1 — abstract licensed-IP-free playtest rules. */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  root.TitanTactics = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  const WIDTH = 6, HEIGHT = 7, MAX_TURNS = 6;
+  const ROOFS = ['1,1','4,1','1,2','4,2','1,4','3,4','4,4','2,0'];
+  const RUBBLE = ['3,3','0,3'];
+  const CARDS = {
+    flank: { title:'繞背機動', kind:'機動', cost:1, type:'titan', text:'消耗 1 Gas，飛到巨人後方，可接後頸斬擊。', color:'blue', code:'ODM' },
+    nape: { title:'後頸斬擊', kind:'攻擊', cost:2, type:'titan', text:'必須位於巨人背後、已升空，距離最多 2 格。', color:'red', code:'ATK' },
+    hook: { title:'鋼索飛躍', kind:'機動', cost:1, type:'tile', text:'消耗 1 Gas，飛到 4 格內的屋頂錨點。', color:'blue', code:'HOOK' },
+    leg: { title:'腿部斬擊', kind:'控制', cost:1, type:'titan', text:'距離 3 格內斬傷腿部，停止下一次敵方移動。', color:'gold', code:'LEG' },
+    flare: { title:'信號彈', kind:'支援', cost:1, type:'instant', text:'讓現存巨人在下一次敵方階段停止行動。', color:'green', code:'FLARE' },
+    supply: { title:'氣體補給', kind:'支援', cost:1, type:'instant', text:'目前士兵回復 2 Gas（上限 3）。', color:'green', code:'GAS' }
+  };
+  const INITIAL_DECK = ['flank','flank','flank','nape','nape','nape','hook','hook','leg','leg','flare','supply'];
+  const dist = (a,b) => Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
+  const key = (x,y) => x+','+y;
+  const inBoard = (x,y) => x>=0 && x<WIDTH && y>=0 && y<HEIGHT;
+  const roof = (x,y) => ROOFS.includes(key(x,y));
+  const rubble = (x,y) => RUBBLE.includes(key(x,y));
+  const footprint = (t,x,y) => x>=t.x && x<t.x+2 && y>=t.y && y<t.y+2;
+  const minDist = (a,t) => {
+    let best=99;
+    for(let dx=0;dx<2;dx++)for(let dy=0;dy<2;dy++)best=Math.min(best,dist(a,{x:t.x+dx,y:t.y+dy}));
+    return best;
+  };
+  const aliveTitans = s => s.titans.filter(t=>t.alive&&t.spawned);
+  function prng(seed) { let a = seed>>>0; return () => { a += 0x6D2B79F5; let t=a; t=Math.imul(t^(t>>>15),t|1); t^=t+Math.imul(t^(t>>>7),t|61); return ((t^(t>>>14))>>>0)/4294967296; }; }
+  function shuffle(items,rand) { const a=[...items]; for(let i=a.length-1;i>0;i--){let j=Math.floor(rand()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+  function log(s,msg) { s.logs.unshift(msg); s.logs=s.logs.slice(0,12); }
+  function blocked(s,x,y,ignoreSoldierId) {
+    return !inBoard(x,y) || rubble(x,y)
+      || aliveTitans(s).some(t=>footprint(t,x,y))
+      || s.soldiers.some(a=>a.alive && a.id!==ignoreSoldierId && a.x===x && a.y===y)
+      || s.civilians.some(c=>c.hp>0 && c.x===x && c.y===y);
+  }
+  function draw(s,count) {
+    while(s.hand.length<count) {
+      if(!s.deck.length) {
+        if(!s.discard.length) break;
+        s.deck=shuffle(s.discard,s.rand);s.discard=[];
+      }
+      s.hand.push(s.deck.pop());
+    }
+  }
+  function createGame(seed=42) {
+    const rand=prng(seed), s={turn:1,maxTurns:MAX_TURNS,ep:3,energyMax:3,over:false,result:null,selected:0,logs:[],rand,
+      soldiers:[{id:'s1',name:'你｜新兵',x:1,y:5,gas:3,hp:2,alive:true,airborne:false,moved:false,color:'cyan'},
+                {id:'s2',name:'支援兵',x:4,y:5,gas:3,hp:2,alive:true,airborne:false,moved:false,color:'gold'}],
+      civilians:[{id:'c1',name:'西邊平民',x:0,y:6,hp:2},{id:'c2',name:'東邊平民',x:5,y:6,hp:2}],
+      titans:[{id:'t1',name:'普通巨人',type:'normal',x:2,y:1,hp:1,alive:true,spawned:true,stun:0,flare:false,facing:'down',speed:1},
+              {id:'t2',name:'奇行種',type:'abnormal',x:4,y:0,hp:1,alive:true,spawned:false,stun:0,flare:false,facing:'down',speed:2}],
+      hand:['flank','nape','hook','leg'],deck:shuffle(['flank','flank','nape','nape','hook','leg','flare','supply'],rand),discard:[] };
+    log(s,'第 1 回合：先選士兵，再用「繞背機動」＋「後頸斬擊」。');
+    return s;
+  }
+  function canWalk(s,unit,x,y){
+    if(s.over)return {ok:false,reason:'任務已結束'};
+    if(!unit||!unit.alive)return {ok:false,reason:'請選擇可行動的士兵'};
+    if(unit.moved)return {ok:false,reason:'此士兵本回合已經移動'};
+    if(blocked(s,x,y,unit.id))return {ok:false,reason:'目標格被阻擋'};
+    if(roof(x,y)&&!unit.airborne)return {ok:false,reason:'屋頂需要使用鋼索到達'};
+    if(x===unit.x&&y===unit.y)return {ok:false,reason:'請選另一個格子'};
+    const q=[{x:unit.x,y:unit.y,n:0}],seen=new Set([key(unit.x,unit.y)]);
+    while(q.length){const v=q.shift();if(v.x===x&&v.y===y)return {ok:true};if(v.n===2)continue;
+      for(const [dx,dy] of [[0,1],[1,0],[0,-1],[-1,0]]){
+        const nx=v.x+dx,ny=v.y+dy,k=key(nx,ny);
+        if(seen.has(k)||blocked(s,nx,ny,unit.id))continue;
+        if(roof(nx,ny)&&!unit.airborne)continue;
+        seen.add(k);q.push({x:nx,y:ny,n:v.n+1});
+      }
+    }
+    return {ok:false,reason:'距離太遠或路線被阻擋（基本移動最多 2 格）'};
+  }
+  function move(s,unitIndex,x,y) {
+    const unit=s.soldiers[unitIndex],valid=canWalk(s,unit,x,y);if(!valid.ok)return valid;
+    unit.x=x;unit.y=y;unit.moved=true;log(s,unit.name+'移動至（'+(x+1)+','+(y+1)+'）');return {ok:true};
+  }
+  function isBehind(a,t){
+    switch(t.facing){case'down':return a.y<t.y;case'up':return a.y>t.y+1;case'right':return a.x<t.x;case'left':return a.x>t.x+1;default:return false;}
+  }
+  function rearCells(t) {
+    if(t.facing==='down')return [{x:t.x,y:t.y-1},{x:t.x+1,y:t.y-1}];
+    if(t.facing==='up')return [{x:t.x,y:t.y+2},{x:t.x+1,y:t.y+2}];
+    if(t.facing==='right')return [{x:t.x-1,y:t.y},{x:t.x-1,y:t.y+1}];
+    return [{x:t.x+2,y:t.y},{x:t.x+2,y:t.y+1}];
+  }
+  function nearAnchor(x,y){return ROOFS.some(k=>{const [a,b]=k.split(',').map(Number);return dist({x,y},{x:a,y:b})<=2;});}
+  function getCardValidation(s,idx,target){
+    if(s.over)return {ok:false,reason:'任務已結束'};
+    const id=s.hand[idx],c=CARDS[id],a=s.soldiers[s.selected];
+    if(!c)return {ok:false,reason:'請先選擇一張卡'};
+    if(!a||!a.alive)return {ok:false,reason:'目前士兵無法行動'};
+    if(c.cost>s.ep)return {ok:false,reason:'EP 不足'};
+    if(c.type==='titan'){
+      const t=s.titans.find(t=>t.id===target?.titanId&&t.spawned&&t.alive);
+      if(!t)return {ok:false,reason:'請選擇一名巨人作目標'};
+      if(id==='flank') {
+        if(a.gas<1)return {ok:false,reason:'Gas 不足，先補給'};
+        const possible=rearCells(t).filter(p=>inBoard(p.x,p.y)&&!blocked(s,p.x,p.y,a.id)&&dist(a,p)<=7&&nearAnchor(p.x,p.y));
+        if(!possible.length)return {ok:false,reason:'後方沒有可用落點或錨點'};
+        possible.sort((u,v)=>dist(a,u)-dist(a,v));return {ok:true,extra:{t,p:possible[0]}};
+      }
+      if(id==='nape') {
+        if(!a.airborne)return {ok:false,reason:'要先使用機動卡升空'};
+        if(!isBehind(a,t))return {ok:false,reason:'需要從巨人背後進攻'};
+        if(minDist(a,t)>2)return {ok:false,reason:'離巨人後頸太遠'};
+      }
+      if(id==='leg'&&minDist(a,t)>3)return {ok:false,reason:'離巨人腿部太遠'};
+      return {ok:true,extra:{t}};
+    }
+    if(id==='hook') {
+      if(a.gas<1)return {ok:false,reason:'Gas 不足'};
+      if(!target||!Number.isInteger(target.x)||!Number.isInteger(target.y))return {ok:false,reason:'請點選可到達的屋頂格'};
+      if(!roof(target.x,target.y)||blocked(s,target.x,target.y,a.id))return {ok:false,reason:'只能飛到未被阻擋的屋頂錨點'};
+      if(dist(a,target)>4)return {ok:false,reason:'鋼索距離最多 4 格'};
+    }
+    if(id==='supply'&&a.gas>=3)return {ok:false,reason:'目前 Gas 已滿'};
+    return {ok:true};
+  }
+  function playCard(s,index,target={}) {
+    const valid=getCardValidation(s,index,target);if(!valid.ok)return valid;
+    const id=s.hand[index],c=CARDS[id],a=s.soldiers[s.selected];
+    if(id==='flank'){
+      const {t,p}=valid.extra;a.x=p.x;a.y=p.y;a.gas--;a.airborne=true;a.moved=true;
+      log(s,a.name+'繞到「'+t.name+'」背後，成功升空');
+    }
+    if(id==='hook'){
+      a.x=target.x;a.y=target.y;a.gas--;a.airborne=true;a.moved=true;
+      log(s,a.name+'以鋼索飛上屋頂');
+    }
+    if(id==='nape'){
+      const {t}=valid.extra;t.hp=0;t.alive=false;log(s,a.name+'從背後成功斬斷「'+t.name+'」後頸！');
+    }
+    if(id==='leg'){
+      const {t}=valid.extra;t.stun=1;log(s,'「'+t.name+'」腿部受傷，下一階段無法行動');
+    }
+    if(id==='flare'){
+      for(const t of aliveTitans(s))t.flare=true;
+      log(s,'信號彈引開現有巨人注意力（下次敵方階段停動）');
+    }
+    if(id==='supply'){
+      const before=a.gas;a.gas=Math.min(3,a.gas+2);log(s,a.name+'回復 '+(a.gas-before)+' Gas');
+    }
+    s.ep-=c.cost;s.discard.push(s.hand.splice(index,1)[0]);
+    if(s.titans.every(t=>t.spawned&&!t.alive))win(s,'成功討伐全部巨人');
+    return {ok:true};
+  }
+  function titanOverlap(t,other,x,y){return other.alive&&other.spawned&&other.id!==t.id && x<other.x+2&&x+2>other.x&&y<other.y+2&&y+2>other.y;}
+  function targetCivilian(s,t){
+    const cs=s.civilians.filter(c=>c.hp>0);if(!cs.length)return null;
+    return cs.sort((a,b)=>minDist(a,t)-minDist(b,t)||a.id.localeCompare(b.id))[0];
+  }
+  function titanNext(s,t){
+    const target=targetCivilian(s,t);if(!target)return null;
+    const touch=minDist(target,t)<=1;
+    if(touch)return {action:'attack',target,x:t.x,y:t.y};
+    let x=t.x,y=t.y,face=t.facing;
+    for(let i=0;i<t.speed;i++){
+      let dx=target.x<x?-1:target.x>x+1?1:0;
+      let dy=target.y<y?-1:target.y>y+1?1:0;
+      const ops=dy?[[0,dy],[dx,0]]:[[dx,0],[0,dy]];
+      let moved=false;
+      for(const [ax,ay] of ops){
+        if(!ax&&!ay)continue;
+        const nx=x+ax,ny=y+ay;
+        if(nx<0||nx>WIDTH-2||ny<0||ny>HEIGHT-2)continue;
+        if(s.titans.some(o=>titanOverlap(t,o,nx,ny)))continue;
+        x=nx;y=ny;face=ay>0?'down':ay<0?'up':ax>0?'right':'left';moved=true;break;
+      }
+      if(!moved)break;
+    }
+    return {action:'move',target,x,y,face};
+  }
+  function win(s,msg){s.over=true;s.result={type:'win',message:msg};log(s,'任務成功：'+msg);}
+  function lose(s,msg){s.over=true;s.result={type:'lose',message:msg};log(s,'任務失敗：'+msg);}
+  function enemyPhase(s){
+    for(const t of aliveTitans(s)){
+      if(t.stun>0){t.stun--;log(s,t.name+'因腿部受傷暫停行動');continue;}
+      if(t.flare){t.flare=false;log(s,t.name+'受信號彈干擾，暫停行動');continue;}
+      const next=titanNext(s,t);if(!next)continue;
+      if(next.action==='attack'){
+        next.target.hp=Math.max(0,next.target.hp-1);
+        log(s,t.name+'攻擊了'+next.target.name+'，剩餘 '+next.target.hp+' HP');
+        if(next.target.hp===0)log(s,next.target.name+'已無法繼續撤離');
+      } else {
+        t.x=next.x;t.y=next.y;t.facing=next.face;
+        for(const a of s.soldiers){
+          if(a.alive&&footprint(t,a.x,a.y)){a.hp=0;a.alive=false;log(s,a.name+'被巨人撞倒，退出戰鬥');}
+        }
+        log(s,t.name+'逼近'+next.target.name);
+      }
+    }
+    if(!s.civilians.some(c=>c.hp>0))lose(s,'平民全部受害');
+    if(!s.soldiers.some(a=>a.alive) && !s.over)lose(s,'全員失去戰鬥能力');
+  }
+  function endTurn(s){
+    if(s.over)return {ok:false,reason:'任務已結束'};
+    enemyPhase(s);
+    if(s.over)return {ok:true};
+    if(s.turn===MAX_TURNS){win(s,'成功守住撤離線 6 回合');return {ok:true};}
+    s.turn++;
+    if(s.turn===3){const t=s.titans.find(t=>t.id==='t2');t.spawned=true;log(s,'警報：奇行種從東北方出現！');}
+    s.ep=3;
+    for(const a of s.soldiers){a.moved=false;a.airborne=false;}
+    s.discard.push(...s.hand);s.hand=[];draw(s,4);
+    if(!s.soldiers[s.selected].alive)s.selected=s.soldiers.findIndex(a=>a.alive);
+    log(s,'第 '+s.turn+' 回合開始，抽取 4 張卡牌');
+    return {ok:true};
+  }
+  function validTargets(s,id){
+    const c=CARDS[id],a=s.soldiers[s.selected];if(!c||!a||s.over)return [];
+    if(c.type==='instant')return [];
+    if(c.type==='titan')return aliveTitans(s).filter(t=>getCardValidation(s,s.hand.indexOf(id),{titanId:t.id}).ok).map(t=>t.id);
+    let cells=[];for(let y=0;y<HEIGHT;y++)for(let x=0;x<WIDTH;x++)if(getCardValidation(s,s.hand.indexOf(id),{x,y}).ok)cells.push(key(x,y));
+    return cells;
+  }
+  function stateSummary(s){return {turn:s.turn,ep:s.ep,aliveSoldiers:s.soldiers.filter(a=>a.alive).length,aliveCivilians:s.civilians.filter(c=>c.hp>0).length,aliveTitans:aliveTitans(s).length,deck:s.deck.length,hand:s.hand.length,discard:s.discard.length,totalCards:s.deck.length+s.hand.length+s.discard.length,result:s.result};}
+  return {WIDTH,HEIGHT,MAX_TURNS,ROOFS,RUBBLE,CARDS,INITIAL_DECK,createGame,canWalk,move,playCard,getCardValidation,endTurn,aliveTitans,footprint,isBehind,minDist,titanNext,validTargets,stateSummary,roof,rubble};
+});
+</script><script>(function(){
+  'use strict';
+  const E=window.TitanTactics;
+  let state=E.createGame(42), armed=-1,noticeTimer=null;
+  const $=id=>document.getElementById(id);
+  function safe(t){return String(t).replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));}
+  function notice(msg,bad=false){const el=$('notice');el.textContent=msg;el.className='notice show '+(bad?'error':'');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>el.className='notice',3300);}
+  function titanAt(x,y){return E.aliveTitans(state).find(t=>E.footprint(t,x,y));}
+  function svgSoldier(c){return `<svg class="sprite soldier-sprite" viewBox="0 0 20 28" shape-rendering="crispEdges" aria-hidden="true"><rect x="7" y="3" width="7" height="6" fill="#d1a587"/><rect x="7" y="2" width="7" height="3" fill="#2f342d"/><rect x="4" y="9" width="13" height="11" fill="${c==='cyan'?'#93b8af':'#c5ad79'}"/><rect x="7" y="10" width="7" height="8" fill="#5a705f"/><rect x="4" y="20" width="5" height="6" fill="#252d36"/><rect x="12" y="20" width="5" height="6" fill="#252d36"/><rect x="2" y="12" width="3" height="8" fill="#c39a7f"/><rect x="17" y="12" width="3" height="8" fill="#c39a7f"/><rect x="0" y="8" width="2" height="17" fill="#c0d4db"/><rect x="19" y="8" width="1" height="17" fill="#c0d4db"/><rect x="2" y="9" width="2" height="5" fill="#5b6570"/></svg>`;}
+  function svgTitan(type){const crazy=type==='abnormal';return `<svg class="sprite titan-sprite ${crazy?'abnormal':''}" viewBox="0 0 36 54" shape-rendering="crispEdges" aria-hidden="true"><rect x="9" y="1" width="18" height="16" fill="${crazy?'#d9a27e':'#c6a080'}"/><rect x="8" y="3" width="20" height="5" fill="${crazy?'#734434':'#544039'}"/><rect x="11" y="9" width="4" height="3" fill="#392c2e"/><rect x="22" y="9" width="4" height="3" fill="#392c2e"/><rect x="14" y="14" width="10" height="2" fill="#8b3b35"/><rect x="9" y="18" width="18" height="20" fill="${crazy?'#ac5e55':'#8c6255'}"/><rect x="3" y="19" width="6" height="24" fill="#b88c77"/><rect x="27" y="19" width="6" height="24" fill="#b88c77"/><rect x="11" y="38" width="6" height="15" fill="#987569"/><rect x="20" y="38" width="6" height="15" fill="#987569"/><rect x="6" y="25" width="3" height="12" fill="#e1ab86"/><rect x="28" y="25" width="3" height="12" fill="#e1ab86"/><rect x="12" y="20" width="4" height="14" fill="#be8a7a"/><rect x="22" y="20" width="3" height="14" fill="#be8a7a"/></svg>`;}
+  function renderBoard(){
+    const el=$('board');el.innerHTML='';
+    const targets=armed>=0?E.validTargets(state,state.hand[armed]):[];
+    const forecast=[];
+    E.aliveTitans(state).forEach(t=>{
+      if(t.stun>0||t.flare){forecast.push({id:t.id,action:'stay',target:t.stun>0?'腿部受傷':'信號干擾'});return;}
+      const n=E.titanNext(state,t);
+      if(n){forecast.push({id:t.id,action:n.action,target:n.target.name});
+        if(n.action==='move')for(let dx=0;dx<2;dx++)for(let dy=0;dy<2;dy++)forecast.push({cell:`${n.x+dx},${n.y+dy}`,id:t.id});
+      }
+    });
+    for(let y=0;y<E.HEIGHT;y++)for(let x=0;x<E.WIDTH;x++){
+      const b=document.createElement('button');b.type='button';b.className='tile';b.setAttribute('aria-label',`地圖第 ${x+1} 列、第 ${y+1} 行`);
+      if(E.roof(x,y))b.classList.add('roof');
+      else if(E.rubble(x,y))b.classList.add('rubble');
+      else if((x+y)%2===0)b.classList.add('stone');
+      const t=titanAt(x,y),s=state.soldiers.find(u=>u.alive&&u.x===x&&u.y===y);
+      const c=state.civilians.find(u=>u.hp>0&&u.x===x&&u.y===y);
+      if(t)b.classList.add('enemy-area');
+      if(s)b.classList.add('soldier-area');
+      if(targets.includes(`${x},${y}`)||t&&targets.includes(t.id))b.classList.add('targetable');
+      if(forecast.some(f=>f.cell===`${x},${y}`))b.classList.add('danger');
+      if(s){b.innerHTML=svgSoldier(s.color);if(s.id===state.soldiers[state.selected]?.id)b.classList.add('selected-unit');}
+      if(c)b.innerHTML+='<span class="civ-icon" aria-hidden="true">✣</span>';
+      if(E.rubble(x,y))b.innerHTML+='<span class="rubble-icon">▦</span>';
+      if(E.roof(x,y))b.innerHTML+='<span class="roof-icon" aria-hidden="true">▰</span>';
+      b.onclick=()=>onTile(x,y);
+      el.appendChild(b);
+    }
+    for(const t of E.aliveTitans(state)){
+      const overlay=document.createElement('div');overlay.className='titan-overlay '+t.type;overlay.style.gridColumn=`${t.x+1} / span 2`;overlay.style.gridRow=`${t.y+1} / span 2`;
+      overlay.innerHTML=svgTitan(t.type)+`<span class="titan-label">${t.type==='normal'?'普通':'奇行'}</span>`;
+      overlay.style.pointerEvents='none';el.appendChild(overlay);
+    }
+    const future=forecast.filter(f=>f.action);
+    const notes=future.map(f=>`${f.id==='t1'?'普通巨人':'奇行種'}：${f.action==='attack'?'即將攻擊':f.action==='stay'?'停止行動｜':'靠近'}${f.target}`);
+    $('forecast').textContent=notes.length?notes.join('｜'):'暫無巨人威脅';
+  }
+  function onTile(x,y){
+    if(state.over)return;
+    const soldier=state.soldiers.findIndex(a=>a.alive&&a.x===x&&a.y===y);
+    const titan=titanAt(x,y);
+    if(armed>=0){const id=state.hand[armed];const target=E.CARDS[id].type==='titan'?{titanId:titan?.id}:{x,y};const outcome=E.playCard(state,armed,target);
+      if(outcome.ok){armed=-1;notice('成功使用卡牌');}else notice(outcome.reason,true);
+    } else if(soldier>=0){state.selected=soldier;notice('已選擇 '+state.soldiers[soldier].name);}
+    else if(titan) notice('先選擇卡牌，再點選巨人',true);
+    else {const r=E.move(state,state.selected,x,y);if(!r.ok)notice(r.reason,true);else notice('移動完成');}
+    render();
+  }
+  function renderCards(){
+    const root=$('cards');root.innerHTML='';
+    state.hand.forEach((id,i)=>{const c=E.CARDS[id],b=document.createElement('button');b.type='button';b.className=`card-btn ${c.color} ${armed===i?'armed':''}`;
+      b.disabled=state.over;b.innerHTML=`<span class="card-cost">${c.cost}</span><span class="card-icon">${c.code}</span><span class="card-title">${safe(c.title)}</span><span class="card-type">${c.kind}</span>`;
+      b.onclick=()=>{
+        if(state.over)return;
+        if(armed===i){armed=-1;render();return;}
+        if(c.cost>state.ep){notice('EP 不足',true);return;}
+        if(c.type==='instant'){
+          const r=E.playCard(state,i,{});if(r.ok){armed=-1;notice('成功使用 '+c.title);}else notice(r.reason,true);
+        } else {armed=i;notice(c.type==='tile'?'選擇屋頂錨點':'選擇目標巨人');}
+        render();
+      };root.appendChild(b);
+    });
+    const selected=armed>=0?E.CARDS[state.hand[armed]]:null;
+    $('card-info').textContent=selected?selected.text:'先選士兵，再選卡牌；機動卡配合「後頸斬擊」可擊殺巨人。';
+  }
+  function renderHud(){
+    $('turn').textContent=`${state.turn} / ${state.maxTurns}`;
+    $('ep').textContent=`${state.ep} / 3`;
+    $('saved').textContent=`${state.civilians.filter(c=>c.hp>0).length} / 2`;
+    const sr=$('soldiers');sr.innerHTML='';
+    state.soldiers.forEach((a,i)=>{
+      const b=document.createElement('button');b.type='button';b.className=`soldier-option ${state.selected===i?'active':''}`;b.disabled=!a.alive||state.over;
+      b.innerHTML=`<span class="soldier-marker ${a.color}"></span><span><b>${safe(a.name)}</b><small>HP ${a.hp}/2 · GAS ${a.gas}/3${a.airborne?' · 升空中':''}</small></span>`;
+      b.onclick=()=>{state.selected=i;armed=-1;render();};sr.appendChild(b);
+    });
+    $('end-turn').disabled=state.over;
+    $('log').innerHTML=state.logs.slice(0,4).map(msg=>'<li>'+safe(msg)+'</li>').join('');
+    const overlay=$('end-screen');
+    overlay.hidden=!state.over;
+    if(state.over){$('end-headline').textContent=state.result.type==='win'?'任務完成':'任務失敗';$('end-summary').textContent=state.result.message+'｜存活平民 '+state.civilians.filter(c=>c.hp>0).length+'/2';}
+  }
+  function render(){renderHud();renderBoard();renderCards();}
+  $('end-turn').onclick=()=>{armed=-1;const r=E.endTurn(state);if(!r.ok)notice(r.reason,true);render();};
+  function restart(){state=E.createGame(Math.floor(Math.random()*1e9));armed=-1;render();notice('測試重設完成');}
+  $('restart').onclick=restart;$('play-again').onclick=restart;
+  $('instructions').onclick=()=>{$('help').hidden=false;};$('close-help').onclick=()=>{$('help').hidden=true;};
+  render();
+  window.__prototypeState=()=>state;
+  document.getElementById("preview-warning").hidden=true;
+})();
+</script></body></html>
