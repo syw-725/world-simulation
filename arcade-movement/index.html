@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#101d24">
+<title>TITAN ARCADE — Movement Lab v0.1</title>
+<style>
+:root{color-scheme:dark;--ink:#ecf1ea;--sub:#b0c9cb;--gold:#f1ca83;--bg:#101d24}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0d171e;color:var(--ink);font-family:system-ui,-apple-system,'PingFang TC','Noto Sans TC',sans-serif;overscroll-behavior:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
+body{display:flex;align-items:center;justify-content:center}button{font:inherit;cursor:pointer;touch-action:none;-webkit-tap-highlight-color:transparent}
+#shell{position:relative;width:min(100vw,177.7778dvh);height:min(100dvh,56.25vw);max-width:100vw;max-height:100dvh;background:#223e4b;overflow:hidden;isolation:isolate;box-shadow:0 6px 45px #000b}
+#game{display:block;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges;background:#27404b}
+#hud{position:absolute;z-index:4;inset:0 0 auto 0;padding:6px max(8px,env(safe-area-inset-right)) 0 max(8px,env(safe-area-inset-left));pointer-events:none}
+#topline{display:flex;align-items:center;gap:6px;justify-content:space-between;min-height:28px}
+#topline h1{font-size:clamp(10px,2.9vh,15px);margin:0;letter-spacing:.07em;font-weight:900;text-shadow:1px 2px #000b;white-space:nowrap}
+#topline h1 span{font-size:.70em;color:var(--gold);font-weight:600}
+#labs{display:flex;gap:4px;pointer-events:auto;min-width:0}
+.labtab{color:#d0e0da;border:1px solid #71848899;background:#112732d9;padding:5px 8px;border-radius:5px;font-size:clamp(9px,2.1vh,11px);white-space:nowrap;min-height:28px}
+.labtab.active{background:#7a5f34e8;border-color:#ffe0a5;color:white}
+#smallbuttons{display:flex;gap:4px;pointer-events:auto}
+#smallbuttons button{border:1px solid #70858a;color:white;background:#122b35dd;min-height:27px;min-width:29px;padding:3px 7px;border-radius:5px;font-weight:700;font-size:12px}
+#tip{position:absolute;top:34px;left:50%;transform:translateX(-50%);min-width:220px;max-width:80%;border:1px solid #c39c6180;background:#152933e9;text-align:center;border-radius:6px;color:#f7e2bd;font-size:clamp(10px,2.4vh,12px);line-height:1.4;padding:5px 9px;pointer-events:none}
+#stats{position:absolute;top:72px;left:9px;font-size:9px;line-height:1.5;text-shadow:1px 1px #000b;color:#e9f2e8;pointer-events:none}
+#stats em{color:#ffe09e;font-style:normal}
+#controls{position:absolute;z-index:5;inset:auto 0 0;pointer-events:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 max(12px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));height:46%}
+#stickarea{width:min(30vw,132px);height:min(30vw,132px);min-width:85px;min-height:85px;position:relative;touch-action:none;pointer-events:auto}
+#stickring{position:absolute;left:17%;top:17%;width:66%;height:66%;border-radius:50%;border:2px solid #d1e6db88;background:#14323f7d;box-shadow:inset 0 0 0 9px #1c4e5960}
+#knob{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:39%;height:39%;border:2px solid #cbece4bf;background:#79a2a2b9;border-radius:50%;box-shadow:0 2px 10px #0c1d2477}
+#sticknote{position:absolute;top:-7px;left:16%;font-size:10px;color:#e1eff0;text-shadow:1px 2px #10242d;white-space:nowrap}
+#actionbuttons{display:grid;grid-template-columns:repeat(3,min(10vw,57px));grid-template-rows:repeat(2,min(10vw,57px));gap:6px;justify-items:center;align-items:center;pointer-events:auto;max-width:40vw}
+.action{width:100%;height:100%;border:2px solid #ffffff8a;border-radius:50%;background:#435c69dd;color:#f7f5eb;font-size:clamp(10px,2.4vh,12px);font-weight:900;box-shadow:0 4px 0 #0b1b24aa;text-shadow:1px 1px #12222c}
+.action:active,.action.pressed{transform:translateY(2px);box-shadow:0 2px 0 #0b1b24aa}
+#attack{grid-column:3;grid-row:2;background:#a0524ae8;border-color:#e8afa0}
+#grapple{grid-column:2;grid-row:2;background:#3c8b9be8;border-color:#a6dee7}
+#jump{grid-column:3;grid-row:1;background:#73826de8;border-color:#c8dabd}
+#dodge{grid-column:1;grid-row:2;background:#635e7cdd;border-color:#c3badc}
+#below{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);z-index:6;text-align:center;pointer-events:none;font-size:9px;letter-spacing:.05em;color:#e1e9d4;text-shadow:0 1px 3px black;white-space:nowrap}
+#panel{position:absolute;z-index:10;inset:0;display:none;align-items:center;justify-content:center;background:#04121bc9;padding:10px}
+#panel.show{display:flex}
+#panelinner{width:min(360px,90%);max-height:90%;overflow:auto;background:#172d36;border:2px solid #a38c64;border-radius:8px;padding:15px 19px 14px;box-shadow:0 14px 40px #02090da6}
+#panelinner h2{font-size:19px;margin:0 0 8px;color:#f3d8a2}
+#panelinner p{font-size:12px;color:#d7e0d7;line-height:1.6;margin:7px 0}
+#panelinner ul{font-size:11px;line-height:1.6;margin:6px 0 8px;padding-left:18px;color:#bdd4d3}
+#panelinner button{width:100%;padding:9px 8px;background:#d6b57e;border:none;border-radius:5px;font-weight:900;color:#15272f;min-height:38px;margin-top:6px}
+#rotate{position:fixed;z-index:25;inset:0;display:none;background:#101e27;align-items:center;justify-content:center;text-align:center;padding:26px}
+#rotate div{max-width:320px}#rotate strong{display:block;font-size:23px;color:#f3d8a2;margin-bottom:9px}#rotate p{font-size:14px;line-height:1.6;color:#c5d8d6}
+@media(orientation:portrait){#rotate{display:flex}#shell{display:none}}
+@media(max-height:330px){#hud{padding-top:3px}#tip{top:30px;padding:3px 7px}#actionbuttons{grid-template-columns:repeat(3,min(9vw,47px));grid-template-rows:repeat(2,min(9vw,47px));gap:5px}#stickarea{width:93px;height:93px}#controls{padding-bottom:4px}#stats{top:56px}}
+@media(max-width:650px){#topline h1{font-size:10px}#topline h1 span{display:none}.labtab{padding:4px 5px}}
+</style>
+</head>
+<body>
+<div id="rotate"><div><strong>↻ 請橫向拿手機</strong><p>本 Movement Lab 以手機橫向 16:9 設計。旋轉手機後，使用左手搖桿及右手動作按鈕開始試玩。</p></div></div>
+<div id="shell">
+<canvas id="game" width="400" height="225" aria-label="橫向動作遊戲測試地圖"></canvas>
+<div id="hud">
+ <div id="topline"><h1>TITAN ARCADE <span>· MOVEMENT LAB 0.1</span></h1><nav id="labs" aria-label="訓練區"><button class="labtab active" data-lab="0">01 跑跳</button><button class="labtab" data-lab="1">02 鋼索</button><button class="labtab" data-lab="2">03 巨人</button></nav><div id="smallbuttons"><button id="help" aria-label="玩法說明">?</button><button id="reset" aria-label="重新開始關卡">↻</button></div></div>
+ <div id="tip" role="status">移動左邊搖桿，向右越過障礙，抵達旗幟。</div>
+ <div id="stats">HP <em id="hp">♥ ♥ ♥</em><br>GAS <em id="gas">█████</em><br><span id="progress">01 / 03</span></div>
+</div>
+<div id="controls"><div id="stickarea" role="group" aria-label="左側移動搖桿"><div id="sticknote">移動</div><div id="stickring"></div><div id="knob"></div></div><div id="actionbuttons"><button id="jump" class="action">跳躍</button><button id="dodge" class="action">閃避</button><button id="grapple" class="action">鋼索</button><button id="attack" class="action">攻擊</button></div></div>
+<div id="below">90s ARCADE SPRITE FRAMES · 60 FPS PHYSICS</div>
+<div id="panel" class="show" role="dialog" aria-modal="true" aria-label="教學說明"><div id="panelinner"><h2 id="panel-title">移動訓練開始</h2><p id="panel-desc">目標係測試 90 年代街機嘅跳格動畫，以及鋼索移動同後頸斬擊嘅操作。</p><ul id="panel-list"><li>01 跑跳：用左手搖桿向右，按「跳躍」避開障礙。</li><li>02 鋼索：按「鋼索」勾住屋頂，再按一次釋放。</li><li>03 巨人：用鋼索到巨人後方，靠近金色弱點後按「攻擊」。</li></ul><button id="panel-btn">開始 01 跑跳訓練</button></div></div>
+</div>
+<script>
+(() => {'use strict';
+const C=document.getElementById('game'),ctx=C.getContext('2d',{alpha:false}),Q=id=>document.getElementById(id);ctx.imageSmoothingEnabled=false;
+const W=400,H=225,FLOOR=185,GRAV=550;
+const stageData=[
+ {title:'01 跑跳',width:620,spawn:44,flag:365,gap:null,obstacles:[{x:168,w:25,y:167}],platforms:[{x:295,w:72,y:143}],anchors:[{x:331,y:117}]},
+ {title:'02 鋼索',width:720,spawn:87,flag:381,gap:[178,318],obstacles:[],platforms:[{x:236,w:59,y:112},{x:321,w:65,y:157}],anchors:[{x:265,y:58},{x:351,y:125}]},
+ {title:'03 巨人',width:680,spawn:142,flag:0,gap:null,obstacles:[],platforms:[{x:244,w:48,y:117},{x:354,w:68,y:119}],anchors:[{x:269,y:61},{x:382,y:74}]}
+];
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const approach=(v,t,change)=>v<t?Math.min(t,v+change):Math.max(t,v-change);
+const keys={left:false,right:false};const state={stage:0,time:0,view:0,step:0,won:false,started:false,mode:'intro',labDone:[false,false,false],message:'',noticeUntil:0,shake:0,particles:[],titan:null,resetCount:0,grappleCount:0,attacks:0,combo:false};
+let p,rope=null,joy={pointer:null,x:0,y:0},accum=0,last=0,frame=0;
+function setup(stage){state.stage=stage;const d=stageData[stage];p={x:d.spawn,y:FLOOR,vx:0,vy:0,face:1,ground:true,gas:100,hp:3,inv:0,attack:0,dodge:0,anim:0,jumped:false,walked:false,hooked:false,released:false};rope=null;state.view=0;state.won=false;state.mode='play';state.combo=false;state.titan=stage===2?{x:326,foot:FLOOR,face:-1,alive:true,clock:0,attack:0,stun:0}:null;state.particles=[];state.shake=0;joy.x=0;joy.y=0;keys.left=false;keys.right=false;paintHUD();document.querySelectorAll('.labtab').forEach((el,i)=>el.classList.toggle('active',i===stage));}
+function paintHUD(){Q('hp').textContent='♥ '.repeat(p?.hp??3);Q('gas').textContent='█'.repeat(Math.ceil((p?.gas??100)/20))+'░'.repeat(5-Math.ceil((p?.gas??100)/20));Q('progress').textContent=['01 / 03','02 / 03','03 / 03'][state.stage];}
+function message(t,seconds=2.4){state.message=t;state.noticeUntil=state.time+seconds;}
+function setPanel(title,desc,items,action,fn){Q('panel-title').textContent=title;Q('panel-desc').textContent=desc;Q('panel-list').innerHTML=items.map(s=>'<li>'+s+'</li>').join('');Q('panel-btn').textContent=action;Q('panel-btn').onclick=()=>{Q('panel').classList.remove('show');state.started=true;state.mode='play';if(fn)fn();};Q('panel').classList.add('show');state.mode='panel';}
+function tip(){if(state.mode==='panel')return;let t=state.message&&state.time<state.noticeUntil?state.message:'';
+ if(!t&&state.won)t='✓ 訓練完成！按畫面中央「下一個訓練」';
+ if(!t&&state.stage===0)t=!p.walked?'① 左手搖桿向右，開始移動':!p.jumped?'② 按右上「跳躍」，越過前方石堆':'③ 繼續向右，抵達金色旗幟';
+ if(!t&&state.stage===1)t=!p.hooked?'① 按「鋼索」勾住金色屋頂錨點':rope?'② 保持向右，借鋼索加速；再按「鋼索」釋放':!p.released?'② 再按一次「鋼索」釋放':'③ 飛越斷橋，落到右邊旗幟';
+ if(!t&&state.stage===2&&state.titan?.alive&&p.x>state.titan.x&&Math.hypot(p.x-(state.titan.x+26),p.y-14-(state.titan.foot-89))<70&&!p.ground)t='⚡ 後頸攻擊窗口！立即按右下「攻擊」';
+ if(!t&&state.stage===2)t=!p.hooked?'① 先勾住金色屋頂錨點，飛向巨人後方':rope?'② 保持向右、按「鋼索」釋放，飛近後頸':'③ 接近巨人右後方金色弱點，按「攻擊」';
+ Q('tip').textContent=t;paintHUD();}
+const pos=()=>({x:Math.round(p.x),y:Math.round(p.y)});
+function jump(){if(!state.started||state.mode!=='play'||state.won)return;if(p.ground){p.vy=-214;p.ground=false;p.jumped=true;message('跳躍成功！角色以逐格動畫切換姿勢。',1.25);}else message('空中無二段跳；試試鋼索！',1.0);}
+function bestAnchor(){const a=stageData[state.stage].anchors;let best=null,score=9999;for(const q of a){const d=Math.hypot(q.x-p.x,q.y-(p.y-13));if(d>230||d<23)continue;const ahead=(q.x-p.x)*p.face>=-50?0:90;const s=d+ahead;if(s<score){score=s;best=q;}}return best;}
+function grapple(){if(!state.started||state.mode!=='play'||state.won)return;if(rope){rope=null;p.released=true;message('鋼索已釋放！保留飛行慣性。',1.5);return;}if(p.gas<5){message('GAS 不足！',1.5);return;}const a=bestAnchor();if(!a){message('距離錨點太遠，請接近金色標記。',1.6);return;}const d=Math.hypot(a.x-p.x,a.y-(p.y-13));rope={x:a.x,y:a.y,len:Math.max(68,d-20)};p.y-=2;p.ground=false;p.hooked=true;state.grappleCount++;p.gas=Math.max(0,p.gas-5);p.vy=Math.min(p.vy,-195);p.vx+=p.face*75;message('已連接鋼索：向右擺盪，再按一次釋放。',2.0);}
+function dodge(){if(!state.started||state.mode!=='play'||state.won)return;if(p.dodge>0)return;p.dodge=.29;p.inv=Math.max(p.inv,.32);p.vx=p.face*205;message('閃避！短暫無敵。',.65);}
+function attack(){if(!state.started||state.mode!=='play'||state.won)return;if(p.attack>0)return;p.attack=.27;state.attacks++;const t=state.titan;if(!t||!t.alive){message('斬擊！本訓練先練熟移動。',.7);return;}
+ const nx=t.x+26,ny=t.foot-89,dist=Math.hypot(p.x-nx,(p.y-14)-ny);
+ if(dist<=39&&p.x>t.x+9&&!p.ground){t.alive=false;state.combo=true;p.vx=Math.max(80,p.vx);p.vy=-65;state.shake=7;for(let i=0;i<18;i++)state.particles.push({x:nx,y:ny,vx:(Math.random()-.5)*115,vy:(Math.random()-.5)*115,life:.4+Math.random()*.3,c:i%3===0?'#fce5a8':'#d4e8e0'});success('後頸斬擊命中！你成功完成核心戰鬥連技。');}
+ else if(p.ground){message('要先升空，再由巨人右後方斬擊後頸。',2.0);}
+ else if(p.x<=t.x+9){message('你喺巨人前方！需要先繞到右後方。',2.1);}
+ else{message('距離後頸太遠！追住金色菱形弱點。',2.1);}
+}
+function success(text){if(state.won)return;state.won=true;state.labDone[state.stage]=true;message(text,4.5);state.mode='complete';setTimeout(()=>{if(state.mode==='complete'||state.mode==='play'&&state.won){const isLast=state.stage===2;setPanel(isLast?'三項訓練已完成！':'訓練完成！',text,isLast?['90年代逐格 Pixel Animation','鋼索拉力／慣性機制','巨人後頸斬擊判定']:['保留角色動作嘅跳格感','物理運算與逐格 Sprite 獨立處理'],isLast?'重新試玩 01 跑跳':'進入下一個訓練',()=>setup(isLast?0:state.stage+1));}},430);}
+function isGround(x){const g=stageData[state.stage].gap;return !g||x<g[0]||x>g[1];}
+function respawn(reason){const hp=Math.max(1,p.hp-1);setup(state.stage);p.hp=hp;state.resetCount++;message(reason+'，已回到起點。',2.3);}
+function update(dt){state.time+=dt;if(state.mode!=='play'||state.won)return;const d=stageData[state.stage];p.anim+=dt;p.attack=Math.max(0,p.attack-dt);p.dodge=Math.max(0,p.dodge-dt);p.inv=Math.max(0,p.inv-dt);state.shake=Math.max(0,state.shake-12*dt);
+ let axis=keys.right?1:keys.left?-1:0;if(joy.x!==0)axis=joy.x;axis=axis>.24?1:axis<-.24?-1:0;if(axis){p.face=axis;p.walked=true;}
+ const a=p.ground?960:490,top=rope?188:p.ground?112:125;
+ if(p.dodge<=0)p.vx=approach(p.vx,axis*top,a*dt);else p.vx=approach(p.vx,p.face*205,300*dt);
+ if(rope){p.ground=false;p.gas=Math.max(0,p.gas-4.0*dt);rope.len=Math.max(62,rope.len-(axis?62:35)*dt);p.vx+=axis*105*dt;if(joy.y<-.4)p.vy-=42*dt;}
+ p.vy+=GRAV*dt;const prevY=p.y,prevX=p.x;p.x+=p.vx*dt;p.y+=p.vy*dt;
+ if(rope){let dx=p.x-rope.x,dy=p.y-13-rope.y,dist=Math.hypot(dx,dy);if(dist>rope.len){const ux=dx/dist,uy=dy/dist;p.x=rope.x+ux*rope.len;p.y=rope.y+uy*rope.len+13;const radial=p.vx*ux+p.vy*uy;if(radial>0){p.vx-=ux*radial;p.vy-=uy*radial;}}if(p.gas===0){rope=null;message('GAS 耗盡，鋼索自動解除。',1.4);}}
+ p.x=clamp(p.x,7,d.width-8);
+ if(d.obstacles.length)for(const o of d.obstacles){if(p.y>o.y+2&&p.y<=FLOOR+5&&prevX+7<=o.x&&p.x+7>o.x)p.x=o.x-7;if(p.y>o.y+2&&prevX-7>=o.x+o.w&&p.x-7<o.x+o.w)p.x=o.x+o.w+7;}
+ let landing=FLOOR;if(!isGround(p.x))landing=999;
+ for(const pl of d.platforms){if(p.x>=pl.x-5&&p.x<=pl.x+pl.w+5&&prevY<=pl.y+3&&p.y>=pl.y&&p.vy>=0)landing=Math.min(landing,pl.y);}
+ if(p.y>=landing&&p.vy>=0){p.y=landing;p.vy=0;p.ground=true;rope=null;}else p.ground=false;
+ if(p.y>247){respawn('跌落斷橋');return;}
+ const t=state.titan;if(t&&t.alive){t.clock+=dt;const phase=(t.clock%3.9);t.attack=phase>2.6&&phase<3.13?1:0;if(t.attack&&phase>2.85&&phase<2.92&&Math.abs(p.x-(t.x-39))<39&&p.y>146&&p.inv<=0){p.hp--;p.inv=.9;state.shake=3;p.vx=-155;p.vy=-85;message('巨人揮手！留意前方紅色預兆，向後閃避或升空。',2.2);if(p.hp<=0){respawn('士兵被巨人擊倒');return;}}}
+ for(const o of state.particles){o.x+=o.vx*dt;o.y+=o.vy*dt;o.vy+=200*dt;o.life-=dt;}state.particles=state.particles.filter(x=>x.life>0);
+ if(state.stage===0&&p.x>=d.flag&&p.jumped)success('完成跑跳訓練，基本移動及逐格姿勢已驗證。');
+ if(state.stage===1&&p.x>=d.flag&&p.y<194&&p.hooked&&p.released)success('鋼索釋放後成功越過斷橋，動量與落地成立。');
+ const desired=clamp(p.x-143+(p.vx>65?24:p.vx< -65?-22:0),0,d.width-W);state.view=approach(state.view,desired,190*dt);
+}
+const rect=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h));};
+function background(){const d=stageData[state.stage],cam=Math.round(state.view);rect(0,0,W,H,'#294653');rect(0,0,W,58,'#263d4b');rect(0,56,W,2,'#365864');
+ for(let j=0;j<16;j++){const x=j*80-cam*.18;rect(x-8,50+(j%4)*3,56,36,'#324c56');rect(x,42+(j%3)*5,39,12,'#354e57');}
+ for(let j=0;j<17;j++){const x=j*68-cam*.45;rect(x,80+(j%3)*7,54,110,'#334b4e');rect(x+6,74+(j%3)*7,41,8,'#405657');for(let r=0;r<4;r++)for(let c=0;c<3;c++)rect(x+6+c*14,97+(j%3)*7+r*19,5,10,(r+c+j)%3===0?'#716a53':'#263c41');}
+ for(let j=0;j<d.width/34;j++){const x=Math.round(j*34-cam);rect(x,180,33,5,'#66725e');rect(x+2,185,28,13,'#555e4d');for(let k=0;k<2;k++)rect(x+4+k*14,193,11,2,'#3c4d43');}
+ rect(0,197,W,28,'#2f3e37');for(let j=0;j<W/24+1;j++){rect(j*24-2,201,20,3,'#45574b');rect(j*24+11,210,13,2,'#445347');rect(j*24,219,8,2,'#556353');}
+ if(d.gap){const a=d.gap;rect(a[0]-cam,178,a[1]-a[0],47,'#1e3037');rect(a[0]-cam,181,4,40,'#7b7564');rect(a[1]-cam-3,181,4,40,'#7b7564');for(let j=0;j<12;j++)rect(a[0]-cam+(j*31%138),203+j%3*4,9,3,'#48534f');}
+ for(const o of d.obstacles){const x=o.x-cam;rect(x,o.y,o.w,FLOOR-o.y,'#8a7865');rect(x-3,o.y-4,o.w+6,5,'#9f8a6b');rect(x+5,o.y+5,8,6,'#665d52');}
+ for(const pl of d.platforms){const x=pl.x-cam;rect(x+4,pl.y+4,pl.w-9,FLOOR-pl.y,'#4b5754');rect(x-3,pl.y,pl.w+6,7,'#7e8171');rect(x-3,pl.y-3,pl.w+6,3,'#afa38a');for(let j=0;j<pl.w/15;j++)rect(x+8+j*15,pl.y+17,6,9,'#304347');}
+ for(const a of d.anchors){const x=a.x-cam;const platform=d.platforms.reduce((best,pl)=>Math.abs(pl.x+pl.w/2-a.x)<Math.abs(best.x+best.w/2-a.x)?pl:best,d.platforms[0]);rect(x-1,a.y+5,3,Math.max(4,Math.min(45,platform.y-(a.y+5))),'#706f68');rect(x-3,a.y+2,7,4,'#e6d1a4');rect(x-2,a.y-3,5,5,'#f1cd79');rect(x-1,a.y-5,3,2,'#fff2bd');}
+ if(d.flag){const x=d.flag-cam;rect(x,FLOOR-47,2,47,'#d3d1ac');rect(x+2,FLOOR-46,21,12,'#c1a15c');rect(x+2,FLOOR-46,5,12,'#eed59a');}
+}
+function ropePixels(){if(!rope)return;const cam=Math.round(state.view),x1=Math.round(p.x-cam),y1=Math.round(p.y-14),x2=Math.round(rope.x-cam),y2=Math.round(rope.y);const steps=Math.ceil(Math.max(Math.abs(x2-x1),Math.abs(y2-y1))/2);for(let i=0;i<=steps;i++){const x=Math.round(x1+(x2-x1)*i/steps),y=Math.round(y1+(y2-y1)*i/steps);rect(x,y,2,2,i%4<2?'#d0e4da':'#799da3');}}
+function drawSoldier(){const sx=Math.round(p.x-state.view),sy=Math.round(p.y),stateName=p.attack>0?'attack':rope?'grapple':p.dodge>0?'dodge':!p.ground?'jump':Math.abs(p.vx)>23?'run':'idle';let f=0;
+ if(stateName==='run')f=Math.floor(p.anim*10)%6;else if(stateName==='idle')f=Math.floor(p.anim*3)%2;else if(stateName==='attack')f=clamp(Math.floor((.27-p.attack)/.054),0,4);else if(stateName==='grapple')f=Math.floor(p.anim*7)%3;else if(stateName==='jump')f=p.vy< -30?0:p.vy<45?1:2;else f=Math.floor(p.anim*9)%3;
+ if(p.inv>0&&Math.floor(state.time*12)%2)return;
+ ctx.save();ctx.translate(sx,sy);ctx.scale(p.face,1);if(stateName==='grapple')ctx.translate(0,(f%2));
+ rect(-7,-24,14,5,'#3c4b4b');rect(-5,-25,10,5,'#302f36');rect(-5,-20,10,5,'#d6a889');rect(-3,-17,3,2,'#253039');rect(-5,-14,11,11,'#5d7c64');rect(-2,-14,6,9,'#b0a987');rect(-5,-14,3,8,'#7c9b90');rect(4,-14,3,8,'#7c9b90');rect(-5,-3,4,3,'#353e42');rect(1,-3,4,3,'#353e42');rect(-7,-11,2,5,'#bf9b7d');rect(6,-11,2,5,'#bf9b7d');
+ let leg1=0,leg2=0;if(stateName==='run'){const ph=[-4,-2,1,4,2,-1][f];leg1=ph;leg2=-ph;}else if(stateName==='jump'||stateName==='grapple'){leg1=-3;leg2=3;}else if(stateName==='dodge'){leg1=4;leg2=-4;}rect(-5+leg1,-1,4,7,'#2b3942');rect(2+leg2,-1,4,7,'#2b3942');rect(-6+leg1,5,6,2,'#171e27');rect(1+leg2,5,6,2,'#171e27');
+ if(stateName==='attack'){const phases=[[-7,-18],[-3,-25],[8,-21],[12,-12],[10,-9]],r=phases[f];rect(r[0],r[1],13,2,'#dce7ed');rect(r[0]+10,r[1]-2,4,2,'#fff2c8');if(f===2||f===3){rect(12,-25,3,18,'#e6d8ba');rect(15,-20,4,10,'#f8e4ae');}}
+ else{rect(8,-14,3,13,'#b6c2c6');rect(9,-16,2,5,'#e8d8ae');}
+ if(stateName==='grapple')rect(-5,-17,4,5,'#a3b5b1');
+ ctx.restore();}
+function drawTitan(){const t=state.titan;if(!t||!t.alive)return;const x=Math.round(t.x-state.view),y=Math.round(t.foot);let attackPhase=t.attack?Math.floor((t.clock%3.9-2.6)*6):0;let walkFrame=Math.floor(t.clock*5)%4;ctx.save();ctx.translate(x,y);ctx.scale(-1,1);
+ rect(-17,-114,36,13,'#b28a78');rect(-19,-111,40,7,'#5e4740');rect(-16,-102,34,26,'#d5a487');rect(-12,-88,8,5,'#563b3a');rect(7,-88,8,5,'#563b3a');rect(-6,-77,15,3,'#773e3b');rect(-18,-74,38,45,'#a97565');rect(-9,-69,20,35,'#c79681');rect(-22,-68,10,35,'#c28d7b');rect(16,-69,10,35,'#c28d7b');
+ rect(-18,-30,14,29,'#99766b');rect(6,-30,14,29,'#99766b');rect(-20,-4,17,4,'#66524f');rect(5,-4,17,4,'#66524f');
+ if(t.attack){const a=clamp(attackPhase,0,4);rect(19,-72-a*3,12+a*3,9,'#c6957d');rect(27+a*3,-70-a*3,10,13,'#d6a58d');}
+ else rect(19,-70,11,36,'#ba8777');
+ ctx.restore();
+ if(t.attack||t.clock%3.9>2.2&&t.clock%3.9<3.1){rect(x-78,y-128,46,4,'#dc7669');rect(x-78,y-128,4,12,'#dc7669');rect(x-45,y-128,4,12,'#dc7669');}
+ const nx=Math.round(t.x+26-state.view),ny=Math.round(t.foot-89),pulse=Math.floor(state.time*5)%2;rect(nx-5,ny-2,10,4,pulse?'#ffe7a0':'#e2be63');rect(nx-2,ny-5,4,10,pulse?'#ffe7a0':'#e2be63');rect(nx-1,ny-1,2,2,'#fff6cf');}
+function foreground(){const cam=Math.round(state.view);for(let j=0;j<stageData[state.stage].width/38;j++){const x=j*38-cam;if(x>W||x< -35)continue;rect(x,194,32,2,'#728067');rect(x+7,211,23,1,'#566956');}
+ for(const pt of state.particles)rect(pt.x-cam,pt.y,Math.max(1,pt.life*5),2,pt.c);
+ if(state.mode==='play'&&state.stage===2&&state.titan?.alive){const t=state.titan;if(p.x>t.x&&Math.abs(p.y-14-(t.foot-89))<40){rect(W/2-64,64,128,12,'#1f3d44c0');ctx.fillStyle='#ffe1a5';ctx.font='bold 8px monospace';ctx.textAlign='center';ctx.fillText('後頸弱點：按攻擊',W/2,72);ctx.textAlign='left';}}
+ if(state.won){rect(107,79,186,49,'#132b33e9');rect(107,79,186,2,'#e6c789');ctx.textAlign='center';ctx.fillStyle='#f5dfae';ctx.font='bold 15px monospace';ctx.fillText('STAGE CLEAR',200,99);ctx.fillStyle='#d5ece9';ctx.font='9px monospace';ctx.fillText('訓練完成',200,116);ctx.textAlign='left';}}
+function render(){ctx.save();const jitter=state.shake>0?Math.round((Math.sin(state.time*49)*state.shake)*.35):0;ctx.translate(jitter,0);background();ropePixels();drawTitan();drawSoldier();foreground();ctx.restore();}
+function tick(now){if(!last)last=now;accum+=Math.min((now-last)/1000,.05);last=now;while(accum>=1/60){update(1/60);accum-=1/60;}render();if(frame++%8===0)tip();requestAnimationFrame(tick);}
+function axisFrom(e){const r=Q('stickarea').getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=e.clientX-cx,dy=e.clientY-cy,m=Math.max(1,Math.hypot(dx,dy)),max=r.width*.26;joy.x=clamp(dx/max,-1,1);joy.y=clamp(dy/max,-1,1);const s=Math.min(max,m);Q('knob').style.left=`calc(50% + ${(dx/m)*s}px)`;Q('knob').style.top=`calc(50% + ${(dy/m)*s}px)`;}
+const stick=Q('stickarea');stick.addEventListener('pointerdown',e=>{e.preventDefault();joy.pointer=e.pointerId;stick.setPointerCapture(e.pointerId);axisFrom(e);});stick.addEventListener('pointermove',e=>{if(e.pointerId===joy.pointer)axisFrom(e);});function releaseStick(e){if(e.pointerId!==joy.pointer)return;joy.pointer=null;joy.x=joy.y=0;Q('knob').style.left='50%';Q('knob').style.top='50%';}stick.addEventListener('pointerup',releaseStick);stick.addEventListener('pointercancel',releaseStick);
+for(const [id,fn] of [['jump',jump],['dodge',dodge],['grapple',grapple],['attack',attack]]){const b=Q(id);b.addEventListener('pointerdown',e=>{e.preventDefault();b.classList.add('pressed');fn();});for(const ev of ['pointerup','pointercancel','pointerleave'])b.addEventListener(ev,()=>b.classList.remove('pressed'));}
+window.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','ArrowUp','ArrowDown',' ','Space'].includes(e.key))e.preventDefault();if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=true;if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=true;if(e.repeat)return;switch(e.key.toLowerCase()){case ' ':case 'w':case 'arrowup':jump();break;case 'k':grapple();break;case 'j':attack();break;case 'l':dodge();break;case 'r':setup(state.stage);break;}});window.addEventListener('keyup',e=>{if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=false;if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=false;});window.addEventListener('blur',()=>{keys.left=keys.right=false;joy.x=joy.y=0;});
+for(const b of document.querySelectorAll('.labtab'))b.addEventListener('click',()=>{setup(Number(b.dataset.lab));message('已切換訓練區，按左手搖桿及右手按鈕操作。',2.7);});
+Q('reset').onclick=()=>{setup(state.stage);message('已重新開始目前訓練。',1.6);};Q('help').onclick=()=>setPanel('操作與任務說明','這是先驗證操控手感的簡易遊戲原型；角色採用刻意跳格的街機動畫。',['左手搖桿：左右移動','右手按鍵：跳躍、鋼索、閃避、攻擊','鋼索按一下連接，再按一下釋放，保留速度','桌面鍵盤：A/D 移動、W/空白跳、K 鋼索、J 攻擊、L 閃避','用頂部 01／02／03 可直接跳到不同訓練'], '返回遊戲');
+setup(0);state.started=false;state.mode='panel';Q('panel-btn').onclick=()=>{Q('panel').classList.remove('show');state.started=true;state.mode='play';message('開始！向右行、跳過石堆。',1.7);};requestAnimationFrame(tick);
+window.__movementLab={getState:()=>({stage:state.stage,mode:state.mode,player:{...p},rope:rope?{...rope}:null,completed:[...state.labDone],titan:state.titan?{...state.titan}:null}),goStage:i=>{setup(clamp(i,0,2));state.started=true;},debug:{jump,grapple,attack,dodge}};
+})();
+</script>
+</body></html>
