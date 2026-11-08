@@ -28,13 +28,26 @@
   .action-bar button{min-height:44px;font-size:13px}
   .testlog,.footer{display:none}
 }
+
+/* Guided first mission v0.3 */
+.mission-goal{margin-top:7px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:3px 8px;border:1px solid #344d49;background:#1b302c;padding:7px 10px;border-radius:7px;font-size:11px;color:#e8e5d6;line-height:1.4}
+.mission-goal strong{color:#e6cf9e}.mission-goal span{color:#b6cfca;font-weight:700}
+.guide-banner{margin-top:7px;background:linear-gradient(130deg,#3d3d2d,#30352e);border:2px solid #d2ad70;border-radius:9px;padding:9px 11px;box-shadow:0 0 0 1px #191f1c}
+.guide-banner[hidden]{display:none}.guide-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
+.guide-title strong{font-size:10px;letter-spacing:.08em;color:#e6ca97}.guide-title button{font-size:10px;border:1px solid #a59071;background:#423e31;color:#f0e7d5;border-radius:5px;padding:4px 8px;min-height:28px}
+.guide-main{font-size:13px;line-height:1.35;font-weight:800;color:#fff4d9}.guide-hint{font-size:11px;line-height:1.35;color:#ddd8c8;margin-top:3px}
+.coach-focus{outline:4px solid #f5d27d!important;outline-offset:-3px;z-index:6!important;box-shadow:inset 0 0 0 2px #fff2d8,0 0 18px #f1c77988!important;animation:coachpulse 1.4s ease-in-out infinite}
+@keyframes coachpulse{50%{filter:brightness(1.26)}}
+.quiet-button{background:#2a3d44!important;color:#dfe6df!important;border:1px solid #66776f!important;margin-top:7px!important}
+.modal .short-guide{margin:9px 0 0;padding-left:17px}.modal .short-guide li{margin:6px 0}
+@media(max-width:520px){.mission-goal{font-size:10px;margin-top:5px;padding:5px 8px}.guide-banner{margin-top:5px;padding:7px 9px}.guide-main{font-size:12px}.guide-hint{font-size:10px}}
 </style></head>
 <body><main><header class="top"><div><div class="eyebrow">PIXEL TACTICS / EXPERIMENT 001</div><h1>TITAN TACTICS</h1><p class="subtitle">巨人戰棋 × 卡牌連技　｜　可操作規則原型</p></div><button class="help-button" id="instructions" type="button">玩法說明</button></header>
-<section class="stats" aria-label="任務資訊"><div class="stat"><small>回合 TURN</small><strong id="turn">1 / 6</strong></div><div class="stat"><small>行動能量 EP</small><strong id="ep">3 / 3</strong></div><div class="stat"><small>生存平民</small><strong id="saved">2 / 2</strong></div></section>
+<section class="stats" aria-label="任務資訊"><div class="stat"><small>回合 TURN</small><strong id="turn">1 / 6</strong></div><div class="stat"><small>行動能量 EP</small><strong id="ep">3 / 3</strong></div><div class="stat"><small>生存平民</small><strong id="saved">2 / 2</strong></div></section><div class="mission-goal"><span>任務目標｜救援作戰</span><strong>保護平民至第 6 回合，或消滅全部巨人</strong></div><section class="guide-banner" id="guide-banner" hidden aria-live="polite"><div class="guide-title"><strong id="guide-progress">新兵教學</strong><button type="button" id="guide-skip">跳過教學</button></div><div class="guide-main" id="guide-main"></div><div class="guide-hint" id="guide-hint"></div></section>
 <div id="preview-warning" role="alert" style="background:#583b2a;color:#fff0dc;border:2px solid #cc8e63;border-radius:9px;margin:12px 0;padding:12px;font-size:13px;line-height:1.65"><strong>無法啟動遊戲：目前只顯示 HTML 靜態預覽。</strong><div>如地圖沒有士兵／巨人，而這段提示仍在，代表你的檔案預覽器沒有執行 JavaScript。ChatGPT iPhone 檔案預覽並不適合直接試玩；請把此 HTML 上傳到 HTTPS 靜態網站，再用 Safari 打開網址。只改檔名或重新下載不能解決。</div></div><div class="strip" id="forecast" role="status">載入敵人行動預告…</div><div class="board-wrap"><div class="board" id="board" aria-label="6 乘 7 戰棋地圖"></div></div><div class="under-board"><div class="legend"><span><i class="dot"></i>新兵</span><span><i class="dot gold"></i>支援兵</span><span><i class="dot red"></i>巨人威脅</span></div><span>6 × 7 GRID</span></div>
-<div class="soldiers" id="soldiers"></div><div class="hand-top"><span class="section-label">戰術手牌</span><span class="section-secondary">每回合抽 4 張 · 卡庫 12 張</span></div><div class="cards" id="cards"></div><div class="card-info" id="card-info"></div><div class="action-bar"><button id="restart" class="restart" type="button">重置測試</button><button id="end-turn" class="end-turn" type="button">結束回合 ↗</button></div><div class="testlog"><strong>戰場日誌 / BATTLE LOG</strong><ul id="log"></ul></div><p class="footer">Proof of Concept v0.2 (static preview detection) · 角色以程式簡化像素形狀呈現，並非正式素材。此為機制測試，未包含抽蛋、關卡存檔或完整巨人碰撞系統。</p></main><div class="notice" id="notice" role="status"></div>
+<div class="soldiers" id="soldiers"></div><div class="hand-top"><span class="section-label">戰術手牌</span><span class="section-secondary">每回合抽 4 張 · 卡庫 12 張</span></div><div class="cards" id="cards"></div><div class="card-info" id="card-info"></div><div class="action-bar"><button id="restart" class="restart" type="button">重置測試</button><button id="end-turn" class="end-turn" type="button">結束回合 ↗</button></div><div class="testlog"><strong>戰場日誌 / BATTLE LOG</strong><ul id="log"></ul></div><p class="footer">Proof of Concept v0.3 (guided first mission) · 角色以程式簡化像素形狀呈現，並非正式素材。此為機制測試，未包含抽蛋、關卡存檔或完整巨人碰撞系統。</p></main><div class="notice" id="notice" role="status"></div>
 <div class="overlay" id="end-screen" hidden><div class="modal"><div class="eyebrow">MISSION RESULT</div><h2 id="end-headline">任務完成</h2><p id="end-summary"></p><p>測試問題：你有冇覺得「繞背 → 斬後頸」比單純攻擊 HP 更有策略性？操控同地圖喺手機上夠唔夠清楚？</p><button id="play-again" type="button">再次測試</button></div></div>
-<div class="overlay" id="help" hidden><div class="modal"><div class="eyebrow">TESTING GUIDE</div><h2>操作說明</h2><ul class="help-steps"><li>先選下方其中一名士兵，點地圖空格可免費移動 2 格，每回合每人一次。</li><li>點擊手牌，再點擊巨人或屋頂（按卡牌要求）即可出牌。</li><li><b>推薦先試：</b>選「繞背機動」→ 點巨人 → 再選「後頸斬擊」→ 點同一隻巨人。</li><li>每回合有 3 EP；每位士兵有 3 Gas。巨人每回合按預告行動。</li><li>防守 6 回合且至少一名平民存活，或討伐全部巨人，即算勝利。</li><li>第 3 回合會出現移動較快的「奇行種」。</li></ul><button id="close-help" type="button">開始測試</button></div></div>
+<div class="overlay" id="intro" hidden><div class="modal"><div class="eyebrow">MISSION 01 · 調查兵團新兵</div><h2>第一次出戰？</h2><p><b>你控制畫面中青綠色的新兵。</b> 紅色大巨人會逼近底部兩名平民。你要用卡牌安排位置，再斬巨人後頸。</p><ul class="short-guide"><li><b>選卡牌</b> → <b>點地圖目標</b>，先機動再攻擊。</li><li>每回合有 <b>3 EP</b>，每名士兵有 <b>3 Gas</b>。</li><li>守住 <b>6 回合</b>，或擊敗所有已登場巨人。</li></ul><p>接下來會直接在遊戲畫面逐步指示你，完成第一套連技。</p><button type="button" id="start-guide">開始 5 步教學</button><button type="button" class="quiet-button" id="skip-intro">直接自由試玩</button></div></div><div class="overlay" id="help" hidden><div class="modal"><div class="eyebrow">TESTING GUIDE</div><h2>操作說明</h2><ul class="help-steps"><li>先選下方其中一名士兵，點地圖空格可免費移動 2 格，每回合每人一次。</li><li>點擊手牌，再點擊巨人或屋頂（按卡牌要求）即可出牌。</li><li><b>推薦先試：</b>選「繞背機動」→ 點巨人 → 再選「後頸斬擊」→ 點同一隻巨人。</li><li>每回合有 3 EP；每位士兵有 3 Gas。巨人每回合按預告行動。</li><li>防守 6 回合且至少一名平民存活，或討伐全部巨人，即算勝利。</li><li>第 3 回合會出現移動較快的「奇行種」。</li></ul><button id="restart-guide" type="button">重新開始互動教學</button><button id="close-help" class="quiet-button" type="button">返回遊戲</button></div></div>
 <script>/* Tactical Card Test Engine v0.1 — abstract licensed-IP-free playtest rules. */
 (function (root, factory) {
   const api = factory();
@@ -262,7 +275,7 @@
 </script><script>(function(){
   'use strict';
   const E=window.TitanTactics;
-  let state=E.createGame(42), armed=-1,noticeTimer=null;
+  let state=E.createGame(42), armed=-1,noticeTimer=null,guideStep=0,guideOn=false;
   const $=id=>document.getElementById(id);
   function safe(t){return String(t).replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));}
   function notice(msg,bad=false){const el=$('notice');el.textContent=msg;el.className='notice show '+(bad?'error':'');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>el.className='notice',3300);}
@@ -291,6 +304,7 @@
       if(s)b.classList.add('soldier-area');
       if(targets.includes(`${x},${y}`)||t&&targets.includes(t.id))b.classList.add('targetable');
       if(forecast.some(f=>f.cell===`${x},${y}`))b.classList.add('danger');
+      if(guideOn&&(guideStep===2||guideStep===4)&&t?.id==='t1')b.classList.add('coach-focus');
       if(s){b.innerHTML=svgSoldier(s.color);if(s.id===state.soldiers[state.selected]?.id)b.classList.add('selected-unit');}
       if(c)b.innerHTML+='<span class="civ-icon" aria-hidden="true">✣</span>';
       if(E.rubble(x,y))b.innerHTML+='<span class="rubble-icon">▦</span>';
@@ -311,8 +325,14 @@
     if(state.over)return;
     const soldier=state.soldiers.findIndex(a=>a.alive&&a.x===x&&a.y===y);
     const titan=titanAt(x,y);
+    if(guideOn&&guideStep>=1&&guideStep<=5){
+      if(guideStep===1||guideStep===3){notice('先點亮框內的戰術卡牌，再點巨人',true);return;}
+      if(guideStep===5){notice('第一隻巨人已擊敗！現在請按「結束回合」',true);return;}
+      if(!titan||titan.id!=='t1'){notice('請點地圖上有黃色提示框的「普通巨人」',true);return;}
+    }
     if(armed>=0){const id=state.hand[armed];const target=E.CARDS[id].type==='titan'?{titanId:titan?.id}:{x,y};const outcome=E.playCard(state,armed,target);
-      if(outcome.ok){armed=-1;notice('成功使用卡牌');}else notice(outcome.reason,true);
+      if(outcome.ok){armed=-1;notice('成功使用 '+E.CARDS[id].title);if(guideOn&&guideStep===2&&id==='flank')guideStep=3;else if(guideOn&&guideStep===4&&id==='nape')guideStep=5;}
+      else notice(outcome.reason,true);
     } else if(soldier>=0){state.selected=soldier;notice('已選擇 '+state.soldiers[soldier].name);}
     else if(titan) notice('先選擇卡牌，再點選巨人',true);
     else {const r=E.move(state,state.selected,x,y);if(!r.ok)notice(r.reason,true);else notice('移動完成');}
@@ -322,13 +342,21 @@
     const root=$('cards');root.innerHTML='';
     state.hand.forEach((id,i)=>{const c=E.CARDS[id],b=document.createElement('button');b.type='button';b.className=`card-btn ${c.color} ${armed===i?'armed':''}`;
       b.disabled=state.over;b.innerHTML=`<span class="card-cost">${c.cost}</span><span class="card-icon">${c.code}</span><span class="card-title">${safe(c.title)}</span><span class="card-type">${c.kind}</span>`;
+      if(guideOn&&((guideStep===1&&id==='flank')||(guideStep===3&&id==='nape')))b.classList.add('coach-focus');
       b.onclick=()=>{
         if(state.over)return;
+        if(guideOn&&guideStep<=5){
+          const expected=guideStep===1?'flank':guideStep===3?'nape':null;
+          if(!expected||id!==expected){notice(guideStep===5?'請先按「結束回合」':guideStep===1?'請先選「繞背機動」':guideStep===3?'請先選「後頸斬擊」':'先點擊地圖中的普通巨人',true);return;}
+        }
         if(armed===i){armed=-1;render();return;}
         if(c.cost>state.ep){notice('EP 不足',true);return;}
         if(c.type==='instant'){
           const r=E.playCard(state,i,{});if(r.ok){armed=-1;notice('成功使用 '+c.title);}else notice(r.reason,true);
-        } else {armed=i;notice(c.type==='tile'?'選擇屋頂錨點':'選擇目標巨人');}
+        } else {armed=i;notice(c.type==='tile'?'選擇屋頂錨點':'選擇目標巨人');
+          if(guideOn&&guideStep===1&&id==='flank')guideStep=2;
+          else if(guideOn&&guideStep===3&&id==='nape')guideStep=4;
+        }
         render();
       };root.appendChild(b);
     });
@@ -351,13 +379,39 @@
     overlay.hidden=!state.over;
     if(state.over){$('end-headline').textContent=state.result.type==='win'?'任務完成':'任務失敗';$('end-summary').textContent=state.result.message+'｜存活平民 '+state.civilians.filter(c=>c.hp>0).length+'/2';}
   }
-  function render(){renderHud();renderBoard();renderCards();}
-  $('end-turn').onclick=()=>{armed=-1;const r=E.endTurn(state);if(!r.ok)notice(r.reason,true);render();};
-  function restart(){state=E.createGame(Math.floor(Math.random()*1e9));armed=-1;render();notice('測試重設完成');}
+  const guideInstructions={
+    1:['STEP 1 / 5','先點選「繞背機動」卡牌','卡牌在下方金色閃框的位置，消耗 1 EP。'],
+    2:['STEP 2 / 5','再點地圖上的紅色「普通巨人」','你嘅新兵會沿鋼索移動到巨人背後，消耗 1 Gas。'],
+    3:['STEP 3 / 5','點選「後頸斬擊」卡牌','需要 2 EP；剛才升空後可以直接接這張牌。'],
+    4:['STEP 4 / 5','再次點紅色「普通巨人」','符合背後＋升空條件，便可以一擊擊殺！'],
+    5:['STEP 5 / 5','成功！而家按「結束回合」','敵人會按上方預告行動；下一回合會恢復 3 EP。'],
+    6:['教學完成','你已完成「繞背 → 後頸斬擊」！','繼續玩：第 3 回合會出現移動較快嘅奇行種。試吓保護兩名平民。']
+  };
+  function renderGuide(){
+    const banner=$('guide-banner');banner.hidden=!guideOn;
+    if(!guideOn)return;
+    const lines=guideInstructions[guideStep]||guideInstructions[1];
+    $('guide-progress').textContent=lines[0];$('guide-main').textContent=lines[1];$('guide-hint').textContent=lines[2];
+    $('guide-skip').textContent=guideStep>=6?'關閉提示':'跳過教學';
+  }
+  function render(){renderHud();renderBoard();renderCards();renderGuide();}
+  $('end-turn').onclick=()=>{
+    if(guideOn&&guideStep>=1&&guideStep<5){notice('先完成金框提示嘅教學步驟',true);return;}
+    armed=-1;const r=E.endTurn(state);if(!r.ok)notice(r.reason,true);
+    if(r.ok&&guideOn&&guideStep===5)guideStep=6;
+    render();
+  };
+  function restart(){state=E.createGame(42);armed=-1;guideOn=true;guideStep=1;$('intro').hidden=true;$('end-screen').hidden=true;render();notice('已重新開始第一關教學');}
   $('restart').onclick=restart;$('play-again').onclick=restart;
   $('instructions').onclick=()=>{$('help').hidden=false;};$('close-help').onclick=()=>{$('help').hidden=true;};
+  $('restart-guide').onclick=()=>{$('help').hidden=true;restart();};
+  $('start-guide').onclick=()=>{$('intro').hidden=true;guideOn=true;guideStep=1;render();};
+  $('skip-intro').onclick=()=>{$('intro').hidden=true;guideOn=false;guideStep=0;render();};
+  $('guide-skip').onclick=()=>{guideOn=false;guideStep=0;armed=-1;render();notice('已切換自由試玩模式；仍可點「玩法說明」重開教學');};
   render();
   window.__prototypeState=()=>state;
-  document.getElementById("preview-warning").hidden=true;
+  window.__tutorialState=()=>({guideOn,guideStep,armed});
+  document.getElementById('preview-warning').hidden=true;
+  $('intro').hidden=false;
 })();
 </script></body></html>
